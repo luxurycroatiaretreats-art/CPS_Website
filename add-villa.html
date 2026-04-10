@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dodaj vilu — Croatia Premium Stay</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --navy:#0A2535;--teal:#115571;--teal2:#1a6b8a;--gold:#C4974E;
+  --cream:#F7F5F1;--border:#E8EEF2;--text:#0D1B24;--muted:#8AA8B0;--light:#5A7880;
+  --green:#22C55E;--green-p:#ECFDF5;--red:#EF4444;--red-p:#FFF5F5;
+  --sh:0 2px 12px rgba(10,37,53,0.07);--sh2:0 8px 32px rgba(10,37,53,0.12);
+}
+html,body{min-height:100%;font-family:'Jost',sans-serif;background:var(--cream);color:var(--text);-webkit-font-smoothing:antialiased;}
+button,input,textarea,select{font-family:'Jost',sans-serif;}
+a{text-decoration:none;color:inherit;}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;height:64px;background:#fff;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 32px;}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:500;color:var(--navy);}
+.nav-right{display:flex;align-items:center;gap:16px;}
+.nav-save{font-size:12px;color:var(--muted);}
+.nav-exit{padding:8px 18px;border-radius:8px;font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;background:none;border:1.5px solid var(--border);color:var(--text);cursor:pointer;transition:all 0.2s;}
+.nav-exit:hover{border-color:var(--navy);color:var(--navy);}
+
+/* PROGRESS BAR */
+.progress-bar{height:3px;background:var(--border);position:sticky;top:64px;z-index:99;}
+.progress-fill{height:100%;background:var(--teal);transition:width 0.4s ease;}
+
+/* LAYOUT */
+.wizard{max-width:720px;margin:0 auto;padding:48px 24px 120px;}
+
+/* STEP HEADER */
+.step-eyebrow{font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;}
+.step-title{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:400;color:var(--navy);line-height:1.2;margin-bottom:10px;}
+.step-title em{font-style:italic;color:var(--teal);}
+.step-sub{font-size:14px;color:var(--light);line-height:1.6;margin-bottom:36px;max-width:520px;}
+.step-divider{height:1px;background:var(--border);margin:32px 0;}
+
+/* FIELDS */
+.field{margin-bottom:22px;}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:22px;}
+.field-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:22px;}
+label{display:block;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:7px;}
+.label-hint{font-size:11px;color:var(--muted);font-weight:400;letter-spacing:0;text-transform:none;margin-left:6px;}
+input[type=text],input[type=number],input[type=email],textarea,select{width:100%;padding:13px 15px;border:1.5px solid var(--border);border-radius:10px;font-size:14px;color:var(--text);background:#fff;outline:none;transition:border 0.2s,box-shadow 0.2s;}
+input:focus,textarea:focus,select:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(17,85,113,0.08);}
+textarea{resize:vertical;min-height:120px;line-height:1.6;}
+.char-count{text-align:right;font-size:11px;color:var(--muted);margin-top:4px;}
+.field-prefix{position:relative;}
+.field-prefix span{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--muted);}
+.field-prefix input{padding-left:32px;}
+.field-suffix span{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:13px;color:var(--muted);}
+.field-suffix{position:relative;}
+
+/* STEPPER */
+.stepper{display:flex;align-items:center;gap:0;background:#fff;border:1.5px solid var(--border);border-radius:10px;overflow:hidden;width:fit-content;}
+.stepper-btn{width:42px;height:42px;border:none;background:none;font-size:20px;color:var(--navy);cursor:pointer;transition:background 0.15s;display:flex;align-items:center;justify-content:center;}
+.stepper-btn:hover{background:var(--cream);}
+.stepper-btn:disabled{color:var(--muted);cursor:not-allowed;}
+.stepper-val{min-width:48px;text-align:center;font-size:15px;font-weight:500;border-left:1.5px solid var(--border);border-right:1.5px solid var(--border);padding:0 8px;height:42px;display:flex;align-items:center;justify-content:center;}
+.stepper-row{display:flex;align-items:center;justify-content:space-between;padding:18px 0;border-bottom:1px solid var(--border);}
+.stepper-row:last-child{border-bottom:none;}
+.stepper-label{font-size:14px;font-weight:500;}
+.stepper-sub{font-size:12px;color:var(--muted);margin-top:2px;}
+
+/* AMENITIES */
+.amenities-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.am-item{display:flex;align-items:center;gap:10px;padding:13px 14px;border:1.5px solid var(--border);border-radius:10px;cursor:pointer;transition:all 0.15s;user-select:none;}
+.am-item:hover{border-color:var(--teal);background:#f8fdfF;}
+.am-item.on{border-color:var(--teal);background:#EFF8FF;}
+.am-item-icon{font-size:20px;flex-shrink:0;}
+.am-item-label{font-size:13px;font-weight:500;}
+.am-item.on .am-item-label{color:var(--teal);}
+
+/* IMAGE UPLOAD */
+.img-dropzone{border:2px dashed var(--border);border-radius:14px;padding:40px 24px;text-align:center;cursor:pointer;transition:all 0.2s;background:#FAFBFC;position:relative;}
+.img-dropzone:hover,.img-dropzone.drag{border-color:var(--teal);background:#F0F9FF;}
+.img-dropzone input{display:none;}
+.img-dropzone-icon{margin:0 auto 14px;width:52px;height:52px;background:var(--cream);border-radius:50%;display:flex;align-items:center;justify-content:center;}
+.img-dropzone-title{font-size:15px;font-weight:600;color:var(--navy);margin-bottom:5px;}
+.img-dropzone-sub{font-size:12px;color:var(--muted);line-height:1.6;}
+.img-dropzone-sub strong{color:var(--teal);}
+.img-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px;}
+.img-card{position:relative;border-radius:10px;overflow:hidden;aspect-ratio:4/3;background:var(--border);}
+.img-card img{width:100%;height:100%;object-fit:cover;}
+.img-card-del{position:absolute;top:6px;right:6px;width:24px;height:24px;border-radius:50%;background:rgba(0,0,0,0.65);border:none;color:#fff;font-size:16px;display:flex;align-items:center;justify-content:center;cursor:pointer;line-height:1;transition:background 0.15s;}
+.img-card-del:hover{background:var(--red);}
+.img-card-badge{position:absolute;bottom:6px;left:6px;background:var(--gold);color:#fff;font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;letter-spacing:0.05em;}
+.img-card-uploading{position:absolute;inset:0;background:rgba(255,255,255,0.8);display:flex;align-items:center;justify-content:center;}
+.img-card-uploading::after{content:'';width:20px;height:20px;border:2px solid var(--teal);border-top-color:transparent;border-radius:50%;animation:spin 0.7s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.upload-progress{margin-top:12px;font-size:12px;color:var(--teal);display:none;}
+.img-hint{margin-top:12px;padding:12px 14px;background:var(--cream);border-radius:8px;font-size:12px;color:var(--light);line-height:1.6;}
+
+/* PRICING CALENDAR */
+.calendar-wrap{background:#fff;border:1.5px solid var(--border);border-radius:14px;overflow:hidden;}
+.cal-header{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.cal-nav{display:flex;align-items:center;gap:12px;}
+.cal-nav button{width:32px;height:32px;border-radius:8px;border:1.5px solid var(--border);background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--navy);transition:all 0.15s;}
+.cal-nav button:hover{border-color:var(--teal);color:var(--teal);}
+.cal-month{font-size:15px;font-weight:600;color:var(--navy);min-width:160px;text-align:center;}
+.cal-grid{padding:16px;}
+.cal-days-header{display:grid;grid-template-columns:repeat(7,1fr);margin-bottom:8px;}
+.cal-day-label{text-align:center;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);padding:4px 0;}
+.cal-days{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;}
+.cal-day{aspect-ratio:1;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:all 0.15s;position:relative;border:1.5px solid transparent;}
+.cal-day:hover:not(.empty):not(.past){background:var(--cream);border-color:var(--border);}
+.cal-day.empty{cursor:default;}
+.cal-day.past{opacity:0.35;cursor:not-allowed;}
+.cal-day.selected{background:#EFF8FF;border-color:var(--teal);}
+.cal-day.has-price{background:#F0F9F0;}
+.cal-day.has-price .cal-day-price{color:var(--green);}
+.cal-day-num{font-size:13px;font-weight:500;line-height:1;}
+.cal-day-price{font-size:9px;color:var(--muted);margin-top:2px;line-height:1;}
+.cal-day.blocked{background:#FEF2F2;border-color:#FECACA;}
+.cal-day.blocked .cal-day-num{color:var(--red);}
+
+/* PRICE PANEL */
+.price-panel{margin-top:16px;padding:18px;background:var(--cream);border-radius:12px;display:none;}
+.price-panel.open{display:block;}
+.price-panel-title{font-size:13px;font-weight:600;margin-bottom:14px;color:var(--navy);}
+.price-panel-dates{font-size:12px;color:var(--light);margin-bottom:12px;}
+.price-panel-row{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+.price-panel-row label{font-size:12px;font-weight:600;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;min-width:120px;margin:0;}
+.price-panel-row input{flex:1;padding:9px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;outline:none;background:#fff;transition:border 0.2s;}
+.price-panel-row input:focus{border-color:var(--teal);}
+.price-type-tabs{display:flex;gap:6px;margin-bottom:14px;}
+.ptab{padding:6px 14px;border-radius:6px;font-size:11px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;border:1.5px solid var(--border);background:#fff;color:var(--muted);cursor:pointer;transition:all 0.15s;}
+.ptab.on{background:var(--teal);color:#fff;border-color:var(--teal);}
+
+/* SEASON PRESETS */
+.seasons{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:20px;}
+.season-card{background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:14px;cursor:pointer;transition:all 0.15s;}
+.season-card:hover{border-color:var(--teal);}
+.season-card-name{font-size:12px;font-weight:600;color:var(--navy);margin-bottom:4px;}
+.season-card-dates{font-size:11px;color:var(--muted);}
+.season-card-price{font-size:18px;font-weight:600;color:var(--teal);margin-top:6px;font-family:'Cormorant Garamond',serif;}
+
+/* POLICY CARDS */
+.policy-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.policy-card{border:2px solid var(--border);border-radius:12px;padding:18px;cursor:pointer;transition:all 0.15s;}
+.policy-card:hover{border-color:var(--teal);}
+.policy-card.on{border-color:var(--teal);background:#EFF8FF;}
+.policy-card-title{font-size:14px;font-weight:600;color:var(--navy);margin-bottom:5px;}
+.policy-card-desc{font-size:12px;color:var(--light);line-height:1.5;}
+.policy-card-badge{display:inline-block;margin-top:8px;font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;background:var(--cream);color:var(--muted);}
+.policy-card.on .policy-card-badge{background:var(--teal);color:#fff;}
+
+/* FOOTER NAV */
+.wizard-footer{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--border);padding:16px 32px;display:flex;align-items:center;justify-content:space-between;z-index:100;}
+.wf-left{font-size:12px;color:var(--muted);}
+.wf-right{display:flex;gap:10px;}
+.btn-back{padding:12px 24px;border-radius:10px;font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;background:none;border:1.5px solid var(--border);color:var(--text);cursor:pointer;transition:all 0.2s;}
+.btn-back:hover{border-color:var(--navy);}
+.btn-next{padding:12px 28px;border-radius:10px;font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;background:var(--navy);color:#fff;border:none;cursor:pointer;transition:all 0.2s;}
+.btn-next:hover{background:var(--teal);}
+.btn-next:disabled{opacity:0.5;cursor:not-allowed;}
+.btn-submit{background:var(--gold);color:#fff;}
+.btn-submit:hover{background:#b8863f;}
+
+/* STEP DISPLAY */
+.step{display:none;animation:fadeUp 0.3s ease;}
+.step.active{display:block;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+
+/* ALERT */
+.alert{padding:13px 16px;border-radius:10px;font-size:13px;margin-bottom:20px;display:none;}
+.alert-err{background:var(--red-p);border:1px solid #FEB2B2;color:var(--red);}
+.alert-ok{background:var(--green-p);border:1px solid #BBF7D0;color:#15803D;}
+
+/* INFO BOX */
+.info-box{background:var(--cream);border-radius:10px;padding:16px;font-size:13px;color:var(--light);line-height:1.7;margin-bottom:20px;}
+.info-box strong{color:var(--navy);}
+
+/* SUMMARY */
+.summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.sum-card{background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:18px;}
+.sum-card-label{font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.sum-card-val{font-size:16px;font-weight:600;color:var(--navy);}
+.sum-card-sub{font-size:12px;color:var(--light);margin-top:2px;}
+.sum-imgs{display:flex;gap:6px;margin-top:16px;}
+.sum-img{width:72px;height:52px;border-radius:7px;object-fit:cover;}
+
+@media(max-width:640px){
+  .wizard{padding:32px 16px 100px;}
+  .step-title{font-size:26px;}
+  .amenities-grid{grid-template-columns:repeat(2,1fr);}
+  .img-grid{grid-template-columns:repeat(3,1fr);}
+  .field-row,.field-row-3{grid-template-columns:1fr;}
+  .seasons{grid-template-columns:1fr 1fr;}
+  .policy-grid{grid-template-columns:1fr;}
+  .summary-grid{grid-template-columns:1fr;}
+  .wizard-footer{padding:12px 16px;}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-logo">Croatia <em style="font-family:'Cormorant Garamond',serif;font-style:italic;">Premium</em> Stay</div>
+  <div class="nav-right">
+    <span class="nav-save" id="autoSaveStatus"></span>
+    <button class="nav-exit" onclick="exitWizard()">Izlaz</button>
+  </div>
+</nav>
+<div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+
+<div class="wizard">
+  <div id="globalAlert" class="alert"></div>
+
+  <!-- STEP 1: TIP & LOKACIJA -->
+  <div class="step active" id="step1">
+    <div class="step-eyebrow">Korak 1 od 7</div>
+    <div class="step-title">Gdje se nalazi<br><em>vaša nekretnina?</em></div>
+    <div class="step-sub">Recite nam osnovne informacije o lokaciji vašeg objekta.</div>
+
+    <div class="field">
+      <label>Naziv vile *</label>
+      <input type="text" id="s1Name" placeholder="npr. Villa Amelie Split" oninput="autoSave()">
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label>Grad / Mjesta *</label>
+        <input type="text" id="s1City" placeholder="Split" oninput="autoSave()">
+      </div>
+      <div class="field">
+        <label>Regija</label>
+        <select id="s1Region" onchange="autoSave()">
+          <option value="">Odaberite regiju</option>
+          <option value="dalmacija">Dalmacija</option>
+          <option value="istra">Istra</option>
+          <option value="kvarner">Kvarner</option>
+          <option value="dubrovnik">Dubrovnik</option>
+          <option value="otoci">Otoci</option>
+        </select>
+      </div>
+    </div>
+    <div class="field">
+      <label>Adresa</label>
+      <input type="text" id="s1Addr" placeholder="Ul. Kralja Tomislava 12" oninput="autoSave()">
+    </div>
+    <div class="field">
+      <label>Kratki opis lokacije <span class="label-hint">(prikazuje se na kartici)</span></label>
+      <input type="text" id="s1LocLabel" placeholder="Uz more · Split · Dalmacija" oninput="autoSave()">
+    </div>
+  </div>
+
+  <!-- STEP 2: KAPACITET -->
+  <div class="step" id="step2">
+    <div class="step-eyebrow">Korak 2 od 7</div>
+    <div class="step-title">Koliki je kapacitet<br><em>vaše vile?</em></div>
+    <div class="step-sub">Unesite točan broj kako bismo mogli pravilno prikazati vaš oglas gostima.</div>
+
+    <div style="background:#fff;border:1.5px solid var(--border);border-radius:14px;overflow:hidden;">
+      <div class="stepper-row" style="padding:18px 22px;">
+        <div><div class="stepper-label">Gosti</div><div class="stepper-sub">Maksimalan broj gostiju</div></div>
+        <div class="stepper"><button class="stepper-btn" onclick="step('guests',-1)">−</button><div class="stepper-val" id="vGuests">8</div><button class="stepper-btn" onclick="step('guests',1)">+</button></div>
+      </div>
+      <div class="stepper-row" style="padding:18px 22px;">
+        <div><div class="stepper-label">Spavaće sobe</div><div class="stepper-sub">Broj odvojenih spavaćih soba</div></div>
+        <div class="stepper"><button class="stepper-btn" onclick="step('bedrooms',-1)">−</button><div class="stepper-val" id="vBedrooms">4</div><button class="stepper-btn" onclick="step('bedrooms',1)">+</button></div>
+      </div>
+      <div class="stepper-row" style="padding:18px 22px;">
+        <div><div class="stepper-label">Kreveti</div><div class="stepper-sub">Ukupan broj kreveta</div></div>
+        <div class="stepper"><button class="stepper-btn" onclick="step('beds',-1)">−</button><div class="stepper-val" id="vBeds">5</div><button class="stepper-btn" onclick="step('beds',1)">+</button></div>
+      </div>
+      <div class="stepper-row" style="padding:18px 22px;">
+        <div><div class="stepper-label">Kupaonice</div><div class="stepper-sub">Broj punih kupaonica</div></div>
+        <div class="stepper"><button class="stepper-btn" onclick="step('baths',-1)">−</button><div class="stepper-val" id="vBaths">3</div><button class="stepper-btn" onclick="step('baths',1)">+</button></div>
+      </div>
+    </div>
+
+    <div class="step-divider"></div>
+
+    <div class="field-row">
+      <div class="field">
+        <label>Površina (m²)</label>
+        <input type="number" id="s2Sqm" placeholder="220" min="1" oninput="autoSave()">
+      </div>
+      <div class="field">
+        <label>Broj katova</label>
+        <input type="number" id="s2Floors" placeholder="2" min="1" oninput="autoSave()">
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 3: SADRŽAJI -->
+  <div class="step" id="step3">
+    <div class="step-eyebrow">Korak 3 od 7</div>
+    <div class="step-title">Što nude vaši<br><em>gosti?</em></div>
+    <div class="step-sub">Označite sve sadržaje koje vaša vila nudi. Što više označite, veća je vidljivost u pretragama.</div>
+    <div class="amenities-grid" id="amenGrid"></div>
+  </div>
+
+  <!-- STEP 4: SLIKE -->
+  <div class="step" id="step4">
+    <div class="step-eyebrow">Korak 4 od 7</div>
+    <div class="step-title">Dodajte fotografije<br><em>vile</em></div>
+    <div class="step-sub">Kvalitetne fotografije su ključ uspješnog oglasa. Preporučujemo minimum 8 fotografija visoke rezolucije.</div>
+
+    <div class="img-dropzone" id="dropzone" onclick="document.getElementById('imgInput').click()" ondragover="ev.preventDefault();this.classList.add('drag')" ondragleave="this.classList.remove('drag')" ondrop="onDrop(event)">
+      <input type="file" id="imgInput" accept="image/jpeg,image/png,image/webp" multiple onchange="onFiles(event)">
+      <div class="img-dropzone-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" stroke="#8AA8B0" stroke-width="1.5" stroke-linecap="round"/><path d="M17 8l-5-5-5 5M12 3v12" stroke="#C4974E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="img-dropzone-title">Povucite slike ovdje ili kliknite za upload</div>
+      <div class="img-dropzone-sub">JPG, PNG, WebP · Max 10MB po slici<br><strong>Automatska kompresija i optimizacija</strong> na 1200×800px</div>
+    </div>
+    <div class="img-grid" id="imgGrid"></div>
+    <div class="upload-progress" id="upProg">Uploading...</div>
+    <div class="img-hint">
+      💡 <strong>Savjet:</strong> Prva slika postaje naslovna. Uključite fotografije: eksterijer, bazen, spavaće sobe, dnevni boravak, kuhinja, terasa, pogled, detalji.
+    </div>
+  </div>
+
+  <!-- STEP 5: OPIS -->
+  <div class="step" id="step5">
+    <div class="step-eyebrow">Korak 5 od 7</div>
+    <div class="step-title">Opišite svoju<br><em>vilu</em></div>
+    <div class="step-sub">Dobar opis privlači prave goste. Budite specifični, iskreni i istaknite ono što čini vašu vilu posebnom.</div>
+
+    <div class="field">
+      <label>Puni opis * <span class="label-hint">min. 100 znakova</span></label>
+      <textarea id="s5Desc" placeholder="Opišite svoju vilu — lokacija, ambijent, posebnosti, okolica, pristup moru, privatnost..." oninput="updateCharCount();autoSave()"></textarea>
+      <div class="char-count"><span id="descCount">0</span> / 2000</div>
+    </div>
+
+    <div class="field">
+      <label>Kratki opis <span class="label-hint">prikazuje se na kartici</span></label>
+      <input type="text" id="s5Short" placeholder="Beachfront villa s infinity bazenom i privatnom plažom" oninput="autoSave()" maxlength="80">
+    </div>
+
+    <div class="step-divider"></div>
+
+    <div class="info-box">
+      💡 <strong>Što uključiti u opis:</strong> Posebnosti lokacije · Okoliš i priroda · Pristup plaži ili moru · Privatnost · Usluge (čišćenje, chef, transfer) · Idealan za (obitelji, parove, grupe)
+    </div>
+  </div>
+
+  <!-- STEP 6: CIJENE -->
+  <div class="step" id="step6">
+    <div class="step-eyebrow">Korak 6 od 7</div>
+    <div class="step-title">Postavite cijene<br><em>i dostupnost</em></div>
+    <div class="step-sub">Definirajte osnovnu cijenu, sezonske varijacije i uvjete boravka.</div>
+
+    <!-- BASE PRICE -->
+    <div style="background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:22px;margin-bottom:20px;">
+      <div style="font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;">Osnovna cijena</div>
+      <div class="field-row">
+        <div class="field" style="margin:0;">
+          <label>Cijena po noći (€) *</label>
+          <div class="field-prefix" style="position:relative;">
+            <span style="position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted);">€</span>
+            <input type="number" id="s6BasePrice" placeholder="1500" min="0" style="padding-left:32px;" oninput="autoSave()">
+          </div>
+        </div>
+        <div class="field" style="margin:0;">
+          <label>Naknada za čišćenje (€)</label>
+          <div class="field-prefix" style="position:relative;">
+            <span style="position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted);">€</span>
+            <input type="number" id="s6CleanFee" placeholder="250" min="0" style="padding-left:32px;" oninput="autoSave()">
+          </div>
+        </div>
+      </div>
+      <div class="field-row" style="margin-top:0;">
+        <div class="field" style="margin:0;">
+          <label>Sigurnosni depozit (€)</label>
+          <div class="field-prefix" style="position:relative;">
+            <span style="position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted);">€</span>
+            <input type="number" id="s6Deposit" placeholder="1000" min="0" style="padding-left:32px;" oninput="autoSave()">
+          </div>
+        </div>
+        <div class="field" style="margin:0;">
+          <label>Minimalni boravak</label>
+          <div class="field-suffix" style="position:relative;">
+            <input type="number" id="s6MinNights" placeholder="3" min="1" style="padding-right:48px;" oninput="autoSave()">
+            <span style="position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--muted);">noći</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEASON PRESETS -->
+    <div style="font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Sezonske cijene (preporučeno)</div>
+    <div class="seasons">
+      <div class="season-card" onclick="applySeason('low')">
+        <div class="season-card-name">🌿 Niska sezona</div>
+        <div class="season-card-dates">Lis — Tra</div>
+        <div class="season-card-price" id="seasonLow">—</div>
+      </div>
+      <div class="season-card" onclick="applySeason('mid')">
+        <div class="season-card-name">☀️ Srednja sezona</div>
+        <div class="season-card-dates">Svi — Lip / Ruj</div>
+        <div class="season-card-price" id="seasonMid">—</div>
+      </div>
+      <div class="season-card" onclick="applySeason('high')">
+        <div class="season-card-name">🔥 Visoka sezona</div>
+        <div class="season-card-dates">Srp — Kol</div>
+        <div class="season-card-price" id="seasonHigh">—</div>
+      </div>
+    </div>
+    <div style="font-size:12px;color:var(--muted);margin-bottom:20px;">Kliknite na sezonu za automatsko postavljanje cijena u kalendaru</div>
+
+    <!-- CALENDAR -->
+    <div style="font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Kalendar cijena</div>
+    <div class="calendar-wrap">
+      <div class="cal-header">
+        <div class="cal-nav">
+          <button onclick="prevMonth()">‹</button>
+          <div class="cal-month" id="calMonth"></div>
+          <button onclick="nextMonth()">›</button>
+        </div>
+        <div style="font-size:12px;color:var(--muted);">Kliknite dan ili označite raspon</div>
+      </div>
+      <div class="cal-grid">
+        <div class="cal-days-header">
+          <div class="cal-day-label">Pon</div><div class="cal-day-label">Uto</div><div class="cal-day-label">Sri</div>
+          <div class="cal-day-label">Čet</div><div class="cal-day-label">Pet</div><div class="cal-day-label">Sub</div><div class="cal-day-label">Ned</div>
+        </div>
+        <div class="cal-days" id="calDays"></div>
+      </div>
+    </div>
+
+    <!-- PRICE PANEL -->
+    <div class="price-panel" id="pricePanel">
+      <div class="price-panel-title">Postavi cijenu za označene datume</div>
+      <div class="price-panel-dates" id="ppDates"></div>
+      <div class="price-type-tabs">
+        <button class="ptab on" onclick="setPriceType('custom',this)">Prilagođena cijena</button>
+        <button class="ptab" onclick="setPriceType('blocked',this)">Blokiraj datume</button>
+      </div>
+      <div id="ppCustom">
+        <div class="price-panel-row">
+          <label>Cijena/noć (€)</label>
+          <input type="number" id="ppPrice" placeholder="Unesite cijenu">
+        </div>
+        <div class="price-panel-row">
+          <label>Min. noćenja</label>
+          <input type="number" id="ppMin" placeholder="3">
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;margin-top:14px;">
+        <button onclick="applyPriceToSelection()" style="padding:9px 18px;background:var(--teal);color:#fff;border:none;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;">Primijeni</button>
+        <button onclick="clearSelection()" style="padding:9px 18px;background:#fff;border:1.5px solid var(--border);border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;">Odustani</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 7: UVJETI -->
+  <div class="step" id="step7">
+    <div class="step-eyebrow">Korak 7 od 7</div>
+    <div class="step-title">Uvjeti i<br><em>plaćanje</em></div>
+    <div class="step-sub">Odaberite uvjete plaćanja i otkazivanja koji vam odgovaraju.</div>
+
+    <div style="font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;">Uvjeti plaćanja</div>
+    <div class="policy-grid" style="margin-bottom:24px;">
+      <div class="policy-card on" data-val="30" onclick="selectPolicy(this)">
+        <div class="policy-card-title">30 dana unaprijed</div>
+        <div class="policy-card-desc">Ostatak (60%) naplaćuje se automatski 30 dana prije check-in datuma.</div>
+        <div class="policy-card-badge">Popularno</div>
+      </div>
+      <div class="policy-card" data-val="45" onclick="selectPolicy(this)">
+        <div class="policy-card-title">45 dana unaprijed</div>
+        <div class="policy-card-desc">Ostatak se naplaćuje 45 dana prije dolaska. Više sigurnosti.</div>
+        <div class="policy-card-badge">Preporučeno</div>
+      </div>
+      <div class="policy-card" data-val="60" onclick="selectPolicy(this)">
+        <div class="policy-card-title">60 dana unaprijed</div>
+        <div class="policy-card-desc">Ostatak se naplaćuje 60 dana prije dolaska. Maksimalna zaštita.</div>
+        <div class="policy-card-badge">Premium vile</div>
+      </div>
+      <div class="policy-card" data-val="0" onclick="selectPolicy(this)">
+        <div class="policy-card-title">100% odmah</div>
+        <div class="policy-card-desc">Puni iznos naplaćuje se pri rezervaciji. Bez odgođene naplate.</div>
+        <div class="policy-card-badge">Kratki boravci</div>
+      </div>
+    </div>
+
+    <div class="step-divider"></div>
+
+    <div style="font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;">Pravila otkazivanja</div>
+    <div class="policy-grid">
+      <div class="policy-card on" data-cancel="flexible" onclick="selectCancel(this)">
+        <div class="policy-card-title">Fleksibilno</div>
+        <div class="policy-card-desc">Puni povrat 30+ dana, 50% povrat 14-30 dana, bez povrata unutar 14 dana.</div>
+        <div class="policy-card-badge">CPS Standard</div>
+      </div>
+      <div class="policy-card" data-cancel="strict" onclick="selectCancel(this)">
+        <div class="policy-card-title">Strogo</div>
+        <div class="policy-card-desc">50% povrat 60+ dana, bez povrata unutar 60 dana.</div>
+        <div class="policy-card-badge">Premium zaštita</div>
+      </div>
+    </div>
+
+    <div class="step-divider"></div>
+
+    <div class="info-box">
+      ✅ <strong>Sve je spremnno za slanje.</strong> Nakon što pošaljete oglas, naš tim će ga pregledati unutar 24-48 sati. Dobiti ćete email potvrdu kada vila bude odobrena i vidljiva na platformi.
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="wizard-footer">
+  <div class="wf-left" id="stepIndicator">Korak 1 od 7</div>
+  <div class="wf-right">
+    <button class="btn-back" id="btnBack" onclick="prevStep()" style="display:none;">← Natrag</button>
+    <button class="btn-next" id="btnNext" onclick="nextStep()">Nastavi →</button>
+  </div>
+</div>
+
+<script>
+const API = 'https://cps-booking.solitary-rice-38ed.workers.dev';
+const token = localStorage.getItem('cps_owner_token');
+
+// ── STATE ──────────────────────────────────────────────────────
+let currentStep = 1;
+const totalSteps = 7;
+let villaId = null;
+let imgs = [];
+let calYear, calMonth2;
+let calPrices = {}; // {'2025-07-15': {price:2000, min:3}, ...}
+let calBlocked = {}; // {'2025-07-20': true}
+let selStart = null, selEnd = null, selecting = false;
+let priceType = 'custom';
+let selectedPolicy = 30;
+let selectedCancel = 'flexible';
+let steppers = { guests:8, bedrooms:4, beds:5, baths:3 };
+
+// ── AMENITIES ─────────────────────────────────────────────────
+const AMENITIES = [
+  {icon:'🏊',label:'Bazen'},{icon:'🌊',label:'Infinity bazen'},{icon:'🏖️',label:'Privatna plaža'},
+  {icon:'🛁',label:'Jacuzzi'},{icon:'🧖',label:'Sauna'},{icon:'🌡️',label:'Klima'},
+  {icon:'📶',label:'WiFi'},{icon:'🅿️',label:'Parking'},{icon:'🔥',label:'BBQ'},
+  {icon:'🌿',label:'Vrt'},{icon:'🏡',label:'Terasa'},{icon:'🌅',label:'Pogled na more'},
+  {icon:'👨‍🍳',label:'Chef'},{icon:'🧹',label:'Domaćica'},{icon:'🚤',label:'Čamac'},
+  {icon:'🚗',label:'Prijevoz'},{icon:'🚲',label:'Bicikli'},{icon:'💪',label:'Fitnes'},
+  {icon:'🎮',label:'Game room'},{icon:'🎬',label:'Kino soba'},{icon:'🍷',label:'Vinska klijet'},
+  {icon:'🐾',label:'Pet friendly'},{icon:'🌙',label:'Romantični set'},{icon:'👶',label:'Oprema za bebe'},
+];
+
+document.getElementById('amenGrid').innerHTML = AMENITIES.map(a =>
+  `<div class="am-item" data-val="${a.label}" onclick="this.classList.toggle('on')">
+    <span class="am-item-icon">${a.icon}</span>
+    <span class="am-item-label">${a.label}</span>
+  </div>`
+).join('');
+
+// ── STEPPERS ──────────────────────────────────────────────────
+function step(key, delta) {
+  const min = key === 'guests' ? 1 : 1;
+  const max = key === 'guests' ? 30 : 20;
+  steppers[key] = Math.max(min, Math.min(max, steppers[key] + delta));
+  document.getElementById('v' + key.charAt(0).toUpperCase() + key.slice(1)).textContent = steppers[key];
+}
+
+// ── CHAR COUNT ────────────────────────────────────────────────
+function updateCharCount() {
+  const l = document.getElementById('s5Desc').value.length;
+  document.getElementById('descCount').textContent = l;
+}
+
+// ── IMAGE UPLOAD ──────────────────────────────────────────────
+function onFiles(e) { uploadAll([...e.target.files]); }
+function onDrop(e) { e.preventDefault(); document.getElementById('dropzone').classList.remove('drag'); uploadAll([...e.dataTransfer.files]); }
+
+async function uploadAll(files) {
+  const valid = files.filter(f => ['image/jpeg','image/png','image/webp'].includes(f.type));
+  if (!valid.length) return showAlert('Dozvoljeni formati: JPG, PNG, WebP', 'err');
+  document.getElementById('upProg').style.display = 'block';
+  for (const f of valid) {
+    document.getElementById('upProg').textContent = `Uploading ${f.name}...`;
+    const idx = imgs.length;
+    imgs.push({ url: null, uploading: true });
+    renderImgs();
+    try {
+      const fd = new FormData(); fd.append('image', f);
+      const r = await fetch(`${API}/api/owner/upload-image`, { method:'POST', headers:{'Authorization':`Bearer ${token}`}, body:fd });
+      const d = await r.json();
+      if (d.error) throw new Error(d.error);
+      imgs[idx] = { url: d.url, uploading: false };
+      renderImgs();
+    } catch(e) {
+      imgs.splice(idx, 1);
+      showAlert('Upload greška: ' + e.message, 'err');
+      renderImgs();
+    }
+  }
+  document.getElementById('upProg').style.display = 'none';
+}
+
+function renderImgs() {
+  document.getElementById('imgGrid').innerHTML = imgs.map((img, i) => img.uploading
+    ? `<div class="img-card"><div class="img-card-uploading"></div></div>`
+    : `<div class="img-card">
+        <img src="${img.url}" alt="slika ${i+1}">
+        <button class="img-card-del" onclick="imgs.splice(${i},1);renderImgs()">×</button>
+        ${i===0?'<div class="img-card-badge">Naslovna</div>':''}
+      </div>`
+  ).join('');
+}
+
+// ── CALENDAR ──────────────────────────────────────────────────
+function initCal() {
+  const n = new Date();
+  calYear = n.getFullYear(); calMonth2 = n.getMonth();
+  renderCal();
+}
+
+const MONTHS_HR = ['Siječanj','Veljača','Ožujak','Travanj','Svibanj','Lipanj','Srpanj','Kolovoz','Rujan','Listopad','Studeni','Prosinac'];
+
+function renderCal() {
+  document.getElementById('calMonth').textContent = MONTHS_HR[calMonth2] + ' ' + calYear;
+  const first = new Date(calYear, calMonth2, 1);
+  const last = new Date(calYear, calMonth2 + 1, 0);
+  let startDow = first.getDay(); if (startDow === 0) startDow = 7; startDow--;
+  const today = new Date(); today.setHours(0,0,0,0);
+  let html = '';
+  for (let i = 0; i < startDow; i++) html += `<div class="cal-day empty"></div>`;
+  for (let d = 1; d <= last.getDate(); d++) {
+    const date = new Date(calYear, calMonth2, d);
+    const key = date.toISOString().split('T')[0];
+    const past = date < today;
+    const blocked = calBlocked[key];
+    const priceData = calPrices[key];
+    const inSel = selStart && selEnd && date >= Math.min(selStart,selEnd) && date <= Math.max(selStart,selEnd);
+    let cls = 'cal-day';
+    if (past) cls += ' past';
+    else if (blocked) cls += ' blocked';
+    else if (inSel) cls += ' selected';
+    else if (priceData) cls += ' has-price';
+    html += `<div class="${cls}" data-date="${key}" data-d="${d}" onclick="onDayClick('${key}',${past})">
+      <div class="cal-day-num">${d}</div>
+      <div class="cal-day-price">${blocked?'blok':priceData?'€'+priceData.price:''}</div>
+    </div>`;
+  }
+  document.getElementById('calDays').innerHTML = html;
+}
+
+function onDayClick(key, past) {
+  if (past) return;
+  if (!selStart || (selStart && selEnd)) {
+    selStart = new Date(key); selEnd = null;
+  } else {
+    selEnd = new Date(key);
+    if (selEnd < selStart) { const t=selEnd; selEnd=selStart; selStart=t; }
+    showPricePanel();
+  }
+  renderCal();
+}
+
+function showPricePanel() {
+  if (!selStart) return;
+  const fmt = d => d.toLocaleDateString('hr-HR',{day:'2-digit',month:'2-digit',year:'numeric'});
+  document.getElementById('ppDates').textContent = selEnd
+    ? `${fmt(selStart)} — ${fmt(selEnd)}`
+    : fmt(selStart);
+  document.getElementById('pricePanel').classList.add('open');
+  document.getElementById('ppPrice').value = document.getElementById('s6BasePrice').value || '';
+  document.getElementById('ppMin').value = document.getElementById('s6MinNights').value || '3';
+}
+
+function applyPriceToSelection() {
+  if (!selStart) return;
+  const end = selEnd || selStart;
+  const price = parseFloat(document.getElementById('ppPrice').value);
+  const min = parseInt(document.getElementById('ppMin').value) || 3;
+  for (let d = new Date(selStart); d <= end; d.setDate(d.getDate()+1)) {
+    const key = d.toISOString().split('T')[0];
+    if (priceType === 'blocked') {
+      calBlocked[key] = true;
+      delete calPrices[key];
+    } else {
+      if (price) calPrices[key] = { price, min };
+      delete calBlocked[key];
+    }
+  }
+  clearSelection();
+}
+
+function clearSelection() {
+  selStart = null; selEnd = null;
+  document.getElementById('pricePanel').classList.remove('open');
+  renderCal();
+}
+
+function setPriceType(type, btn) {
+  priceType = type;
+  document.querySelectorAll('.ptab').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  document.getElementById('ppCustom').style.display = type === 'blocked' ? 'none' : '';
+}
+
+function prevMonth() { calMonth2--; if(calMonth2<0){calMonth2=11;calYear--;} renderCal(); }
+function nextMonth() { calMonth2++; if(calMonth2>11){calMonth2=0;calYear++;} renderCal(); }
+
+function applySeason(season) {
+  const base = parseFloat(document.getElementById('s6BasePrice').value) || 1000;
+  const mults = { low: 0.65, mid: 0.85, high: 1.3 };
+  const price = Math.round(base * mults[season] / 50) * 50;
+  const seasonMonths = { low:[9,10,11,12,1,2,3], mid:[5,6,9], high:[7,8] };
+  const months = seasonMonths[season];
+  const year = new Date().getFullYear();
+  [year, year+1].forEach(y => {
+    months.forEach(m => {
+      const days = new Date(y, m, 0).getDate();
+      for (let d = 1; d <= days; d++) {
+        const key = `${y}-${String(m).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+        calPrices[key] = { price, min: parseInt(document.getElementById('s6MinNights').value)||3 };
+      }
+    });
+  });
+  renderCal();
+}
+
+// Update season preview prices
+document.getElementById('s6BasePrice')?.addEventListener('input', updateSeasonPreviews);
+function updateSeasonPreviews() {
+  const base = parseFloat(document.getElementById('s6BasePrice').value) || 0;
+  document.getElementById('seasonLow').textContent = base ? `€${Math.round(base*0.65/50)*50}/noć` : '—';
+  document.getElementById('seasonMid').textContent = base ? `€${Math.round(base*0.85/50)*50}/noć` : '—';
+  document.getElementById('seasonHigh').textContent = base ? `€${Math.round(base*1.3/50)*50}/noć` : '—';
+}
+
+// ── POLICY ────────────────────────────────────────────────────
+function selectPolicy(el) {
+  document.querySelectorAll('[data-val]').forEach(e => e.classList.remove('on'));
+  el.classList.add('on');
+  selectedPolicy = parseInt(el.dataset.val);
+}
+function selectCancel(el) {
+  document.querySelectorAll('[data-cancel]').forEach(e => e.classList.remove('on'));
+  el.classList.add('on');
+  selectedCancel = el.dataset.cancel;
+}
+
+// ── WIZARD NAV ────────────────────────────────────────────────
+function showStep(n) {
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+  document.getElementById('step' + n).classList.add('active');
+  const pct = ((n-1) / totalSteps) * 100;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('stepIndicator').textContent = `Korak ${n} od ${totalSteps}`;
+  document.getElementById('btnBack').style.display = n > 1 ? '' : 'none';
+  const nextBtn = document.getElementById('btnNext');
+  if (n === totalSteps) {
+    nextBtn.textContent = 'Pošalji na odobrenje →';
+    nextBtn.className = 'btn-next btn-submit';
+  } else {
+    nextBtn.textContent = 'Nastavi →';
+    nextBtn.className = 'btn-next';
+  }
+  window.scrollTo({top:0,behavior:'smooth'});
+  currentStep = n;
+  if (n === 6) initCal();
+}
+
+function nextStep() {
+  if (!validate()) return;
+  if (currentStep === totalSteps) { submitVilla(); return; }
+  showStep(currentStep + 1);
+}
+function prevStep() { if (currentStep > 1) showStep(currentStep - 1); }
+
+function validate() {
+  if (currentStep === 1) {
+    if (!document.getElementById('s1Name').value.trim()) return showAlert('Unesite naziv vile', 'err');
+    if (!document.getElementById('s1City').value.trim()) return showAlert('Unesite grad', 'err');
+  }
+  if (currentStep === 4) {
+    const loaded = imgs.filter(i => !i.uploading && i.url);
+    if (!loaded.length) return showAlert('Dodajte barem jednu fotografiju', 'err');
+  }
+  if (currentStep === 5) {
+    if (document.getElementById('s5Desc').value.trim().length < 50) return showAlert('Opis mora imati minimum 50 znakova', 'err');
+  }
+  if (currentStep === 6) {
+    if (!document.getElementById('s6BasePrice').value) return showAlert('Unesite osnovnu cijenu', 'err');
+  }
+  document.getElementById('globalAlert').style.display = 'none';
+  return true;
+}
+
+function showAlert(msg, type) {
+  const el = document.getElementById('globalAlert');
+  el.className = 'alert alert-' + type;
+  el.textContent = msg; el.style.display = 'block';
+  window.scrollTo({top:0,behavior:'smooth'});
+  return false;
+}
+
+// ── SAVE & SUBMIT ─────────────────────────────────────────────
+function getPayload() {
+  return {
+    villa_name: document.getElementById('s1Name').value.trim(),
+    city: document.getElementById('s1City').value.trim(),
+    address: document.getElementById('s1Addr').value.trim(),
+    location: document.getElementById('s1LocLabel').value.trim() || document.getElementById('s1City').value.trim(),
+    location_key: document.getElementById('s1City').value.trim().toLowerCase().replace(/\s+/g, '-'),
+    max_guests: steppers.guests,
+    bedrooms: steppers.bedrooms,
+    bathrooms: steppers.baths,
+    beds: steppers.beds,
+    size_m2: parseInt(document.getElementById('s2Sqm').value) || null,
+    amenities: [...document.querySelectorAll('.am-item.on')].map(e => e.dataset.val),
+    images: imgs.filter(i => !i.uploading && i.url).map(i => i.url),
+    description: document.getElementById('s5Desc').value.trim(),
+    short_desc: document.getElementById('s5Short').value.trim(),
+    price_per_night: parseFloat(document.getElementById('s6BasePrice').value) || 0,
+    cleaning_fee: parseFloat(document.getElementById('s6CleanFee').value) || 0,
+    security_deposit: parseFloat(document.getElementById('s6Deposit').value) || 0,
+    min_nights: parseInt(document.getElementById('s6MinNights').value) || 3,
+    payment_policy_days: selectedPolicy,
+    calendar_prices: calPrices,
+    calendar_blocked: Object.keys(calBlocked),
+  };
+}
+
+let autoSaveTimer;
+function autoSave() {
+  clearTimeout(autoSaveTimer);
+  autoSaveTimer = setTimeout(() => {
+    document.getElementById('autoSaveStatus').textContent = 'Automatski spremljeno';
+    setTimeout(() => document.getElementById('autoSaveStatus').textContent = '', 2000);
+  }, 1500);
+}
+
+async function submitVilla() {
+  if (!token) { alert('Niste prijavljeni'); return; }
+  const btn = document.getElementById('btnNext');
+  btn.disabled = true; btn.textContent = 'Šaljem...';
+  try {
+    const payload = getPayload();
+    // Kreiraj vilu
+    const createRes = await req('POST', '/api/owner/villas', payload);
+    villaId = createRes.villa_id;
+    // Pošalji na odobrenje
+    await req('POST', '/api/owner/villas/submit', { villa_id: villaId });
+    // Redirect na dashboard s porukom
+    localStorage.setItem('cps_villa_submitted', '1');
+    window.location.href = 'owner-dashboard.html?submitted=1';
+  } catch(e) {
+    showAlert('Greška: ' + e.message, 'err');
+    btn.disabled = false; btn.textContent = 'Pošalji na odobrenje →';
+  }
+}
+
+function exitWizard() {
+  if (confirm('Jeste li sigurni? Nepotvrđene promjene neće biti spremljene.')) {
+    window.location.href = 'owner-dashboard.html';
+  }
+}
+
+async function req(method, path, body) {
+  const o = { method, headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` } };
+  if (body) o.body = JSON.stringify(body);
+  const r = await fetch(API + path, o);
+  const d = await r.json();
+  if (!r.ok) throw new Error(d.error || 'API greška');
+  return d;
+}
+
+// ── INIT ──────────────────────────────────────────────────────
+if (!token) window.location.href = 'owner-dashboard.html';
+showStep(1);
+</script>
+</body>
+</html>
