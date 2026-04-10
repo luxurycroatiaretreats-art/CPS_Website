@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Croatia Premium Stay – Luksuzne Vile & Iskustva u Hrvatskoj</title>
+<meta name="description" content="200+ verificiranih luksuznih vila i apartmana u Hrvatskoj. Direktno od vlasnika, bez provizije. Split, Hvar, Dubrovnik, Brač, Vis, Korčula, Pelješac, Rovinj.">
+<link rel="canonical" href="https://croatiapremiustay.com/">
+<meta property="og:title" content="Croatia Premium Stay – Luksuzne Vile & Iskustva u Hrvatskoj">
+<meta property="og:description" content="200+ verificiranih luksuznih vila. Direktno od vlasnika. 0% provizije.">
+<meta property="og:type" content="website">
+<link rel="alternate" hreflang="hr" href="https://croatiapremiustay.com/hr/">
+<link rel="alternate" hreflang="en" href="https://croatiapremiustay.com/en/">
+<link rel="alternate" hreflang="de" href="https://croatiapremiustay.com/de/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Croatia Premium Stay","url":"https://croatiapremiustay.com","description":"200+ verificiranih luksuznih vila i apartmana u Hrvatskoj."}</script>
+<!-- Preconnect — early DNS -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Preload LCP hero image -->
+<link rel="preload" as="image" href="hero.jpg" fetchpriority="high">
+<!-- Google Fonts — non-blocking: media=print swap na all eliminira render-blocking -->
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500;600&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500;600&display=swap"></noscript>
+<!-- System font fallback while Google Fonts loads — nema FOUT bljesaja -->
+<style>
+  body{font-family:'Jost','Helvetica Neue',Arial,sans-serif;}
+  h1,h2,h3,.nav-logo,.vila-name,.sec-title{font-family:'Cormorant Garamond',Georgia,serif;}
+</style>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --navy:#0A2535;
+  --teal:#115571;
+  --teal-mid:#1A6E8F;
+  --teal-pale:#E8F4F8;
+  --teal-pale2:#D0E8F0;
+  --gold:#C4974E;
+  --gold-pale:#FDF6E8;
+  --white:#fff;
+  --off:#FAFAFA;
+  --cream:#F7F5F1;
+  --border:#E8EEF2;
+  --text:#0D1B24;
+  --text-light:#5A7880;
+  --text-muted:#8AA8B0;
+  --green:#22C55E;
+  --green-dark:#177A40;
+  --shadow:0 2px 16px rgba(10,37,53,0.07);
+  --shadow-md:0 6px 32px rgba(10,37,53,0.11);
+  --shadow-lg:0 16px 56px rgba(10,37,53,0.16);
+}
+html{scroll-behavior:smooth;font-size:16px;}
+body{font-family:'Jost',sans-serif;background:#fff;color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;height:auto;display:block;}
+a{text-decoration:none;color:inherit;}
+button{cursor:pointer;font-family:'Jost',sans-serif;}
+
+/* ─── NAV ─── */
+.nav{
+  position:sticky;top:0;left:0;right:0;z-index:200;
+  height:68px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 40px;
+  background:#fff;
+  border-bottom:1px solid var(--border);
+  box-shadow:0 1px 12px rgba(10,37,53,0.04);
+}
+
+.nav-logo{
+  font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:500;
+  letter-spacing:0.05em;color:var(--text);display:flex;align-items:center;gap:5px;
+  transition:color 0.3s;
+}
+.nav-logo.white{color:#fff;}
+.nav-logo-premium{font-family:'Jost',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.25em;text-transform:uppercase;color:var(--text-muted);transition:color 0.3s;}
+.nav-logo.white .nav-logo-premium{color:rgba(255,255,255,0.45);}
+.nav-links{display:flex;align-items:center;gap:32px;}
+.nav-link{font-size:11px;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-light);transition:color 0.2s;}
+.nav-link:hover{color:var(--navy);}
+.nav-right{display:flex;align-items:center;gap:14px;}
+.nav-wishlist{background:none;border:none;color:var(--text-light);display:flex;align-items:center;padding:0;cursor:pointer;transition:color 0.2s;}
+.nav-wishlist:hover{color:var(--navy);}
+
+
+.ham{display:flex;flex-direction:column;gap:5px;background:none;border:none;padding:8px;cursor:pointer;}
+.ham span{display:block;width:22px;height:1.5px;background:var(--text);border-radius:2px;transition:all 0.3s;}
+.ham.white span{background:#fff;}
+.ham.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.ham.open span:nth-child(2){opacity:0;}
+.ham.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+
+.mob-drawer{position:fixed;top:0;left:0;right:0;bottom:0;background:var(--navy);z-index:999;transform:translateX(-100%);transition:transform 0.38s cubic-bezier(0.25,0.46,0.45,0.94);display:flex;flex-direction:column;padding:88px 40px 44px;}
+.mob-drawer.open{transform:translateX(0);}
+.mob-link{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:300;color:rgba(255,255,255,0.85);padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.07);display:block;transition:color 0.2s;}
+.mob-link:hover{color:#fff;}
+.mob-actions{margin-top:36px;display:flex;flex-direction:column;gap:12px;}
+.mob-btn{font-size:12px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;padding:14px 20px;border-radius:10px;cursor:pointer;transition:all 0.2s;}
+.mob-btn-ghost{background:none;border:1px solid rgba(255,255,255,0.25);color:rgba(255,255,255,0.8);}
+.mob-btn-solid{background:var(--teal);border:none;color:#fff;}
+.mob-lang{display:flex;gap:12px;margin-top:auto;padding-top:32px;}
+.mob-lang button{background:none;border:none;font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.3);cursor:pointer;padding:0;transition:color 0.2s;}
+.mob-lang button.on{color:#fff;}
+.mob-drawer-close{position:absolute;top:24px;right:28px;background:none;border:none;cursor:pointer;padding:4px;}
+
+/* ─── HERO ─── */
+.hero-section{
+  background:#fff;
+  padding:24px 32px 32px;
+}
+.hero-inner{
+  display:flex;
+  align-items:flex-start;
+  position:relative;
+  min-height:520px;
+}
+/* KARTICA — lijevo, bijela, z-index visok */
+.hero-card{
+  position:relative;
+  z-index:10;
+  width:400px;
+  flex-shrink:0;
+  background:#fff;
+  border-radius:16px;
+  padding:40px 36px 40px;
+  margin-top:60px;
+  box-shadow:none;
+}
+.hero-card-tag{display:none;}
+.hero-title{
+  font-family:'Jost',sans-serif;
+  font-size:clamp(32px,3.5vw,52px);
+  font-weight:600;
+  color:#0D1B24;
+  line-height:1.05;
+  margin-bottom:12px;
+  letter-spacing:-0.02em;
+}
+.hero-sub{
+  font-size:14px;font-weight:300;
+  color:#5A7880;line-height:1.7;
+}
+.hero-divider{height:1px;background:#EBEBEB;margin:22px 0;}
+/* FOTOGRAFIJA — desno, zaobljena, iza gornjeg dijela kartice */
+.hero-img{
+  position:absolute;
+  top:0;
+  left:280px;
+  right:0;
+  bottom:0;
+  border-radius:20px;
+  overflow:hidden;
+  z-index:1;
+}
+.hero-img img{
+  width:100%;height:100%;object-fit:cover;
+  display:block;
+}
+.hero-img-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to right,rgba(255,255,255,0.6) 0%,rgba(255,255,255,0) 35%);
+}
+/* White card — overlay bottom-left */
+.hero-card{
+  position:absolute;
+  bottom:32px;
+  left:32px;
+  z-index:10;
+  width:460px;
+  background:rgba(255,255,255,0.97);
+  backdrop-filter:blur(16px);
+  border-radius:20px;
+  padding:32px 32px 28px;
+  box-shadow:0 8px 48px rgba(0,0,0,0.18);
+}
+.hero-card-tag{display:none;}
+.hero-title{
+  font-family:'Jost',sans-serif;
+  font-size:clamp(32px,3.8vw,52px);
+  font-weight:600;color:var(--text);
+  line-height:1.05;margin-bottom:10px;
+  letter-spacing:-0.02em;
+}
+.hero-sub{
+  font-size:14px;font-weight:400;
+  color:#4A6870;line-height:1.7;
+}
+/* Divider */
+.hero-divider{height:1px;background:#EBEBEB;margin:20px 0;}
+/* CTA cards inside overlay */
+/* Hero pill buttons */
+.hero-btns{display:flex;flex-direction:column;gap:10px;}
+.hero-btn-primary{
+  display:flex;align-items:center;justify-content:space-between;
+  background:#fff;border:1.5px solid var(--gold);border-radius:50px;
+  padding:14px 14px 14px 28px;
+  font-family:'Jost',sans-serif;font-size:12px;font-weight:600;
+  letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);
+  cursor:pointer;transition:all 0.25s;
+  box-shadow:0 2px 16px rgba(196,151,78,0.18);
+}
+.hero-btn-primary:hover{box-shadow:0 4px 24px rgba(196,151,78,0.28);transform:translateY(-1px);border-color:var(--navy);}
+.hero-btn-arrow{
+  width:38px;height:38px;border-radius:50%;background:var(--teal);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  transition:background 0.2s;
+}
+.hero-btn-primary:hover .hero-btn-arrow{background:var(--navy);}
+.hero-btn-secondary{
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(255,255,255,0.12);
+  border:1.5px solid rgba(255,255,255,0.55);border-radius:50px;
+  padding:14px 14px 14px 28px;
+  font-family:'Jost',sans-serif;font-size:12px;font-weight:600;
+  letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.9);
+  cursor:pointer;transition:all 0.25s;
+  backdrop-filter:blur(4px);
+}
+.hero-btn-secondary:hover{background:rgba(255,255,255,0.2);border-color:#fff;}
+.hero-btn-secondary-dark{
+  display:flex;align-items:center;justify-content:space-between;
+  background:#fff;
+  border:1.5px solid rgba(196,151,78,0.45);border-radius:50px;
+  padding:14px 14px 14px 28px;
+  font-family:'Jost',sans-serif;font-size:12px;font-weight:600;
+  letter-spacing:0.12em;text-transform:uppercase;color:var(--navy);
+  cursor:pointer;transition:all 0.25s;
+}
+.hero-btn-secondary-dark:hover{border-color:var(--gold);color:var(--teal);}
+.hero-btn-arrow-dark{
+  width:38px;height:38px;border-radius:50%;
+  background:rgba(196,151,78,0.1);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  color:var(--gold);transition:all 0.25s;
+}
+.hero-btn-secondary-dark:hover .hero-btn-arrow-dark{background:var(--gold);color:#fff;}
+.hero-btn-arrow-outline{
+  width:38px;height:38px;border-radius:50%;
+  background:rgba(255,255,255,0.2);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  color:rgba(255,255,255,0.9);
+}
+
+/* Trust bar below hero */
+.trust-bar{
+  display:flex;align-items:center;justify-content:center;gap:0;
+  background:#fff;border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  padding:0;
+  overflow-x:auto;scrollbar-width:none;
+}
+.trust-bar::-webkit-scrollbar{display:none;}
+.trust-item{
+  display:flex;align-items:center;gap:10px;
+  padding:18px 32px;border-right:1px solid var(--border);
+  white-space:nowrap;flex-shrink:0;
+}
+.trust-item:last-child{border-right:none;}
+.trust-icon{
+  width:32px;height:32px;border-radius:50%;
+  background:var(--teal-pale2);display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.trust-icon svg{color:var(--teal);}
+.trust-label{font-size:12px;font-weight:600;color:var(--text);}
+.trust-sub{font-size:10px;color:var(--text-light);font-weight:400;}
+
+/* ─── SECTIONS ─── */
+.sec{padding:96px 80px;}
+.sec-sm{padding:64px 80px;}
+.sec-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:44px;}
+.sec-eyebrow{font-size:10px;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:var(--text-light);margin-bottom:10px;}
+.sec-eyebrow.gold{color:var(--gold);}
+.sec-eyebrow.teal{color:var(--teal);}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,3vw,48px);font-weight:300;color:var(--text);line-height:1.1;}
+.sec-title em{font-style:italic;color:var(--teal);}
+.sec-title.white{color:#fff;}
+.sec-title.white em{color:rgba(255,255,255,0.4);}
+.sec-sub{font-size:13px;font-weight:400;color:var(--text-light);line-height:1.8;margin-top:10px;max-width:480px;}
+.see-all{font-size:11px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--teal);border-bottom:1px solid rgba(17,85,113,0.3);padding-bottom:2px;white-space:nowrap;flex-shrink:0;transition:opacity 0.2s;}
+.see-all:hover{opacity:0.65;}
+.see-all.white{color:#fff;border-color:rgba(255,255,255,0.3);}
+.see-all.gold{color:var(--gold);border-color:rgba(196,151,78,0.3);}
+.divider{height:1px;background:var(--border);margin:0 80px;}
+
+/* ─── DESTINACIJE ─── */
+.dest-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+.dest-card{
+  border-radius:12px;height:220px;position:relative;overflow:hidden;
+  cursor:pointer;display:block;transition:transform 0.35s;
+}
+.dest-card:hover{transform:translateY(-5px);}
+.dest-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 0.7s;}
+.dest-card:hover img{transform:scale(1.06);}
+.dest-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,37,53,0.88) 0%,rgba(10,37,53,0.05) 60%);}
+.dest-content{position:absolute;bottom:0;padding:18px 20px;}
+.dest-name{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:#fff;margin-bottom:3px;}
+.dest-count{font-size:10px;font-weight:300;color:rgba(255,255,255,0.52);letter-spacing:0.08em;}
+
+/* ─── VILE GRID ─── */
+.villa-feature-grid{display:grid;grid-template-columns:1.55fr 1fr;gap:18px;}
+.vf-hero{border-radius:14px;overflow:hidden;position:relative;min-height:400px;cursor:pointer;background:var(--navy);}
+.vf-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 0.7s;opacity:0.82;}
+.vf-hero:hover img{transform:scale(1.04);}
+.vf-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,37,53,0.96) 0%,rgba(10,37,53,0.02) 55%);}
+.vf-content{position:absolute;bottom:0;padding:28px 30px;width:100%;}
+.vf-side{display:grid;grid-template-rows:1fr 1fr;gap:18px;}
+.vf-sm{border-radius:12px;overflow:hidden;position:relative;cursor:pointer;background:var(--navy);}
+.vf-sm img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 0.6s;opacity:0.78;}
+.vf-sm:hover img{transform:scale(1.05);}
+.vf-sm-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,37,53,0.9) 0%,rgba(10,37,53,0.05) 60%);}
+.vf-sm-content{position:absolute;bottom:0;padding:16px 18px;}
+.card-badge{display:inline-block;font-size:9px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;padding:4px 11px;border-radius:20px;margin-bottom:8px;}
+.cb-gold{background:var(--gold);color:#fff;}
+.cb-navy{background:rgba(10,37,53,0.85);color:#fff;}
+.cb-teal{background:var(--teal);color:#fff;}
+.card-heart{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,0.92);border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:2;transition:transform 0.2s;}
+.card-heart:hover{transform:scale(1.1);}
+.card-loc{font-size:10px;font-weight:300;color:rgba(255,255,255,0.5);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:5px;}
+.card-name-lg{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:#fff;margin-bottom:8px;}
+.card-name-sm{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:#fff;margin-bottom:4px;}
+.card-price{font-size:12px;color:rgba(255,255,255,0.5);}
+.card-price strong{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:#fff;}
+
+/* ─── KOLEKCIJE ─── */
+.coll-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;}
+.coll-card{
+  border-radius:12px;height:190px;position:relative;overflow:hidden;
+  cursor:pointer;display:block;transition:transform 0.35s;
+}
+.coll-card:hover{transform:translateY(-4px);}
+.coll-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 0.7s;}
+.coll-card:hover img{transform:scale(1.06);}
+.coll-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,37,53,0.9) 0%,rgba(10,37,53,0.08) 55%);}
+.coll-content{position:absolute;bottom:0;padding:14px 16px;}
+.coll-name{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:300;color:#fff;margin-bottom:2px;}
+.coll-count{font-size:10px;color:rgba(255,255,255,0.48);}
+
+/* ─── EXPERIENCE ─── */
+.exp-section{background:var(--navy);padding:96px 80px;}
+.exp-pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:44px;}
+.exp-pill{
+  display:flex;align-items:center;gap:7px;border-radius:50px;
+  padding:9px 20px;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;
+  cursor:pointer;transition:all 0.22s;
+  border:1px solid rgba(255,255,255,0.18);color:rgba(255,255,255,0.5);background:transparent;
+}
+.exp-pill.active,.exp-pill:hover{border-color:rgba(255,255,255,0.7);color:#fff;background:rgba(255,255,255,0.08);}
+.exp-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:14px;margin-bottom:14px;}
+.exp-hero{border-radius:12px;overflow:hidden;position:relative;min-height:360px;cursor:pointer;}
+.exp-hero img{width:100%;height:100%;object-fit:cover;transition:transform 0.7s;}
+.exp-hero:hover img{transform:scale(1.04);}
+.exp-hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,37,53,0.96) 0%,rgba(10,37,53,0.08) 55%);}
+.exp-hero-content{position:absolute;bottom:0;padding:24px 26px;width:100%;}
+.exp-col{display:grid;grid-template-rows:1fr 1fr;gap:14px;}
+.exp-sm{border-radius:12px;overflow:hidden;position:relative;cursor:pointer;min-height:160px;}
+.exp-sm img{width:100%;height:100%;object-fit:cover;min-height:160px;transition:transform 0.6s;}
+.exp-sm:hover img{transform:scale(1.05);}
+.exp-sm-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,37,53,0.94) 0%,rgba(10,37,53,0.06) 55%);}
+.exp-sm-content{position:absolute;bottom:0;padding:14px 16px;}
+.exp-badge{font-size:9px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:7px;display:block;}
+.exp-loc{font-size:10px;color:rgba(255,255,255,0.48);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:5px;}
+.exp-name-lg{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:300;color:#fff;margin-bottom:6px;}
+.exp-name-sm{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;color:#fff;margin-bottom:4px;}
+.exp-meta{font-size:11px;color:rgba(255,255,255,0.45);}
+
+/* ─── HOTELS ─── */
+.hotels-section{background:var(--cream);padding:96px 80px;}
+.hotels-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:16px;}
+.hotel-hero{border-radius:14px;overflow:hidden;position:relative;min-height:380px;cursor:pointer;background:var(--navy);}
+.hotel-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 0.7s;opacity:0.72;}
+.hotel-hero:hover img{transform:scale(1.04);}
+.hotel-hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,37,53,0.98) 0%,rgba(10,37,53,0.12) 55%);}
+.hotel-hero-content{position:absolute;bottom:0;padding:28px 30px;}
+.hotel-type-label{font-size:9px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.hotel-type-label::before{content:'';width:14px;height:1px;background:var(--gold);}
+.hotel-hero-name{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:300;color:#fff;margin-bottom:8px;}
+.hotel-hero-desc{font-size:12px;color:rgba(255,255,255,0.48);margin-bottom:16px;line-height:1.6;}
+.hotel-hero-footer{display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,0.1);padding-top:14px;}
+.hotel-price{font-size:12px;color:rgba(255,255,255,0.45);}
+.hotel-price strong{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:#fff;}
+.hotel-view-btn{background:var(--gold);color:#fff;border:none;border-radius:7px;padding:9px 18px;font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;transition:background 0.2s;}
+.hotel-view-btn:hover{background:var(--navy);}
+.hotel-sm-grid{display:grid;grid-template-rows:repeat(3,1fr);gap:16px;}
+.hotel-sm{border-radius:11px;overflow:hidden;position:relative;cursor:pointer;background:var(--navy);}
+.hotel-sm img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 0.6s;opacity:0.7;}
+.hotel-sm:hover img{transform:scale(1.05);}
+.hotel-sm-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,37,53,0.92) 0%,rgba(10,37,53,0.08) 60%);}
+.hotel-sm-content{position:absolute;bottom:0;padding:12px 16px;}
+.hotel-sm-type{font-size:9px;color:var(--gold);font-weight:700;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:3px;}
+.hotel-sm-name{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:300;color:#fff;margin-bottom:2px;}
+.hotel-sm-price{font-size:10px;color:rgba(255,255,255,0.45);}
+
+/* ─── CPS MOMENTS ─── */
+.moments-section{padding:96px 80px;background:#fff;}
+.moments-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:20px;}
+.moment-hero{border-radius:14px;overflow:hidden;position:relative;min-height:360px;cursor:pointer;}
+.moment-hero img{width:100%;height:100%;object-fit:cover;transition:transform 0.7s;}
+.moment-hero:hover img{transform:scale(1.04);}
+.moment-hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,37,53,0.97) 0%,rgba(10,37,53,0.04) 55%);}
+.moment-hero-content{position:absolute;bottom:0;padding:28px 30px;}
+.moments-side{display:grid;grid-template-rows:1fr 1fr;gap:20px;}
+.moment-sm{border-radius:12px;overflow:hidden;cursor:pointer;border:1px solid var(--border);background:#fff;display:flex;transition:box-shadow 0.3s;}
+.moment-sm:hover{box-shadow:var(--shadow-md);}
+.moment-sm-img{width:120px;flex-shrink:0;overflow:hidden;}
+.moment-sm-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.6s;}
+.moment-sm:hover .moment-sm-img img{transform:scale(1.05);}
+.moment-sm-body{padding:18px 20px;display:flex;flex-direction:column;justify-content:center;}
+.moment-tag{font-size:9px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:7px;}
+.moment-title{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:300;color:var(--text);line-height:1.3;margin-bottom:7px;}
+.moment-meta{font-size:10px;color:var(--text-muted);}
+
+/* ─── RENT A CAR ─── */
+.car-section{background:var(--navy);padding:80px 80px;}
+.car-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.car-eyebrow{font-size:9px;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+.car-eyebrow::before{content:'';width:14px;height:1px;background:var(--gold);}
+.car-title{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:300;color:#fff;line-height:1.1;margin-bottom:16px;}
+.car-title em{font-style:italic;color:rgba(255,255,255,0.38);}
+.car-desc{font-size:13px;font-weight:300;color:rgba(255,255,255,0.62);line-height:1.85;margin-bottom:28px;}
+.car-benefits{display:flex;flex-direction:column;gap:10px;margin-bottom:32px;}
+.car-benefit{display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,0.78);}
+.car-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0;}
+.car-cta{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:#fff;border:none;border-radius:9px;padding:14px 28px;font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;transition:background 0.2s;text-decoration:none;}
+.car-cta:hover{background:var(--teal);}
+.car-img{border-radius:14px;overflow:hidden;}
+.car-img img{width:100%;height:360px;object-fit:cover;}
+
+/* ─── WHY ─── */
+.why-section{padding:96px 80px;background:#fff;}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:52px;border:1px solid var(--border);border-radius:16px;overflow:hidden;}
+.why-card{padding:40px 36px;transition:background 0.25s;}
+.why-card:hover{background:var(--off);}
+.why-card:not(:last-child){border-right:1px solid var(--border);}
+.why-num{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;color:var(--border);margin-bottom:18px;line-height:1;}
+.why-icon{width:48px;height:48px;border-radius:12px;background:var(--teal-pale2);display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
+.why-icon svg{color:var(--teal);width:22px;height:22px;}
+.why-card-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:var(--text);margin-bottom:10px;}
+.why-card-text{font-size:13px;font-weight:400;color:var(--text-light);line-height:1.85;}
+
+/* ─── STATS ─── */
+.stats-section{background:var(--navy);padding:64px 80px;}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid rgba(255,255,255,0.08);border-radius:14px;overflow:hidden;}
+.stat-item{padding:44px 36px;border-right:1px solid rgba(255,255,255,0.08);text-align:center;}
+.stat-item:last-child{border-right:none;}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:56px;font-weight:300;color:#fff;line-height:1;}
+.stat-unit{font-size:24px;color:var(--gold);}
+.stat-label{font-size:10px;font-weight:400;color:rgba(255,255,255,0.52);letter-spacing:0.18em;text-transform:uppercase;margin-top:10px;}
+
+/* ─── FOOTER ─── */
+.footer{background:#070F14;padding:68px 80px 32px;}
+.footer-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px;}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:500;color:#fff;letter-spacing:0.05em;margin-bottom:12px;display:flex;align-items:center;gap:5px;}
+.footer-logo span{font-family:'Jost',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.25em;text-transform:uppercase;color:rgba(255,255,255,0.28);}
+.footer-desc{font-size:12px;font-weight:300;color:rgba(255,255,255,0.44);line-height:1.85;}
+.footer-col-title{font-size:9px;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:rgba(255,255,255,0.40);margin-bottom:16px;}
+.footer-link{display:block;font-size:13px;font-weight:300;color:rgba(255,255,255,0.65);margin-bottom:10px;transition:color 0.2s;}
+.footer-link:hover{color:#fff;}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.05);padding-top:28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.footer-copy{font-size:11px;color:rgba(255,255,255,0.22);}
+.footer-legal{display:flex;gap:20px;}
+.footer-legal a{font-size:11px;color:rgba(255,255,255,0.22);transition:color 0.2s;}
+.footer-legal a:hover{color:rgba(255,255,255,0.6);}
+
+/* ─── MOBILE ─── */
+@media(max-width:1100px){
+  .sec,.sec-sm,.exp-section,.hotels-section,.moments-section,.car-section,.why-section,.stats-section,.footer{padding-left:40px;padding-right:40px;}
+  .divider{margin:0 40px;}
+  .dest-grid{grid-template-columns:repeat(2,1fr);}
+  .coll-grid{grid-template-columns:repeat(3,1fr);}
+  .footer-top{grid-template-columns:1fr 1fr;gap:32px;}
+}
+@media(max-width:768px){
+  .nav{padding:0 20px;height:60px;}
+  .nav-links,.nav-login{display:none;}
+  .ham{display:flex;}
+
+  .hero-section{padding:12px 16px 0;}
+  .hero-inner{flex-direction:column;min-height:auto;padding-bottom:0;}
+  .hero-img{
+    position:relative;
+    top:auto;left:auto;right:auto;bottom:auto;
+    width:100%;height:220px;
+    border-radius:14px;
+    order:1;
+    margin-bottom:-28px;
+    z-index:1;
+  }
+  .hero-card{
+    position:relative;
+    z-index:10;
+    width:calc(100% - 32px);
+    margin:0 auto 24px;
+    left:0;right:0;
+    padding:24px 22px 26px;
+    border-radius:16px;
+    order:2;
+    box-shadow:0 4px 28px rgba(10,37,53,0.13);
+    text-align:left;
+  }
+  .hero-title{font-size:28px;margin-bottom:8px;}
+  .hero-sub{font-size:13px;}
+  .hero-divider{margin:16px 0;}
+  .hero-btns{gap:8px;}
+  .hero-btn-primary,.hero-btn-secondary-dark{padding:12px 12px 12px 20px;font-size:11px;}
+  .hero-btn-arrow,.hero-btn-arrow-dark{width:34px;height:34px;}
+
+  .trust-bar{padding:0;}
+  .trust-item{padding:14px 20px;}
+
+  .sec,.sec-sm,.exp-section,.hotels-section,.moments-section,.car-section,.why-section,.stats-section,.footer{padding-left:20px;padding-right:20px;}
+  .sec{padding-top:56px;padding-bottom:56px;}
+  .divider{margin:0 20px;}
+  .sec-header{flex-direction:column;align-items:flex-start;gap:14px;margin-bottom:28px;}
+  .dest-grid{grid-template-columns:1fr 1fr;gap:10px;}
+  .dest-card{height:160px;}
+  .villa-feature-grid{grid-template-columns:1fr;}
+  .vf-side{grid-template-columns:1fr 1fr;grid-template-rows:auto;}
+  .vf-hero{min-height:260px;}
+  .vf-sm{min-height:150px;}
+  .coll-grid{grid-template-columns:1fr 1fr;gap:10px;}
+  .coll-card{height:160px;}
+  .exp-grid{grid-template-columns:1fr;}
+  .exp-col{grid-template-columns:1fr 1fr;grid-template-rows:auto;}
+  .hotels-grid{grid-template-columns:1fr;}
+  .hotel-sm-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto;}
+  .hotel-sm{min-height:110px;}
+  .moments-grid{grid-template-columns:1fr;}
+  .moments-side{grid-template-columns:1fr;}
+  .car-inner{grid-template-columns:1fr;}
+  .car-img{display:none;}
+  .why-grid{grid-template-columns:1fr;border-radius:12px;}
+  .why-card:not(:last-child){border-right:none;border-bottom:1px solid var(--border);}
+  .stats-grid{grid-template-columns:1fr 1fr;border-radius:10px;}
+  .stat-item{padding:28px 20px;}
+  .stat-item:nth-child(2){border-right:none;}
+  .stat-item:nth-child(3){border-top:1px solid rgba(255,255,255,0.08);border-right:1px solid rgba(255,255,255,0.08);}
+  .stat-item:last-child{border-top:1px solid rgba(255,255,255,0.08);}
+  .footer-top{grid-template-columns:1fr;}
+  .footer-bottom{flex-direction:column;align-items:flex-start;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav-logo" id="navLogo">
+    Croatia <span class="nav-logo-premium">premium</span> Stay
+  </a>
+  <div class="nav-right">
+    <button class="nav-wishlist" id="navWishlist" onclick="window.location.href='wishlist.html'" aria-label="Wishlist">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 17S2 12 2 6.5a4.5 4.5 0 019 0 4.5 4.5 0 019 0C20 12 10 17 10 17z" stroke="currentColor" stroke-width="1.4"/></svg>
+    </button>
+    <button class="ham" id="ham" onclick="toggleMenu()" aria-label="Izbornik"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="mob-drawer" id="mobDrawer">
+  <button class="mob-drawer-close" onclick="toggleMenu()" aria-label="Zatvori">
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 4l14 14M18 4L4 18" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg>
+  </button>
+  <a href="vile.html" class="mob-link" onclick="toggleMenu()">Vile &amp; Apartmani</a>
+  <a href="iskustva.html" class="mob-link" onclick="toggleMenu()">Iskustva</a>
+  <a href="hoteli.html" class="mob-link" onclick="toggleMenu()">Boutique Hoteli</a>
+  <a href="moments.html" class="mob-link" onclick="toggleMenu()">CPS Moments</a>
+  <a href="o-nama.html" class="mob-link" onclick="toggleMenu()">O nama</a>
+  <div class="mob-actions">
+    <button class="mob-btn mob-btn-ghost" onclick="window.location.href='owner-dashboard.html'">Prijava</button>
+    <button class="mob-btn mob-btn-solid" onclick="window.location.href='owner-add-property.html'">Oglasite objekt</button>
+  </div>
+  <div class="mob-lang">
+    <button class="on" onclick="this.parentElement.querySelectorAll('button').forEach(b=>b.classList.remove('on'));this.classList.add('on')">HR</button>
+    <button onclick="this.parentElement.querySelectorAll('button').forEach(b=>b.classList.remove('on'));this.classList.add('on')">EN</button>
+    <button onclick="this.parentElement.querySelectorAll('button').forEach(b=>b.classList.remove('on'));this.classList.add('on')">DE</button>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero-section">
+  <div class="hero-inner">
+
+    <!-- KARTICA lijevo -->
+    <div class="hero-card">
+      <h1 class="hero-title">Book Direct.<br>Stay Better.</h1>
+      <p class="hero-sub">Villas, apartments & curated experiences across Croatia.</p>
+      <div class="hero-divider"></div>
+      <div class="hero-btns">
+        <button class="hero-btn-primary" onclick="window.location.href='vile.html'">
+          <span>FIND YOUR STAY</span>
+          <span class="hero-btn-arrow">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9h12M10 4l5 5-5 5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+        <button class="hero-btn-secondary-dark" onclick="window.location.href='iskustva.html'">
+          <span>FIND YOUR EXPERIENCE</span>
+          <span class="hero-btn-arrow-dark">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9h12M10 4l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+      </div>
+    </div>
+
+    <!-- FOTOGRAFIJA desno, iza gornjeg dijela kartice -->
+    <div class="hero-img">
+      <img src="hero.jpg"
+           alt="Luksuzna vila s infinity bazenom i pogledom na Jadransko more u zalasku sunca Hrvatska"
+           loading="eager" fetchpriority="high" width="1600" height="900" id="heroImg">
+      <div class="hero-img-overlay"></div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- TRUST BAR -->
+<div class="trust-bar" role="list">
+  <div class="trust-item" role="listitem">
+    <div class="trust-icon">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <div><div class="trust-label">200+ verificiranih vila</div><div class="trust-sub">Osobno pregledano od CPS tima</div></div>
+  </div>
+  <div class="trust-item" role="listitem">
+    <div class="trust-icon">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1.5l1.5 4.5h5l-4 3 1.5 4.5L8 11l-4 2.5L5.5 9l-4-3h5z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <div><div class="trust-label">0% provizije</div><div class="trust-sub">Direktno od vlasnika</div></div>
+  </div>
+  <div class="trust-item" role="listitem">
+    <div class="trust-icon">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="4" width="12" height="9" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M5 4V3a3 3 0 016 0v1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+    </div>
+    <div><div class="trust-label">Sigurno pla&#263;anje</div><div class="trust-sub">30% odmah &middot; 70% prije dolaska</div></div>
+  </div>
+
+  <div class="trust-item" role="listitem">
+    <div class="trust-icon">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l3 3 7-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <div><div class="trust-label">Samo premium</div><div class="trust-sub">4 i 5 zvjezdice isklju&#269;ivo</div></div>
+  </div>
+</div>
+
+<!-- DESTINACIJE -->
+<section class="sec" style="background:#fff;" aria-labelledby="dest-h">
+  <div class="sec-header">
+    <div>
+      <p class="sec-eyebrow">Destinacije</p>
+      <h2 class="sec-title" id="dest-h">Prona&#273;ite smje&#353;taj <em>po destinaciji.</em></h2>
+    </div>
+    <a href="vile.html" class="see-all">Svi objekti</a>
+  </div>
+  <div class="dest-grid">
+    <a href="vile.html?dest=split" class="dest-card" aria-label="Vile i apartmani Split">
+      <img src="https://images.unsplash.com/photo-1555990793-da11153b2473?w=700&q=80" alt="Luksuzne vile Split Dalmacija Hrvatska" loading="lazy" width="700" height="467">
+      <div class="dest-overlay"></div>
+      <div class="dest-content"><div class="dest-name">Split</div><div class="dest-count">48 objekata</div></div>
+    </a>
+    <a href="vile.html?dest=dubrovnik" class="dest-card" aria-label="Vile i apartmani Dubrovnik">
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80" alt="Luksuzne vile Dubrovnik Hrvatska" loading="lazy" width="700" height="467">
+      <div class="dest-overlay"></div>
+      <div class="dest-content"><div class="dest-name">Dubrovnik</div><div class="dest-count">36 objekata</div></div>
+    </a>
+    <a href="vile.html?dest=hvar" class="dest-card" aria-label="Vile i apartmani Hvar">
+      <img src="https://images.unsplash.com/photo-1601581875309-fafbf2d3ed3a?w=700&q=80" alt="Luksuzne vile Hvar Hrvatska" loading="lazy" width="700" height="467">
+      <div class="dest-overlay"></div>
+      <div class="dest-content"><div class="dest-name">Hvar</div><div class="dest-count">29 objekata</div></div>
+    </a>
+    <a href="vile.html?dest=brac" class="dest-card" aria-label="Vile i apartmani Brac">
+      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=700&q=80" alt="Luksuzne vile Brac Hrvatska" loading="lazy" width="700" height="467">
+      <div class="dest-overlay"></div>
+      <div class="dest-content"><div class="dest-name">Bra&#269;</div><div class="dest-count">22 objekta</div></div>
+    </a>
+    <a href="vile.html?dest=vis" class="dest-card" aria-label="Vile i apartmani Vis">
+      <img src="https://images.unsplash.com/photo-1559827291-72ee739d0d9a?w=700&q=80" alt="Luksuzne vile Vis Hrvatska" loading="lazy" width="700" height="467">
+      <div class="dest-overlay"></div>
+      <div class="dest-content"><div class="dest-name">Vis</div><div class="dest-count">14 objekata</div></div>
+    </a>
+    <a href="vile.html?dest=korcula" class="dest-card" aria-label="Vile i apartmani Korcula">
+      <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=700&q=80" alt="Luksuzne vile Korcula Hrvatska" loading="lazy" width="700" height="467">
+      <div class="dest-overlay"></div>
+      <div class="dest-content"><div class="dest-name">Kor&#269;ula</div><div class="dest-count">18 objekata</div></div>
+    </a>
+    <a href="vile.html?dest=peljesac" class="dest-card" aria-label="Vile i apartmani Peljesac">
+      <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=700&q=80" alt="Luksuzne vile Peljesac Hrvatska" loading="lazy" width="700" height="467">
+      <div class="dest-overlay"></div>
+      <div class="dest-content"><div class="dest-name">Pelje&#353;ac</div><div class="dest-count">16 objekata</div></div>
+    </a>
+    <a href="vile.html?dest=rovinj" class="dest-card" aria-label="Vile i apartmani Rovinj">
+      <img src="https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=700&q=80" alt="Luksuzne vile Rovinj Istra Hrvatska" loading="lazy" width="700" height="467">
+      <div class="dest-overlay"></div>
+      <div class="dest-content"><div class="dest-name">Rovinj</div><div class="dest-count">24 objekta</div></div>
+    </a>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FEATURED VILE -->
+<section class="sec" style="background:#fff;" aria-labelledby="vile-h">
+  <div class="sec-header">
+    <div>
+      <p class="sec-eyebrow">Istaknute vile &amp; apartmani</p>
+      <h2 class="sec-title" id="vile-h">Premium <em>izbor.</em></h2>
+    </div>
+    <a href="vile.html" class="see-all">Sve vile</a>
+  </div>
+  <div class="villa-feature-grid">
+    <div class="vf-hero" onclick="window.location.href='vila.html'">
+      <img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=900&q=85" alt="Villa Amelie Split beachfront luksuzna vila Hrvatska" loading="lazy" width="900" height="600">
+      <div class="vf-overlay"></div>
+      <button class="card-heart" onclick="event.stopPropagation();toggleHeart(this)" aria-label="Wishlist">
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M7.5 12.5S1 8.5 1 4.5a3.5 3.5 0 017.5 0A3.5 3.5 0 0115 4.5c0 4-6.5 8-6.5 8h-1z" stroke="#115571" stroke-width="1.4"/></svg>
+      </button>
+      <div class="vf-content">
+        <span class="card-badge cb-gold">Featured</span>
+        <p class="card-loc">Beachfront &middot; Split &middot; Dalmacija</p>
+        <h3 class="card-name-lg">Villa Amelie</h3>
+        <p class="card-price">Od <strong>2.000&#8364;</strong> /no&#263; &middot; 14 gostiju &middot; &#9733; 4.9</p>
+      </div>
+    </div>
+    <div class="vf-side">
+      <div class="vf-sm" onclick="window.location.href='vila.html'">
+        <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=600&q=80" alt="Villa Thora Hvar luksuzna vila" loading="lazy" width="600" height="400">
+        <div class="vf-sm-overlay"></div>
+        <button class="card-heart" onclick="event.stopPropagation();toggleHeart(this)" aria-label="Wishlist">
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M7.5 12.5S1 8.5 1 4.5a3.5 3.5 0 017.5 0A3.5 3.5 0 0115 4.5c0 4-6.5 8-6.5 8h-1z" stroke="#115571" stroke-width="1.4"/></svg>
+        </button>
+        <div class="vf-sm-content">
+          <p class="card-loc">Near the sea &middot; Hvar</p>
+          <h3 class="card-name-sm">Villa Thora</h3>
+          <p class="card-price">Od <strong>300&#8364;</strong> /no&#263;</p>
+        </div>
+      </div>
+      <div class="vf-sm" onclick="window.location.href='vila.html'">
+        <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&q=80" alt="Villa Mali Raj Dubrovnik beachfront" loading="lazy" width="600" height="400">
+        <div class="vf-sm-overlay"></div>
+        <button class="card-heart" onclick="event.stopPropagation();toggleHeart(this)" aria-label="Wishlist">
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M7.5 12.5S1 8.5 1 4.5a3.5 3.5 0 017.5 0A3.5 3.5 0 0115 4.5c0 4-6.5 8-6.5 8h-1z" stroke="#115571" stroke-width="1.4"/></svg>
+        </button>
+        <div class="vf-sm-content">
+          <span class="card-badge cb-navy" style="font-size:8px;padding:3px 9px;margin-bottom:5px;">The 100 Best</span>
+          <p class="card-loc">Beachfront &middot; Dubrovnik</p>
+          <h3 class="card-name-sm">Villa Mali Raj</h3>
+          <p class="card-price">Od <strong>800&#8364;</strong> /no&#263;</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- KOLEKCIJE -->
+<section class="sec" style="background:var(--navy);" aria-labelledby="coll-h">
+  <div class="sec-header">
+    <div>
+      <p class="sec-eyebrow gold">Kolekcije</p>
+      <h2 class="sec-title white" id="coll-h">Prona&#273;ite savr&#353;eni <em>objekt.</em></h2>
+    </div>
+    <a href="vile.html" class="see-all white">Sve kolekcije</a>
+  </div>
+  <div class="coll-grid">
+    <a href="vile.html?kategorija=beach" class="coll-card" aria-label="Vile na plazi">
+      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&q=80" alt="Vile na plazi Hrvatska" loading="lazy" width="500" height="333">
+      <div class="coll-overlay"></div>
+      <div class="coll-content"><div class="coll-name">Na pla&#382;i</div><div class="coll-count">42 objekta</div></div>
+    </a>
+    <a href="vile.html?kategorija=obiteljske" class="coll-card" aria-label="Obiteljske vile">
+      <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=500&q=80" alt="Obiteljske vile Hrvatska" loading="lazy" width="500" height="333">
+      <div class="coll-overlay"></div>
+      <div class="coll-content"><div class="coll-name">Obiteljske</div><div class="coll-count">67 objekata</div></div>
+    </a>
+    <a href="vile.html?kategorija=vjencanje" class="coll-card" aria-label="Vile za vjencanja">
+      <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=500&q=80" alt="Vile za vjencanja Hrvatska" loading="lazy" width="500" height="333">
+      <div class="coll-overlay"></div>
+      <div class="coll-content"><div class="coll-name">Vjen&#269;anja</div><div class="coll-count">18 objekata</div></div>
+    </a>
+    <a href="vile.html?kategorija=countryside" class="coll-card" aria-label="Countryside vile">
+      <img src="https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=500&q=80" alt="Countryside vile Hrvatska" loading="lazy" width="500" height="333">
+      <div class="coll-overlay"></div>
+      <div class="coll-content"><div class="coll-name">Countryside</div><div class="coll-count">34 objekta</div></div>
+    </a>
+    <a href="vile.html?kategorija=heritage" class="coll-card" aria-label="Heritage vile">
+      <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=500&q=80" alt="Heritage vile Hrvatska" loading="lazy" width="500" height="333">
+      <div class="coll-overlay"></div>
+      <div class="coll-content"><div class="coll-name">Heritage</div><div class="coll-count">29 objekata</div></div>
+    </a>
+  </div>
+</section>
+
+<!-- ISKUSTVA -->
+<section class="exp-section" aria-labelledby="exp-h">
+  <div class="sec-header" style="margin-bottom:28px;">
+    <div>
+      <p class="sec-eyebrow gold">Kurirana iskustva</p>
+      <h2 class="sec-title white" id="exp-h">Za goste koji znaju <em>razliku.</em></h2>
+    </div>
+    <a href="iskustva.html" class="see-all white">Sva iskustva</a>
+  </div>
+  <div class="exp-pills" role="tablist">
+    <button class="exp-pill active" onclick="filterExp(this,'sve')" role="tab">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.3"/><path d="M4 6h4M6 4v4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>Sve
+    </button>
+    <button class="exp-pill" onclick="filterExp(this,'restorani')" role="tab">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4h8v6a1 1 0 01-1 1H3a1 1 0 01-1-1V4zM4 4V3a2 2 0 014 0v1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>Restorani
+    </button>
+    <button class="exp-pill" onclick="filterExp(this,'brodovi')" role="tab">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 8c.5-1 1-1.5 2-1.5S5 7 6 8s1.5 1.5 2.5 1.5S10.5 9 11 8M6 3V8M2 3h8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>Brodovi
+    </button>
+    <button class="exp-pill" onclick="filterExp(this,'vinarije')" role="tab">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4 1h4v4a4 4 0 01-4 0V1zM6 5v6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>Vinarije
+    </button>
+    <button class="exp-pill" onclick="filterExp(this,'privatno')" role="tab">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="4.5" r="2" stroke="currentColor" stroke-width="1.3"/><path d="M2 10c0-2.5 1.8-4 4-4s4 1.5 4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>Privatno
+    </button>
+    <button class="exp-pill" onclick="filterExp(this,'beach')" role="tab">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 8c1-2 2-3 4-3s3 2 4 2 2-1 2-1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M6 3v5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>Beach clubs
+    </button>
+    <button class="exp-pill" onclick="filterExp(this,'avanture')" role="tab">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1.5l1.5 3.5H11l-3 2.5 1.3 4L6 9l-3.3 2.5L4 7.5 1 5h3.5z" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>Avanture
+    </button>
+  </div>
+
+  <div id="exp-sve">
+    <div class="exp-grid">
+      <div class="exp-hero" onclick="window.location.href='iskustvo.html'">
+        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=85" alt="Zrno Soli restoran Split fine dining Michelin" loading="lazy" width="900" height="600">
+        <div class="exp-hero-overlay"></div>
+        <div class="exp-hero-content">
+          <span class="exp-badge">&#9733; Broj 1 &middot; Split</span>
+          <p class="exp-loc">Fine dining &middot; Split</p>
+          <h3 class="exp-name-lg">Zrno Soli Restaurant</h3>
+          <p class="exp-meta">&#9733;&#9733;&#9733;&#9733;&#9733; 4.9 &middot; 48 recenzija &middot; Michelin preporu&#269;en</p>
+        </div>
+      </div>
+      <div class="exp-col">
+        <div class="exp-sm" onclick="window.location.href='iskustvo.html'">
+          <img src="https://images.unsplash.com/photo-1474169158499-049e53a1f9c7?w=500&q=80" alt="Privatna jedrilica Hvar zalazak sunca" loading="lazy" width="500" height="333">
+          <div class="exp-sm-overlay"></div>
+          <div class="exp-sm-content"><p class="exp-loc">Brod &middot; Hvar</p><h3 class="exp-name-sm">Privatna jedrilica pri zalasku</h3><p class="exp-meta">3h &middot; Do 8 gostiju</p></div>
+        </div>
+        <div class="exp-sm" onclick="window.location.href='iskustvo.html'">
+          <img src="https://images.unsplash.com/photo-1510508836394-7f96af0f0931?w=500&q=80" alt="Beach club Dubrovnik luksuz" loading="lazy" width="500" height="333">
+          <div class="exp-sm-overlay"></div>
+          <div class="exp-sm-content"><p class="exp-loc">Beach club &middot; Dubrovnik</p><h3 class="exp-name-sm">Coral Beach Club &amp; Dining</h3><p class="exp-meta">9h &ndash; 24h</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="exp-restorani" style="display:none;">
+    <div class="exp-grid">
+      <div class="exp-hero" onclick="window.location.href='iskustvo.html'">
+        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=85" alt="Fine dining restoran Split Michelin" loading="lazy" width="900" height="600">
+        <div class="exp-hero-overlay"></div>
+        <div class="exp-hero-content">
+          <span class="exp-badge">&#9733; Michelin preporu&#269;en</span>
+          <p class="exp-loc">Fine dining &middot; Split</p>
+          <h3 class="exp-name-lg">Zrno Soli Restaurant</h3>
+          <p class="exp-meta">&#9733;&#9733;&#9733;&#9733;&#9733; 4.9 &middot; Rezervacija obavezna</p>
+        </div>
+      </div>
+      <div class="exp-col">
+        <div class="exp-sm" onclick="window.location.href='iskustvo.html'">
+          <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=500&q=80" alt="Privatni chef vecera vila" loading="lazy" width="500" height="333">
+          <div class="exp-sm-overlay"></div>
+          <div class="exp-sm-content"><p class="exp-loc">Privatno &middot; Split</p><h3 class="exp-name-sm">Privatni chef u vili</h3><p class="exp-meta">3h &middot; Na upit</p></div>
+        </div>
+        <div class="exp-sm" onclick="window.location.href='iskustvo.html'">
+          <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=500&q=80" alt="Restaurant 360 Dubrovnik" loading="lazy" width="500" height="333">
+          <div class="exp-sm-overlay"></div>
+          <div class="exp-sm-content"><p class="exp-loc">Fine dining &middot; Dubrovnik</p><h3 class="exp-name-sm">Restaurant 360&deg;</h3><p class="exp-meta">Gradske zidine &middot; 2-3h</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="exp-brodovi" style="display:none;">
+    <div class="exp-grid">
+      <div class="exp-hero" onclick="window.location.href='iskustvo.html'">
+        <img src="https://images.unsplash.com/photo-1474169158499-049e53a1f9c7?w=900&q=85" alt="Privatna jedrilica Hvar Pakleni otoci" loading="lazy" width="900" height="600">
+        <div class="exp-hero-overlay"></div>
+        <div class="exp-hero-content">
+          <span class="exp-badge">&#9733; Najpopularnije</span>
+          <p class="exp-loc">Jedrilica &middot; Hvar</p>
+          <h3 class="exp-name-lg">Privatna jedrilica pri zalasku</h3>
+          <p class="exp-meta">&#9733;&#9733;&#9733;&#9733;&#9733; &middot; 3h &middot; Do 8 gostiju</p>
+        </div>
+      </div>
+      <div class="exp-col">
+        <div class="exp-sm" onclick="window.location.href='iskustvo.html'">
+          <img src="https://images.unsplash.com/photo-1559827291-72ee739d0d9a?w=500&q=80" alt="Privatni brod Dubrovnik Elafiti" loading="lazy" width="500" height="333">
+          <div class="exp-sm-overlay"></div>
+          <div class="exp-sm-content"><p class="exp-loc">Brod &middot; Dubrovnik</p><h3 class="exp-name-sm">Elafiti otoci &mdash; privatni brod</h3><p class="exp-meta">Cijeli dan &middot; Do 12 gostiju</p></div>
+        </div>
+        <div class="exp-sm" onclick="window.location.href='iskustvo.html'">
+          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&q=80" alt="Speedboat Split Vis" loading="lazy" width="500" height="333">
+          <div class="exp-sm-overlay"></div>
+          <div class="exp-sm-content"><p class="exp-loc">Speedboat &middot; Split</p><h3 class="exp-name-sm">Speedboat &mdash; Vis &amp; Modro jezero</h3><p class="exp-meta">8h &middot; Do 10 gostiju</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="exp-vinarije" style="display:none;">
+    <div class="exp-grid">
+      <div class="exp-hero" onclick="window.location.href='iskustvo.html'">
+        <img src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=900&q=85" alt="Degustacija vina Peljesac Dingac" loading="lazy" width="900" height="600">
+        <div class="exp-hero-overlay"></div>
+        <div class="exp-hero-content">
+          <span class="exp-badge">&#9733; Ekskluzivno &middot; Pelje&#353;ac</span>
+          <p class="exp-loc">Vinarija &middot; Pelje&#353;ac</p>
+          <h3 class="exp-name-lg">Degustacija Dinga&#269;a u vinogradu</h3>
+          <p class="exp-meta">&#9733;&#9733;&#9733;&#9733;&#9733; &middot; 2.5h &middot; Privatno</p>
+        </div>
+      </div>
+      <div class="exp-col">
+        <div class="exp-sm" onclick="window.location.href='iskustvo.html'">
+          <img src="https://images.unsplash.com/photo-1474722883778-792e7990302f?w=500&q=80" alt="Vinarija Istra Malvazija" loading="lazy" width="500" height="333">
+          <div class="exp-sm-overlay"></div>
+          <div class="exp-sm-content"><p class="exp-loc">Vinarija &middot; Istra</p><h3 class="exp-name-sm">Malvazija &amp; tartufi degustacija</h3><p class="exp-meta">3h &middot; Do 8 osoba</p></div>
+        </div>
+        <div class="exp-sm" onclick="window.location.href='iskustvo.html'">
+          <img src="https://images.unsplash.com/photo-1560493676-04071c5f467b?w=500&q=80" alt="Vino Hvar degustacija" loading="lazy" width="500" height="333">
+          <div class="exp-sm-overlay"></div>
+          <div class="exp-sm-content"><p class="exp-loc">Vinarija &middot; Hvar</p><h3 class="exp-name-sm">Vino &amp; maslinovo ulje Hvara</h3><p class="exp-meta">2h &middot; Privatno</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="exp-privatno" style="display:none;">
+    <div class="exp-grid">
+      <div class="exp-hero" onclick="window.location.href='iskustvo.html'">
+        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=900&q=85" alt="Privatni chef Split ekskluzivno" loading="lazy" width="900" height="600">
+        <div class="exp-hero-overlay"></div>
+        <div class="exp-hero-content">
+          <span class="exp-badge">&#9733; Ekskluzivno</span>
+          <p class="exp-loc">Privatno &middot; Split</p>
+          <h3 class="exp-name-lg">Privatni chef ve&#269;era u vili</h3>
+          <p class="exp-meta">&#9733;&#9733;&#9733;&#9733;&#9733; &middot; 3h &middot; Na upit</p>
+        </div>
+      </div>
+      <div class="exp-col">
+        <div class="exp-sm" onclick="window.location.href='iskustvo.html'">
+          <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=500&q=80" alt="Privatni yoga Hvar" loading="lazy" width="500" height="333">
+          <div class="exp-sm-overlay"></div>
+          <div class="exp-sm-content"><p class="exp-loc">Wellness &middot; Hvar</p><h3 class="exp-name-sm">Privatni yoga retreat</h3><p class="exp-meta">Jutarnje ili zalazak</p></div>
+        </div>
+        <div class="exp-sm" onclick="window.location.href='iskustvo.html'">
+          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=500&q=80" alt="Privatna vecera plaza" loading="lazy" width="500" height="333">
+          <div class="exp-sm-overlay"></div>
+          <div class="exp-sm-content"><p class="exp-loc">Romanti&#269;no &middot; Split</p><h3 class="exp-name-sm">Privatna ve&#269;era na pla&#382;i</h3><p class="exp-meta">Na upit &middot; Potpuno privatno</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="exp-beach" style="display:none;">
+    <div class="exp-grid">
+      <div class="exp-hero" onclick="window.location.href='iskustvo.html'">
+        <img src="https://images.unsplash.com/photo-1510508836394-7f96af0f0931?w=900&q=85" alt="Coral Beach Club Dubrovnik" loading="lazy" width="900" height="600">
+        <div class="exp-hero-overlay"></div>
+        <div class="exp-hero-content">
+          <span class="exp-badge">&#9733; Broj 1 &middot; Dubrovnik</span>
+          <p class="exp-loc">Beach club &middot; Dubrovnik</p>
+          <h3 class="exp-name-lg">Coral Beach Club &amp; Dining</h3>
+          <p class="exp-meta">&#9733;&#9733;&#9733;&#9733;&#9733; &middot; 9h &ndash; 24h</p>
+        </div>
+      </div>
+      <div class="exp-col">
+        <div class="exp-sm" onclick="window.location.href='iskustvo.html'">
+          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&q=80" alt="Carpe Diem Beach Hvar" loading="lazy" width="500" height="333">
+          <div class="exp-sm-overlay"></div>
+          <div class="exp-sm-content"><p class="exp-loc">Beach club &middot; Hvar</p><h3 class="exp-name-sm">Carpe Diem Beach &middot; Pakleni</h3><p class="exp-meta">Brod do otoka &middot; 10h &ndash; 02h</p></div>
+        </div>
+        <div class="exp-sm" onclick="window.location.href='iskustvo.html'">
+          <img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=500&q=80" alt="Beach club Brac Zlatni rat" loading="lazy" width="500" height="333">
+          <div class="exp-sm-overlay"></div>
+          <div class="exp-sm-content"><p class="exp-loc">Beach club &middot; Bra&#269;</p><h3 class="exp-name-sm">Zlatni Rat Beach Lounge</h3><p class="exp-meta">9h &ndash; 20h</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="exp-avanture" style="display:none;">
+    <div class="exp-grid">
+      <div class="exp-hero" onclick="window.location.href='iskustvo.html'">
+        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=900&q=85" alt="Kayaking Brac avantura" loading="lazy" width="900" height="600">
+        <div class="exp-hero-overlay"></div>
+        <div class="exp-hero-content">
+          <span class="exp-badge">&#9733; Najpopularnije</span>
+          <p class="exp-loc">Avantura &middot; Bra&#269;</p>
+          <h3 class="exp-name-lg">Kayaking skrivenim uvalama</h3>
+          <p class="exp-meta">&#9733;&#9733;&#9733;&#9733;&#9733; &middot; 4h &middot; Svi nivoi</p>
+        </div>
+      </div>
+      <div class="exp-col">
+        <div class="exp-sm" onclick="window.location.href='iskustvo.html'">
+          <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=500&q=80" alt="Ronjenje Vis Plava spilja" loading="lazy" width="500" height="333">
+          <div class="exp-sm-overlay"></div>
+          <div class="exp-sm-content"><p class="exp-loc">Ronjenje &middot; Vis</p><h3 class="exp-name-sm">Ronjenje &mdash; Plava spilja</h3><p class="exp-meta">4h &middot; Certifikat potreban</p></div>
+        </div>
+        <div class="exp-sm" onclick="window.location.href='iskustvo.html'">
+          <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=500&q=80" alt="Rafting Cetina Omis" loading="lazy" width="500" height="333">
+          <div class="exp-sm-overlay"></div>
+          <div class="exp-sm-content"><p class="exp-loc">Rafting &middot; Omi&#353;</p><h3 class="exp-name-sm">Rafting kanjonom Cetine</h3><p class="exp-meta">3h &middot; Raft za 8 osoba</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOUTIQUE HOTELI -->
+<section class="hotels-section" aria-labelledby="hotels-h">
+  <div class="sec-header">
+    <div>
+      <p class="sec-eyebrow gold">Jedinstven smje&#353;taj</p>
+      <h2 class="sec-title" id="hotels-h">Boutique &amp; Heritage <em>hoteli.</em></h2>
+      <p class="sec-sub" style="font-style:italic;font-family:'Cormorant Garamond',serif;font-size:16px;">Ne Booking.com. Samo hoteli s karakterom &mdash; direktna rezervacija.</p>
+    </div>
+    <a href="hoteli.html" class="see-all">Svi hoteli</a>
+  </div>
+  <div class="hotels-grid">
+    <div class="hotel-hero" onclick="window.location.href='hotel.html'">
+      <img src="https://images.unsplash.com/photo-1555990793-da11153b2473?w=900&q=85" alt="Hotel Vestibul Palace Split Dioklecijanova palaca heritage boutique" loading="lazy" width="900" height="600">
+      <div class="hotel-hero-overlay"></div>
+      <div class="hotel-hero-content">
+        <div class="hotel-type-label">Heritage &middot; Split</div>
+        <h3 class="hotel-hero-name">Hotel Vestibul Palace</h3>
+        <p class="hotel-hero-desc">Unutar Dioklecijanove pala&#269;e &middot; UNESCO lokacija &middot; Adults only &middot; 7 soba</p>
+        <div class="hotel-hero-footer">
+          <div class="hotel-price">Od <strong>350&#8364;</strong> /no&#263;</div>
+          <button class="hotel-view-btn" onclick="event.stopPropagation();window.location.href='hotel.html'">Pogledajte &rarr;</button>
+        </div>
+      </div>
+    </div>
+    <div class="hotel-sm-grid">
+      <div class="hotel-sm" onclick="window.location.href='hotel.html'">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Pucic Palace Dubrovnik heritage boutique stari grad" loading="lazy" width="600" height="400">
+        <div class="hotel-sm-overlay"></div>
+        <div class="hotel-sm-content"><div class="hotel-sm-type">Heritage &middot; Dubrovnik</div><div class="hotel-sm-name">Pu&#263;i&#263; Palace</div><div class="hotel-sm-price">Stari grad &middot; Od 480&#8364;/no&#263;</div></div>
+      </div>
+      <div class="hotel-sm" onclick="window.location.href='hotel.html'">
+        <img src="https://images.unsplash.com/photo-1601581875309-fafbf2d3ed3a?w=600&q=80" alt="Villa Nora Hvar design boutique adults only" loading="lazy" width="600" height="400">
+        <div class="hotel-sm-overlay"></div>
+        <div class="hotel-sm-content"><div class="hotel-sm-type">Design &middot; Hvar</div><div class="hotel-sm-name">Villa Nora Hvar</div><div class="hotel-sm-price">Adults only &middot; Od 320&#8364;/no&#263;</div></div>
+      </div>
+      <div class="hotel-sm" onclick="window.location.href='hotel.html'">
+        <img src="https://images.unsplash.com/photo-1559827291-72ee739d0d9a?w=600&q=80" alt="Lesic Dimitri Palace Korcula boutique" loading="lazy" width="600" height="400">
+        <div class="hotel-sm-overlay"></div>
+        <div class="hotel-sm-content"><div class="hotel-sm-type">Boutique &middot; Kor&#269;ula</div><div class="hotel-sm-name">Le&#353;i&#263; Dimitri Palace</div><div class="hotel-sm-price">Sea view &middot; Od 420&#8364;/no&#263;</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CPS MOMENTS -->
+<section class="moments-section" aria-labelledby="moments-h">
+  <div class="sec-header">
+    <div>
+      <p class="sec-eyebrow">CPS Moments</p>
+      <h2 class="sec-title" id="moments-h">Pri&#269;e iz <em>Hrvatske.</em></h2>
+    </div>
+    <a href="moments.html" class="see-all">Sve pri&#269;e</a>
+  </div>
+  <div class="moments-grid">
+    <div class="moment-hero" onclick="window.location.href='moments-clanak.html'">
+      <img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=900&q=85" alt="CPS Moments prica gosta villa Hvar Hrvatska" loading="lazy" width="900" height="600">
+      <div class="moment-hero-overlay"></div>
+      <div class="moment-hero-content">
+        <span class="exp-badge">Pri&#269;a gosta</span>
+        <p class="card-loc">Villa &middot; Hvar &middot; Kolovoz 2024</p>
+        <h3 class="card-name-lg">&ldquo;Tjedan koji smo &#269;uvali godinama&rdquo;</h3>
+        <p style="font-size:12px;color:rgba(255,255,255,0.45);margin-top:6px;">Sophie &amp; Marcus Mueller &middot; Berlin</p>
+      </div>
+    </div>
+    <div class="moments-side">
+      <div class="moment-sm" onclick="window.location.href='moments-clanak.html'">
+        <div class="moment-sm-img">
+          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=300&q=80" alt="CPS Moments intervju vlasnik" loading="lazy" width="300" height="200">
+        </div>
+        <div class="moment-sm-body">
+          <div class="moment-tag">Intervju s vlasnikom</div>
+          <div class="moment-title">&ldquo;Za&#353;to sam napustila Booking.com i izgradila ne&#353;to svoje&rdquo;</div>
+          <div class="moment-meta">Ivana Kova&#269; &middot; Villa Amelie &middot; Split</div>
+        </div>
+      </div>
+      <div class="moment-sm" onclick="window.location.href='moments-clanak.html'">
+        <div class="moment-sm-img">
+          <img src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=300&q=80" alt="CPS Moments vinarija Peljesac" loading="lazy" width="300" height="200">
+        </div>
+        <div class="moment-sm-body">
+          <div class="moment-tag">Putopis</div>
+          <div class="moment-title">Pet dana na Pelje&#353;cu &mdash; vino, mir i savr&#353;enstvo</div>
+          <div class="moment-meta">Laura &amp; James Thompson &middot; London</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RENT A CAR -->
+<section class="car-section" aria-labelledby="car-h">
+  <div class="car-inner">
+    <div>
+      <div class="car-eyebrow">Ekskluzivno partnerstvo</div>
+      <h2 class="car-title" id="car-h">Rezervirajte vozilo<br><em>i otkrijte Hrvatsku.</em></h2>
+      <p class="car-desc">Kao gost Croatia Premium Stay platforme, uživajte u ekskluzivnim pogodnostima kod naših rent a car partnera. Preuzmite vozilo direktno na aerodromu ili na vašoj vili.</p>
+      <div class="car-benefits">
+        <div class="car-benefit"><div class="car-dot"></div>Ekskluzivni popust za CPS goste</div>
+        <div class="car-benefit"><div class="car-dot"></div>Dostava vozila na adresu vile</div>
+        <div class="car-benefit"><div class="car-dot"></div>Premium vozni park &middot; Sve kategorije</div>
+        <div class="car-benefit"><div class="car-dot"></div>Bez skrivenih tro&#353;kova</div>
+      </div>
+      <a href="https://vas-rentacar-partner.hr" target="_blank" rel="noopener noreferrer" class="car-cta">
+        Rezervirajte vozilo
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="white" stroke-width="2"><line x1="2" y1="7" x2="12" y2="7"/><polyline points="8 3 12 7 8 11"/></svg>
+      </a>
+    </div>
+    <div class="car-img">
+      <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=800&q=85" alt="Premium rent a car Hrvatska luksuzno vozilo" loading="lazy" width="800" height="533">
+    </div>
+  </div>
+</section>
+
+<!-- WHY CPS -->
+<section class="why-section" aria-labelledby="why-h">
+  <div class="sec-header">
+    <div>
+      <p class="sec-eyebrow teal">Za&#353;to Croatia Premium Stay</p>
+      <h2 class="sec-title" id="why-h">Platforma koja daje <em>vi&#353;e.</em></h2>
+    </div>
+  </div>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="8" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M3 18c0-4 3-7 7-7s7 3 7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </div>
+      <h3 class="why-card-title">Direktno od vlasnika</h3>
+      <p class="why-card-text">Svaki objekt oglašen je direktno. Bez agencija, bez naduvanih cijena. Prava komunikacija, pravi ljudi koji poznaju svaki detalj svog objekta.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2l2 5.5H18l-5 3.5 2 5.5-5-3.5-5 3.5 2-5.5L2 7.5h6z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <h3 class="why-card-title">0% provizije</h3>
+      <p class="why-card-text">Plaćate samo vlasniku. Mi naplaćujemo godišnju članarinu vlasnicima — gost ne plaća ništa extra. Transparentno, pošteno, direktno.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 10l5 5L17 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <h3 class="why-card-title">Samo premium</h3>
+      <p class="why-card-text">Prihvaćamo isključivo objekte 4 i 5 zvjezdice. Naš tim osobno pregledava svaki oglas. Zajamčeni standard luksuznog smještaja.</p>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats-section" aria-label="Croatia Premium Stay statistike">
+  <div class="stats-grid">
+    <div class="stat-item">
+      <div class="stat-num">200<span class="stat-unit">+</span></div>
+      <div class="stat-label">Verificiranih objekata</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">8</div>
+      <div class="stat-label">Destinacija</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">0<span class="stat-unit">%</span></div>
+      <div class="stat-label">Provizije</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">4.9<span class="stat-unit">&#9733;</span></div>
+      <div class="stat-label">Prosj. ocjena</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">Croatia <span>premium</span> Stay</div>
+      <p class="footer-desc">Luksuzne vile, boutique hoteli i kurirana iskustva u Hrvatskoj. Direktno od vlasnika, bez provizije.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Smje&#353;taj</div>
+      <a href="vile.html" class="footer-link">Vile &amp; Apartmani</a>
+      <a href="hoteli.html" class="footer-link">Boutique Hoteli</a>
+      <a href="wishlist.html" class="footer-link">Wishlist</a>
+    </div>
+    <div>
+      <div class="footer-col-title">Iskustva</div>
+      <a href="iskustva.html" class="footer-link">Sva iskustva</a>
+      <a href="moments.html" class="footer-link">CPS Moments</a>
+      <a href="o-nama.html" class="footer-link">O nama</a>
+    </div>
+    <div>
+      <div class="footer-col-title">Za vlasnike</div>
+      <a href="owner-add-property.html" class="footer-link">Oglasite objekt</a>
+      <a href="owner-dashboard.html" class="footer-link">Prijava</a>
+      <a href="#" class="footer-link">Kontakt</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">&copy; 2025 Croatia Premium Stay &middot; Sva prava pridr&#382;ana</div>
+    <div class="footer-legal">
+      <a href="#">Uvjeti kori&#353;tenja</a>
+      <a href="#">Privatnost</a>
+      <a href="#">Kola&#269;i&#263;i</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// NAV SCROLL — switch from white to solid
+const nav = document.getElementById('nav');
+const navLogo = document.getElementById('navLogo');
+const navLogin = document.getElementById('navLogin');
+const navWishlist = document.getElementById('navWishlist');
+const ham = document.getElementById('ham');
+const heroCard = document.querySelector('.hero-card');
+
+// Nav always solid
+
+// HAMBURGER
+function toggleMenu() {
+  ham.classList.toggle('open');
+  document.getElementById('mobDrawer').classList.toggle('open');
+  document.body.style.overflow = document.getElementById('mobDrawer').classList.contains('open') ? 'hidden' : '';
+}
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape') { ham.classList.remove('open'); document.getElementById('mobDrawer').classList.remove('open'); document.body.style.overflow = ''; }
+});
+
+// HERO IMAGE ZOOM
+setTimeout(() => { const img = document.getElementById('heroImg'); if(img) img.style.transform = 'scale(1.04)'; }, 100);
+
+// EXPERIENCE FILTER
+function filterExp(btn, cat) {
+  document.querySelectorAll('.exp-pill').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  const grids = document.querySelectorAll('[id^="exp-"]');
+  grids.forEach(g => { g.style.opacity='0'; g.style.transition='opacity 0.25s'; setTimeout(()=>{g.style.display='none';},250); });
+  setTimeout(() => {
+    const t = document.getElementById('exp-' + cat);
+    if(t) { t.style.display='block'; requestAnimationFrame(()=>{ t.style.opacity='1'; }); }
+  }, 260);
+}
+
+// WISHLIST HEART
+function toggleHeart(btn) {
+  const path = btn.querySelector('path');
+  const on = path.getAttribute('fill') === 'var(--teal)';
+  path.setAttribute('fill', on ? 'none' : 'var(--teal)');
+}
+</script>
+</body>
+</html>
