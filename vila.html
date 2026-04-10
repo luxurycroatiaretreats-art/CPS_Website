@@ -5,13 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Villa Amelie Split – Beachfront Luksuzna Vila | Croatia Premium Stay</title>
 <meta name="description" content="Villa Amelie Split — beachfront luksuzna vila, 14 gostiju, infinity bazen, privatna plaža. Od 2.000€/noć. Direktno od vlasnika, 0% provizije.">
-<link rel="canonical" href="https://croatiapremiustay.com/vile/split/villa-amelie/">
+<link rel="canonical" href="https://croatiapremiumstay.com/vile/split/villa-amelie/">
 <meta property="og:title" content="Villa Amelie Split – Beachfront Luksuzna Vila">
 <meta property="og:description" content="14 gostiju · 6 soba · Privatna plaža · Infinity bazen · Od 2.000€/noć">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"LodgingBusiness","name":"Villa Amelie","address":{"@type":"PostalAddress","addressLocality":"Split","addressCountry":"HR"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"18"},"priceRange":"2000€+"}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://js.stripe.com/v3/"></script>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 :root{
@@ -924,8 +927,14 @@ button{cursor:pointer;font-family:'Jost',sans-serif;}
       <div class="bc-body">
         <div class="bc-dates">
           <div class="bc-date-row">
-            <div class="bc-field bc-divider"><div class="bc-field-label">Dolazak</div><div class="bc-field-val">Odaberite datum</div></div>
-            <div class="bc-field"><div class="bc-field-label">Odlazak</div><div class="bc-field-val">Odaberite datum</div></div>
+            <div class="bc-field bc-divider">
+              <div class="bc-field-label">Dolazak</div>
+              <input id="bc-checkin" class="bc-date-input" placeholder="Odaberite datum" readonly style="background:none;border:none;outline:none;font-family:'Jost',sans-serif;font-size:13px;color:var(--text);width:100%;cursor:pointer;padding:0;">
+            </div>
+            <div class="bc-field">
+              <div class="bc-field-label">Odlazak</div>
+              <input id="bc-checkout" class="bc-date-input" placeholder="Odaberite datum" readonly style="background:none;border:none;outline:none;font-family:'Jost',sans-serif;font-size:13px;color:var(--text);width:100%;cursor:pointer;padding:0;">
+            </div>
           </div>
           <div class="bc-guests">
             <div><div class="bc-field-label">Gosti</div><div class="bc-field-val">2 gosta</div></div>
@@ -1021,7 +1030,7 @@ button{cursor:pointer;font-family:'Jost',sans-serif;}
   </div>
 </div>
 
-<!-- BOOKING MODAL — mobile "Rezerviraj" -->
+<!-- BOOKING MODAL — step 1: datumi + gosti + breakdown -->
 <div class="booking-modal" id="bookingModal" onclick="if(this===event.target)closeBookingModal()">
   <div class="bm-box">
     <div class="bm-handle"></div>
@@ -1032,37 +1041,114 @@ button{cursor:pointer;font-family:'Jost',sans-serif;}
     <div class="bm-body">
       <div class="bm-dates">
         <div class="bm-row">
-          <div class="bm-field"><div class="bm-field-label">Dolazak</div><div class="bm-field-val">Odaberite datum</div></div>
-          <div class="bm-field"><div class="bm-field-label">Odlazak</div><div class="bm-field-val">Odaberite datum</div></div>
+          <div class="bm-field" style="cursor:pointer;" onclick="document.getElementById('bm-checkin').focus()">
+            <div class="bm-field-label">Dolazak</div>
+            <input id="bm-checkin" class="bm-date-input" placeholder="Odaberite datum" readonly>
+          </div>
+          <div class="bm-field" style="cursor:pointer;" onclick="document.getElementById('bm-checkout').focus()">
+            <div class="bm-field-label">Odlazak</div>
+            <input id="bm-checkout" class="bm-date-input" placeholder="Odaberite datum" readonly>
+          </div>
         </div>
         <div class="bm-guests">
-          <div><div class="bm-field-label">Gosti</div><div class="bm-field-val">2 gosta</div></div>
-          <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="#8AA8B0" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <div>
+            <div class="bm-field-label">Gosti</div>
+            <div class="bm-field-val" style="display:flex;align-items:center;gap:8px;">
+              <button onclick="changeGuests(-1)" style="background:var(--border);border:none;border-radius:50%;width:24px;height:24px;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;">−</button>
+              <span id="bm-guests-num">2</span> gosta
+              <button onclick="changeGuests(1)" style="background:var(--border);border:none;border-radius:50%;width:24px;height:24px;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;">+</button>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="bm-breakdown">
-        <div class="bm-br-row"><span>2.000€ × 7 noći</span><span>14.000€</span></div>
-        <div class="bm-br-row"><span>Naknada za čišćenje</span><span>250€</span></div>
-        <div class="bm-br-row">
-          <span style="display:flex;align-items:center;gap:4px;">
-            Naknada platforme (7%)
-            <span class="fee-info" onclick="this.classList.toggle('open')">
-              <span class="fee-icon">i</span>
-              <span class="fee-popup">Platforma naplaćuje 7% naknade isključivo za obradu plaćanja, sigurnost i podršku. Primjenjuje se samo kod plaćanja kreditnom karticom.</span>
-            </span>
-          </span>
-          <span>980€</span>
-        </div>
-        <div class="bm-br-total"><span>Ukupno</span><span>15.286€</span></div>
+      <div class="bm-breakdown" id="bm-breakdown">
+        <div class="bm-br-row"><span>Odaberite datume za prikaz cijene</span><span>—</span></div>
       </div>
       <div style="margin-top:12px;font-size:11px;color:var(--text-muted);line-height:1.7;background:var(--cream);border-radius:8px;padding:10px 12px;">
-        <strong style="color:var(--text-light);">30%</strong> odmah · <strong style="color:var(--text-light);">70%</strong> automatski 60 dana prije dolaska
+        <strong style="color:var(--text-light);">40%</strong> odmah · <strong style="color:var(--text-light);">60%</strong> automatski 30 dana prije dolaska
       </div>
-      <button class="bm-reserve-btn">Rezervirajte odmah</button>
+      <button class="bm-reserve-btn" id="bm-reserve-btn" onclick="proceedToPayment()">Rezervirajte odmah</button>
       <button onclick="closeBookingModal();openContactModal();" style="width:100%;margin-top:8px;padding:13px;background:#fff;border:1.5px solid var(--border);border-radius:10px;font-size:12px;font-weight:600;color:var(--text);cursor:pointer;">
         Kontaktiraj domaćina
       </button>
     </div>
+  </div>
+</div>
+
+<!-- PAYMENT MODAL — step 2: unos podataka + Stripe -->
+<div class="booking-modal" id="paymentModal" onclick="if(this===event.target)closePaymentModal()" style="z-index:1001;">
+  <div class="bm-box" style="max-height:95vh;overflow-y:auto;">
+    <div class="bm-handle"></div>
+    <button onclick="closePaymentModal();openBookingModal();" style="background:none;border:none;font-size:12px;color:var(--teal);cursor:pointer;padding:0 0 10px;display:flex;align-items:center;gap:4px;">
+      ← Natrag
+    </button>
+    <div class="bm-header" style="margin-bottom:16px;">
+      <div class="bm-price" style="font-size:16px;">Potvrda rezervacije</div>
+      <div id="pm-summary" style="font-size:11px;color:var(--text-muted);margin-top:4px;"></div>
+    </div>
+
+    <!-- Osobni podaci -->
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px;">
+      <div>
+        <label style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);display:block;margin-bottom:5px;">Ime i prezime</label>
+        <input id="pm-name" type="text" placeholder="Vaše ime i prezime" style="width:100%;padding:11px 13px;border:1.5px solid var(--border);border-radius:8px;font-family:'Jost',sans-serif;font-size:13px;outline:none;transition:border 0.2s;" onfocus="this.style.borderColor='var(--teal)'" onblur="this.style.borderColor='var(--border)'">
+      </div>
+      <div>
+        <label style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);display:block;margin-bottom:5px;">Email</label>
+        <input id="pm-email" type="email" placeholder="vas@email.com" style="width:100%;padding:11px 13px;border:1.5px solid var(--border);border-radius:8px;font-family:'Jost',sans-serif;font-size:13px;outline:none;transition:border 0.2s;" onfocus="this.style.borderColor='var(--teal)'" onblur="this.style.borderColor='var(--border)'">
+      </div>
+      <div>
+        <label style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);display:block;margin-bottom:5px;">Telefon</label>
+        <input id="pm-phone" type="tel" placeholder="+385 91 234 5678" style="width:100%;padding:11px 13px;border:1.5px solid var(--border);border-radius:8px;font-family:'Jost',sans-serif;font-size:13px;outline:none;transition:border 0.2s;" onfocus="this.style.borderColor='var(--teal)'" onblur="this.style.borderColor='var(--border)'">
+      </div>
+    </div>
+
+    <!-- Stripe Card Element -->
+    <div style="margin-bottom:16px;">
+      <label style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);display:block;margin-bottom:8px;">Podaci kartice</label>
+      <div id="stripe-card-element" style="padding:12px 13px;border:1.5px solid var(--border);border-radius:8px;background:#fff;min-height:42px;"></div>
+      <div id="stripe-card-errors" style="color:#e53e3e;font-size:12px;margin-top:6px;"></div>
+    </div>
+
+    <!-- Iznosi -->
+    <div style="background:var(--cream);border-radius:8px;padding:12px 14px;margin-bottom:16px;font-size:12px;">
+      <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+        <span style="color:var(--text-muted);">Ukupno za boravak</span>
+        <span id="pm-total" style="font-weight:600;"></span>
+      </div>
+      <div style="display:flex;justify-content:space-between;padding-top:8px;border-top:1px solid var(--border);">
+        <span style="color:var(--text-light);font-weight:600;">Naplaćuje se danas (40%)</span>
+        <span id="pm-deposit" style="color:var(--teal);font-weight:700;font-size:14px;"></span>
+      </div>
+      <div style="margin-top:6px;font-size:10px;color:var(--text-muted);">Ostatak (60%) naplaćuje se automatski 30 dana prije dolaska.</div>
+    </div>
+
+    <!-- Error / Loading -->
+    <div id="pm-error" style="display:none;background:#FFF5F5;border:1px solid #FEB2B2;border-radius:8px;padding:10px 12px;font-size:12px;color:#C53030;margin-bottom:12px;"></div>
+
+    <button id="pm-submit-btn" onclick="submitPayment()" style="width:100%;padding:15px;background:var(--teal);border:none;border-radius:10px;font-family:'Jost',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#fff;cursor:pointer;">
+      Platite 40% depozit
+    </button>
+    <div style="text-align:center;margin-top:10px;font-size:10px;color:var(--text-muted);">
+      🔒 Sigurno plaćanje putem Stripe-a
+    </div>
+  </div>
+</div>
+
+<!-- SUCCESS MODAL -->
+<div class="booking-modal" id="successModal" style="z-index:1002;">
+  <div class="bm-box" style="text-align:center;padding-bottom:40px;">
+    <div style="width:56px;height:56px;background:var(--green-pale);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:20px auto 16px;">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="var(--green)" stroke-width="1.5"/><path d="M7.5 12l3 3 6-6" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;margin-bottom:8px;">Rezervacija potvrđena!</div>
+    <div id="success-details" style="font-size:13px;color:var(--text-muted);line-height:1.7;padding:0 20px;"></div>
+    <div style="margin-top:20px;background:var(--cream);border-radius:10px;padding:14px;margin:20px 8px 0;font-size:12px;color:var(--text-light);">
+      Potvrda je poslana na Vaš email. CPS tim će Vas kontaktirati unutar 24h.
+    </div>
+    <button onclick="closeSuccessModal()" style="width:calc(100% - 16px);margin-top:14px;padding:14px;background:var(--teal);border:none;border-radius:10px;font-family:'Jost',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#fff;cursor:pointer;">
+      Zatvori
+    </button>
   </div>
 </div>
 
@@ -1098,24 +1184,382 @@ button{cursor:pointer;font-family:'Jost',sans-serif;}
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ============================================================
+// CONFIG
+// ============================================================
+const WORKER_URL = 'https://cps-booking.solitary-rice-38ed.workers.dev';
+const STRIPE_PK  = 'pk_live_51...'; // ← zamijeni s tvojim Stripe publishable key-em
+const VILLA_ID   = 'villa-amelie-split';
+
+// ============================================================
+// STATE
+// ============================================================
+let villaData = null; // dohvaća se iz baze on-load
+
+let bmState = {
+  checkIn: null,
+  checkOut: null,
+  nights: 0,
+  guests: 2,
+  total: 0,
+  deposit: 0,
+  paymentType: 'split', // 'split' ili 'full'
+  daysUntilCheckIn: 0,
+};
+let stripe, cardElement, clientSecret, bookingId;
+
+// ============================================================
+// DOHVAT VILE IZ BAZE
+// ============================================================
+async function loadVillaData() {
+  try {
+    const res = await fetch(`${WORKER_URL}/api/villa/${VILLA_ID}`);
+    if (!res.ok) throw new Error('Vila nije pronađena');
+    villaData = await res.json();
+
+    // Update cijena u UI-u
+    const priceStr = villaData.price_per_night.toLocaleString() + '€';
+    document.querySelectorAll('.bc-price-num, .mob-book-price').forEach(el => {
+      el.innerHTML = el.innerHTML.replace(/[\d.,]+€/, priceStr);
+    });
+  } catch (err) {
+    console.error('Greška pri dohvatu vile:', err);
+    // Fallback na hardcoded vrijednosti ako API ne radi
+    villaData = {
+      price_per_night: 2000,
+      cleaning_fee: 250,
+      security_deposit: 1000,
+      payment_policy_days: 30,
+      max_guests: 14,
+      villa_name: 'Villa Amelie Split',
+    };
+  }
+}
+
+// ============================================================
+// FLATPICKR — date pickers (booking card desktop + mobile modal)
+// ============================================================
+const today = new Date();
+today.setHours(0,0,0,0);
+
+function initDatePickers(checkInId, checkOutId) {
+  const ciPicker = flatpickr('#' + checkInId, {
+    minDate: 'today',
+    dateFormat: 'd.m.Y.',
+    locale: { firstDayOfWeek: 1 },
+    onChange: function(dates) {
+      if (dates[0]) {
+        bmState.checkIn = dates[0];
+        const minOut = new Date(dates[0]);
+        minOut.setDate(minOut.getDate() + 1);
+        coPicker.set('minDate', minOut);
+        if (bmState.checkOut && bmState.checkOut <= dates[0]) {
+          bmState.checkOut = null;
+          coPicker.clear();
+        }
+        updateBreakdown();
+      }
+    }
+  });
+  const coPicker = flatpickr('#' + checkOutId, {
+    minDate: new Date(today.getTime() + 86400000),
+    dateFormat: 'd.m.Y.',
+    locale: { firstDayOfWeek: 1 },
+    onChange: function(dates) {
+      if (dates[0]) {
+        bmState.checkOut = dates[0];
+        updateBreakdown();
+      }
+    }
+  });
+  return { ciPicker, coPicker };
+}
+
+// Init na DOMContentLoaded
+document.addEventListener('DOMContentLoaded', () => {
+  loadVillaData(); // dohvati cijenu i policy iz baze
+  initDatePickers('bm-checkin', 'bm-checkout');
+  initDatePickers('bc-checkin', 'bc-checkout');
+});
+
+// ============================================================
+// BREAKDOWN CALCULATOR
+// ============================================================
+function updateBreakdown() {
+  if (!bmState.checkIn || !bmState.checkOut || !villaData) return;
+  const nights = Math.round((bmState.checkOut - bmState.checkIn) / 86400000);
+  if (nights < 1) return;
+  bmState.nights = nights;
+
+  const pricePerNight  = villaData.price_per_night;
+  const cleaningFee    = villaData.cleaning_fee || 0;
+  const policyDays     = villaData.payment_policy_days || 30;
+  const maxGuests      = villaData.max_guests || 14;
+
+  const base    = pricePerNight * nights;
+  const fee7    = Math.round(base * 0.07);
+  const tourist = bmState.guests * nights * 2;
+  const total   = base + cleaningFee + fee7 + tourist;
+
+  // Smart split logic
+  const today = new Date(); today.setHours(0,0,0,0);
+  const daysUntilCheckIn = Math.round((bmState.checkIn - today) / 86400000);
+  bmState.daysUntilCheckIn = daysUntilCheckIn;
+
+  let deposit, paymentType;
+  if (daysUntilCheckIn <= policyDays) {
+    deposit     = total;
+    paymentType = 'full';
+  } else {
+    deposit     = Math.round(total * 0.40);
+    paymentType = 'split';
+  }
+
+  bmState.total       = total;
+  bmState.deposit     = deposit;
+  bmState.paymentType = paymentType;
+
+  // Payment info tekst
+  const paymentInfo = paymentType === 'full'
+    ? `<strong style="color:#C53030;">Booking unutar ${policyDays} dana check-in-a — naplaćuje se 100% odmah</strong>`
+    : `<strong>40%</strong> odmah · <strong>60%</strong> automatski ${policyDays} dana prije dolaska`;
+
+  // Mobile modal breakdown
+  const bmEl = document.getElementById('bm-breakdown');
+  if (bmEl) bmEl.innerHTML = `
+    <div class="bm-br-row"><span>${pricePerNight.toLocaleString()}€ × ${nights} noći</span><span>${base.toLocaleString()}€</span></div>
+    <div class="bm-br-row"><span>Naknada za čišćenje</span><span>${cleaningFee}€</span></div>
+    <div class="bm-br-row"><span>Turistička pristojba</span><span>${tourist}€</span></div>
+    <div class="bm-br-row"><span>Naknada platforme (7%)</span><span>${fee7.toLocaleString()}€</span></div>
+    <div class="bm-br-total"><span>Ukupno</span><span>${total.toLocaleString()}€</span></div>
+  `;
+
+  // Mobile modal payment info
+  const bmPayInfo = document.querySelector('#bookingModal .bm-body > div[style*="cream"]');
+  if (bmPayInfo) bmPayInfo.innerHTML = paymentInfo;
+
+  // Gumb tekst
+  const btn = document.getElementById('bm-reserve-btn');
+  if (btn) btn.textContent = paymentType === 'full'
+    ? `Rezervirajte — platite ${total.toLocaleString()}€`
+    : `Rezervirajte — platite ${deposit.toLocaleString()}€ sada`;
+
+  // Desktop card
+  updateDesktopCard(nights, base, fee7, tourist, total, deposit, cleaningFee, policyDays, paymentType);
+}
+
+function updateDesktopCard(nights, base, fee7, tourist, total, deposit, cleaningFee, policyDays, paymentType) {
+  const pricePerNight = villaData ? villaData.price_per_night : 2000;
+  const rows = document.querySelector('.bc-breakdown');
+  if (!rows) return;
+  rows.innerHTML = `
+    <div class="bc-row"><span>${pricePerNight.toLocaleString()}€ × ${nights} noći</span><span>${base.toLocaleString()}€</span></div>
+    <div class="bc-row"><span>Naknada za čišćenje</span><span>${cleaningFee}€</span></div>
+    <div class="bc-row"><span>Turistička pristojba</span><span>${tourist}€</span></div>
+    <div class="bc-row"><span>Naknada platforme (7%)</span><span>${fee7.toLocaleString()}€</span></div>
+    <div class="bc-total"><span>Ukupno</span><span>${total.toLocaleString()}€</span></div>
+  `;
+  const pm = document.querySelector('.bc-payment');
+  if (pm) pm.innerHTML = paymentType === 'full'
+    ? `<strong style="color:#C53030;">Booking unutar ${policyDays} dana — 100% odmah (${total.toLocaleString()}€)</strong>`
+    : `<strong>40%</strong> odmah (${deposit.toLocaleString()}€) · <strong>60%</strong> automatski ${policyDays} dana prije dolaska`;
+}
+
+function changeGuests(delta) {
+  const n = document.getElementById('bm-guests-num');
+  const maxG = villaData ? villaData.max_guests : 14;
+  let v = parseInt(n.textContent) + delta;
+  v = Math.max(1, Math.min(maxG, v));
+  n.textContent = v;
+  bmState.guests = v;
+  updateBreakdown();
+}
+
+// ============================================================
+// BOOKING MODAL
+// ============================================================
+function openBookingModal() {
+  document.getElementById('bookingModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeBookingModal() {
+  document.getElementById('bookingModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// ============================================================
+// PAYMENT MODAL — step 2
+// ============================================================
+function proceedToPayment() {
+  if (!bmState.checkIn || !bmState.checkOut) {
+    alert('Molimo odaberite datume boravka.');
+    return;
+  }
+  const fmt = d => d.toLocaleDateString('hr-HR', {day:'2-digit', month:'2-digit', year:'numeric'});
+  document.getElementById('pm-summary').textContent =
+    `${fmt(bmState.checkIn)} – ${fmt(bmState.checkOut)} · ${bmState.nights} noći · ${bmState.guests} gosta`;
+  document.getElementById('pm-total').textContent = bmState.total.toLocaleString() + '€';
+  document.getElementById('pm-deposit').textContent = bmState.deposit.toLocaleString() + '€';
+
+  // Prilagodi UI ovisno o payment type
+  const depositLabel = document.querySelector('#paymentModal [style*="Naplaćuje se danas"]');
+  const depositNote  = document.querySelector('#paymentModal [style*="Ostatak"]');
+  const submitBtn    = document.getElementById('pm-submit-btn');
+
+  if (bmState.paymentType === 'full') {
+    if (depositLabel) depositLabel.textContent = 'Naplaćuje se danas (100%)';
+    if (depositNote)  depositNote.textContent = 'Booking unutar payment perioda — ukupni iznos naplaćuje se odmah.';
+    if (submitBtn)    submitBtn.textContent = `Platite ${bmState.total.toLocaleString()}€`;
+  } else {
+    if (depositLabel) depositLabel.textContent = 'Naplaćuje se danas (40%)';
+    const policyDays = villaData ? villaData.payment_policy_days : 30;
+    if (depositNote)  depositNote.textContent = `Ostatak (60%) naplaćuje se automatski ${policyDays} dana prije dolaska.`;
+    if (submitBtn)    submitBtn.textContent = `Platite ${bmState.deposit.toLocaleString()}€ depozit`;
+  }
+
+  closeBookingModal();
+  document.getElementById('paymentModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+
+  // Init Stripe Elements (lazy)
+  if (!stripe) {
+    stripe = Stripe(STRIPE_PK);
+    const elements = stripe.elements({ locale: 'hr' });
+    cardElement = elements.create('card', {
+      style: {
+        base: {
+          fontFamily: "'Jost', sans-serif",
+          fontSize: '14px',
+          color: '#0D1B24',
+          '::placeholder': { color: '#8AA8B0' }
+        }
+      }
+    });
+    cardElement.mount('#stripe-card-element');
+    cardElement.on('change', e => {
+      document.getElementById('stripe-card-errors').textContent = e.error ? e.error.message : '';
+    });
+  }
+}
+
+function closePaymentModal() {
+  document.getElementById('paymentModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// ============================================================
+// SUBMIT PAYMENT
+// ============================================================
+async function submitPayment() {
+  const name  = document.getElementById('pm-name').value.trim();
+  const email = document.getElementById('pm-email').value.trim();
+  const phone = document.getElementById('pm-phone').value.trim();
+
+  if (!name || !email) {
+    showPmError('Molimo unesite ime i email.');
+    return;
+  }
+  if (!bmState.checkIn || !bmState.checkOut) {
+    showPmError('Nedostaju datumi.');
+    return;
+  }
+
+  const btn = document.getElementById('pm-submit-btn');
+  btn.disabled = true;
+  btn.textContent = 'Obrađujemo...';
+  hidePmError();
+
+  try {
+    const fmt = d => d.toISOString().split('T')[0];
+    const res = await fetch(`${WORKER_URL}/api/booking/create`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        villa_id:    VILLA_ID,
+        guest_name:  name,
+        guest_email: email,
+        guest_phone: phone,
+        check_in:    fmt(bmState.checkIn),
+        check_out:   fmt(bmState.checkOut),
+        guests:      bmState.guests,
+        // cijena i policy dolaze iz baze na Workeru — ne šaljemo s fronta!
+      })
+    });
+
+    const data = await res.json();
+    if (!res.ok || !data.client_secret) {
+      throw new Error(data.error || 'Greška pri kreiranju rezervacije.');
+    }
+
+    clientSecret = data.client_secret;
+    bookingId    = data.booking_id;
+
+    const { error, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
+      payment_method: {
+        card: cardElement,
+        billing_details: { name, email, phone }
+      }
+    });
+
+    if (error) throw new Error(error.message);
+
+    if (paymentIntent.status === 'succeeded') {
+      showSuccess(name, email, fmt(bmState.checkIn), fmt(bmState.checkOut), data.payment_type);
+    }
+
+  } catch (err) {
+    showPmError(err.message);
+    btn.disabled = false;
+    btn.textContent = bmState.paymentType === 'full'
+      ? `Platite ${bmState.total.toLocaleString()}€`
+      : `Platite ${bmState.deposit.toLocaleString()}€ depozit`;
+  }
+}
+
+function showPmError(msg) {
+  const el = document.getElementById('pm-error');
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+function hidePmError() {
+  document.getElementById('pm-error').style.display = 'none';
+}
+
+// ============================================================
+// SUCCESS
+// ============================================================
+function showSuccess(name, email, checkIn, checkOut, paymentType) {
+  closePaymentModal();
+  const fmt = s => { const [y,m,d] = s.split('-'); return `${d}.${m}.${y}.`; };
+  const villaName = villaData ? villaData.villa_name : 'Villa Amelie Split';
+  const paymentNote = (paymentType === 'full')
+    ? `Ukupni iznos <strong>${bmState.total.toLocaleString()}€</strong> uspješno plaćen.`
+    : `Depozit <strong>${bmState.deposit.toLocaleString()}€</strong> (40%) uspješno plaćen.<br>Ostatak se naplaćuje automatski.`;
+
+  document.getElementById('success-details').innerHTML = `
+    <strong>${name}</strong><br>
+    ${villaName}<br>
+    ${fmt(checkIn)} – ${fmt(checkOut)} · ${bmState.nights} noći<br><br>
+    ${paymentNote}<br>
+    Potvrda šalje se na <strong>${email}</strong>
+  `;
+  document.getElementById('successModal').classList.add('open');
+}
+function closeSuccessModal() {
+  document.getElementById('successModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// ============================================================
 // CONTACT MODAL
+// ============================================================
 function openContactModal(){
   document.getElementById('contactModal').classList.add('open');
   document.body.style.overflow='hidden';
 }
 function closeContactModal(){
   document.getElementById('contactModal').classList.remove('open');
-  document.body.style.overflow='';
-}
-
-// BOOKING MODAL (mobile)
-function openBookingModal(){
-  document.getElementById('bookingModal').classList.add('open');
-  document.body.style.overflow='hidden';
-}
-function closeBookingModal(){
-  document.getElementById('bookingModal').classList.remove('open');
   document.body.style.overflow='';
 }
 
@@ -1160,12 +1604,14 @@ function toggleGalleryHeart(btn){
   p.setAttribute('fill',on?'none':'var(--teal)');
 }
 
-// ESC + close all modals
+// ESC
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
     closeGallery();
     closeContactModal();
     closeBookingModal();
+    closePaymentModal();
+    closeSuccessModal();
     document.getElementById('ham').classList.remove('open');
     document.getElementById('mobDrawer').classList.remove('open');
     document.body.style.overflow = '';
