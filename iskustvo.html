@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">Iskustvo — Croatia Premium Stay</title>
+<meta name="description" id="metaDesc" content="Kurirana iskustva u Hrvatskoj — Croatia Premium Stay">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --navy:#0A2535;--teal:#115571;--teal-pale:#E8F4F8;--gold:#C4974E;
+  --cream:#F7F5F1;--border:#E8EEF2;--text:#0D1B24;--text-light:#5A7880;--text-muted:#8AA8B0;
+  --green:#22C55E;--green-pale:#ECFDF5;--shadow:0 4px 24px rgba(10,37,53,0.09);--shadow-lg:0 12px 48px rgba(10,37,53,0.14);
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Jost',sans-serif;background:#fff;color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;height:auto;display:block;}
+a{text-decoration:none;color:inherit;}
+button{cursor:pointer;font-family:'Jost',sans-serif;}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:200;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:#fff;border-bottom:1px solid var(--border);box-shadow:0 1px 8px rgba(10,37,53,0.05);}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:500;color:var(--navy);}
+.nav-right{display:flex;align-items:center;gap:14px;}
+.ham{display:flex;flex-direction:column;gap:5px;background:none;border:none;padding:8px;cursor:pointer;}
+.ham span{display:block;width:22px;height:1.5px;background:var(--navy);border-radius:2px;transition:all 0.3s;}
+.mob-drawer{position:fixed;top:0;left:0;right:0;bottom:0;background:var(--navy);z-index:999;transform:translateX(-100%);transition:transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94);display:flex;flex-direction:column;padding:80px 40px 44px;overflow-y:auto;}
+.mob-drawer.open{transform:translateX(0);}
+.mob-drawer-close{position:absolute;top:24px;right:28px;background:none;border:none;cursor:pointer;padding:4px;}
+.mob-link{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:rgba(255,255,255,0.85);padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.07);display:block;}
+
+/* BREADCRUMB */
+.breadcrumb{padding:14px 48px;font-size:12px;color:var(--text-muted);display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.breadcrumb a{color:var(--teal);}
+
+/* HERO */
+.exp-hero{position:relative;height:520px;overflow:hidden;background:var(--navy);}
+.exp-hero img{width:100%;height:100%;object-fit:cover;opacity:0.85;transition:transform 0.8s;}
+.exp-hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,37,53,0.1) 0%,rgba(10,37,53,0.6) 100%);}
+.exp-hero-content{position:absolute;bottom:0;left:0;right:0;padding:40px 60px;}
+.exp-badge-row{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;}
+.exp-badge{display:inline-block;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;}
+.badge-gold{background:var(--gold);color:#fff;}
+.badge-cat{background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);color:#fff;border:1px solid rgba(255,255,255,0.3);}
+.exp-hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,52px);font-weight:300;color:#fff;line-height:1.1;margin-bottom:12px;}
+.exp-hero-meta{font-size:13px;color:rgba(255,255,255,0.7);display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+.exp-hero-meta span{display:flex;align-items:center;gap:5px;}
+.gallery-btn{position:absolute;bottom:32px;right:48px;background:rgba(255,255,255,0.92);border:none;border-radius:8px;padding:8px 16px;font-size:11px;font-weight:600;color:var(--navy);display:flex;align-items:center;gap:6px;cursor:pointer;transition:all 0.2s;}
+.gallery-btn:hover{background:#fff;}
+
+/* GALLERY STRIP */
+.gallery-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;height:200px;background:var(--navy);}
+.gallery-strip img{width:100%;height:100%;object-fit:cover;opacity:0.9;cursor:pointer;transition:opacity 0.2s;}
+.gallery-strip img:hover{opacity:1;}
+.gallery-strip-more{position:relative;cursor:pointer;}
+.gallery-strip-more::after{content:attr(data-count);position:absolute;inset:0;background:rgba(10,37,53,0.6);display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;font-weight:600;font-family:'Cormorant Garamond',serif;}
+
+/* LAYOUT */
+.exp-layout{display:grid;grid-template-columns:1fr 380px;gap:48px;max-width:1200px;margin:0 auto;padding:40px 48px 80px;}
+.exp-main{}
+
+/* SECTIONS */
+.csec{padding:28px 0;border-bottom:1px solid var(--border);}
+.csec:last-child{border-bottom:none;}
+.csec-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:400;color:var(--navy);margin-bottom:18px;}
+.csec-title em{font-style:italic;color:var(--teal);}
+
+/* FACTS */
+.facts-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+.fact-item{display:flex;align-items:center;gap:12px;padding:14px;background:var(--cream);border-radius:10px;}
+.fact-icon{width:36px;height:36px;background:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px;}
+.fact-label{font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:2px;}
+.fact-val{font-size:13px;font-weight:500;color:var(--text);}
+
+/* INCLUDES */
+.includes-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.include-item{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-light);padding:6px 0;}
+.include-dot{width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0;}
+
+/* RATING */
+.rating-bar{display:flex;align-items:center;gap:12px;margin-bottom:8px;}
+.rating-num{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:300;color:var(--navy);line-height:1;}
+.stars{color:#F4A92A;font-size:18px;letter-spacing:2px;}
+.rating-count{font-size:12px;color:var(--text-muted);margin-top:4px;}
+
+/* BOOKING CARD */
+.booking-card{background:var(--navy);border-radius:20px;overflow:hidden;position:sticky;top:88px;}
+.bc-header{padding:24px 24px 20px;}
+.bc-badge{display:inline-block;background:var(--gold);color:#fff;font-size:9px;font-weight:700;letter-spacing:0.2em;padding:3px 10px;border-radius:20px;text-transform:uppercase;margin-bottom:14px;}
+.bc-name{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:#fff;margin-bottom:8px;line-height:1.2;}
+.bc-loc{font-size:12px;color:rgba(255,255,255,0.45);display:flex;align-items:center;gap:5px;margin-bottom:16px;}
+.bc-price-row{display:flex;align-items:baseline;gap:6px;}
+.bc-price{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:#fff;}
+.bc-price-unit{font-size:12px;color:rgba(255,255,255,0.45);}
+.bc-divider{height:1px;background:rgba(255,255,255,0.08);margin:0;}
+.bc-body{padding:20px 24px 24px;}
+.bc-field-label{font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:5px;}
+.bc-field-val{font-size:13px;color:#fff;}
+.bc-info-row{display:flex;gap:12px;margin-bottom:16px;}
+.bc-info-item{flex:1;background:rgba(255,255,255,0.06);border-radius:10px;padding:12px;}
+.btn-gold{width:100%;padding:15px;background:var(--gold);border:none;border-radius:10px;font-family:'Jost',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#fff;cursor:pointer;transition:all 0.2s;margin-bottom:10px;}
+.btn-gold:hover{background:#b8863f;}
+.btn-white-ol{width:100%;padding:13px;background:transparent;border:1.5px solid rgba(255,255,255,0.2);border-radius:10px;font-family:'Jost',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.7);cursor:pointer;transition:all 0.2s;}
+.btn-white-ol:hover{border-color:rgba(255,255,255,0.5);color:#fff;}
+.bc-note{margin-top:14px;font-size:11px;color:rgba(255,255,255,0.3);text-align:center;line-height:1.6;}
+.bc-verified{display:flex;align-items:center;gap:8px;padding:14px 24px;border-top:1px solid rgba(255,255,255,0.08);font-size:11px;color:rgba(255,255,255,0.35);}
+
+/* RELATED */
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.rel-card{border-radius:12px;overflow:hidden;border:1px solid var(--border);cursor:pointer;transition:box-shadow 0.2s;}
+.rel-card:hover{box-shadow:var(--shadow);}
+.rel-img{aspect-ratio:4/3;overflow:hidden;}
+.rel-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s;}
+.rel-card:hover .rel-img img{transform:scale(1.04);}
+.rel-body{padding:14px;}
+.rel-cat{font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px;}
+.rel-name{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:400;color:var(--navy);margin-bottom:6px;}
+.rel-price{font-size:12px;color:var(--text-muted);}
+
+/* GALLERY MODAL */
+.gal-modal{position:fixed;inset:0;background:rgba(0,0,0,0.95);z-index:1000;display:none;align-items:center;justify-content:center;}
+.gal-modal.open{display:flex;}
+.gal-img{max-width:90vw;max-height:85vh;object-fit:contain;border-radius:8px;}
+.gal-close{position:absolute;top:20px;right:28px;background:none;border:none;color:#fff;font-size:32px;cursor:pointer;}
+.gal-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.1);border:none;color:#fff;font-size:36px;padding:12px 18px;cursor:pointer;border-radius:8px;transition:background 0.2s;}
+.gal-nav:hover{background:rgba(255,255,255,0.2);}
+.gal-prev{left:20px;}
+.gal-next{right:20px;}
+.gal-counter{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,0.6);font-size:13px;}
+
+/* LOADING */
+.loading-state{min-height:400px;display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:14px;}
+
+/* CONTACT MODAL */
+.contact-modal{position:fixed;inset:0;background:rgba(10,37,53,0.5);z-index:500;display:none;align-items:flex-end;justify-content:center;}
+.contact-modal.open{display:flex;}
+.cm-box{background:#fff;border-radius:20px 20px 0 0;padding:28px 28px 40px;width:100%;max-width:480px;}
+.cm-handle{width:36px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 20px;}
+.cm-title{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;margin-bottom:6px;}
+.cm-sub{font-size:12px;color:var(--text-muted);margin-bottom:20px;}
+.cm-option{display:flex;align-items:center;gap:14px;padding:14px;border:1.5px solid var(--border);border-radius:12px;margin-bottom:10px;transition:border 0.2s;}
+.cm-option:hover{border-color:var(--teal);}
+.cm-option-icon{width:36px;height:36px;background:var(--teal-pale);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.cm-option-label{font-size:13px;font-weight:500;}
+.cm-option-sub{font-size:11px;color:var(--text-muted);}
+.cm-close-btn{width:100%;padding:13px;background:#fff;border:1.5px solid var(--border);border-radius:10px;font-size:12px;font-weight:600;margin-top:8px;cursor:pointer;}
+
+/* DESC */
+.desc-text{font-size:14px;line-height:1.9;color:var(--text-light);}
+.desc-more{display:none;}
+.read-more-btn{background:none;border:none;color:var(--teal);font-size:13px;font-weight:500;margin-top:10px;padding:0;cursor:pointer;}
+
+@media(max-width:900px){
+  .exp-layout{grid-template-columns:1fr;padding:24px 20px 60px;}
+  .booking-card{position:static;}
+  .exp-hero{height:360px;}
+  .exp-hero-content{padding:24px;}
+  .breadcrumb{padding:12px 20px;}
+  .facts-grid{grid-template-columns:1fr;}
+  .includes-grid{grid-template-columns:1fr;}
+  .related-grid{grid-template-columns:1fr 1fr;}
+  .gallery-strip{grid-template-columns:repeat(3,1fr);height:140px;}
+  .gallery-btn{bottom:16px;right:20px;}
+}
+@media(max-width:600px){
+  .nav{padding:0 20px;}
+  .gallery-strip{grid-template-columns:repeat(2,1fr);}
+  .related-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">Croatia <em style="font-family:'Cormorant Garamond',serif;font-style:italic;">Premium</em> Stay</a>
+  <div class="nav-right">
+    <button class="ham" id="ham" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mob-drawer" id="mobDrawer">
+  <button class="mob-drawer-close" onclick="toggleMenu()">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg>
+  </button>
+  <a href="vile.html" class="mob-link">Vile &amp; Apartmani</a>
+  <a href="iskustva.html" class="mob-link">Iskustva</a>
+  <a href="moments.html" class="mob-link">CPS Moments</a>
+  <a href="o-nama.html" class="mob-link">O nama</a>
+</div>
+
+<!-- BREADCRUMB -->
+<nav class="breadcrumb">
+  <a href="index.html">Početna</a>
+  <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M3 2l4 3-4 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  <a href="iskustva.html">Iskustva</a>
+  <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M3 2l4 3-4 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  <span id="bcName">Iskustvo</span>
+</nav>
+
+<!-- HERO -->
+<div class="exp-hero" id="expHero" onclick="openGallery(0)">
+  <img id="heroImg" src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=1400&q=90" alt="Iskustvo">
+  <div class="exp-hero-overlay"></div>
+  <div class="exp-hero-content">
+    <div class="exp-badge-row">
+      <span class="exp-badge badge-gold">CPS Kuriranog iskustvo</span>
+      <span class="exp-badge badge-cat" id="heroCat">Iskustvo</span>
+    </div>
+    <h1 class="exp-hero-title" id="heroTitle">Učitavam...</h1>
+    <div class="exp-hero-meta">
+      <span id="heroRating" style="display:none;"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M6.5 1l1.3 3.5H11l-2.8 2.2 1.2 3.5-2.9-2.2-2.9 2.2 1.2-3.5L1.5 4.5h3.2z" fill="#F4A92A"/></svg> <span id="heroRatingVal"></span></span>
+      <span id="heroDuration" style="display:none;"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="5.5" stroke="rgba(255,255,255,0.5)" stroke-width="1.2"/><path d="M6.5 4v2.5l2 1" stroke="rgba(255,255,255,0.5)" stroke-width="1.2" stroke-linecap="round"/></svg> <span id="heroDurationVal"></span></span>
+      <span id="heroPersons" style="display:none;"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="5" r="2.5" stroke="rgba(255,255,255,0.5)" stroke-width="1.2"/><path d="M2 12c0-3 2-4.5 4.5-4.5S11 9 11 12" stroke="rgba(255,255,255,0.5)" stroke-width="1.2" stroke-linecap="round"/></svg> <span id="heroPersonsVal"></span></span>
+      <span id="heroLoc" style="display:none;"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M6.5 1C4 1 2 3 2 5.5c0 3.5 4.5 7 4.5 7s4.5-3.5 4.5-7C11 3 9 1 6.5 1z" stroke="rgba(255,255,255,0.5)" stroke-width="1.2"/></svg> <span id="heroLocVal"></span></span>
+    </div>
+  </div>
+  <button class="gallery-btn" onclick="event.stopPropagation();openGallery(0)">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="1" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="8" y="1" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="1" y="8" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="8" y="8" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3"/></svg>
+    Sve fotografije
+  </button>
+</div>
+
+<!-- GALLERY STRIP -->
+<div class="gallery-strip" id="galleryStrip" style="display:none;"></div>
+
+<!-- MAIN LAYOUT -->
+<div class="exp-layout">
+
+  <!-- LEFT — MAIN CONTENT -->
+  <div class="exp-main">
+
+    <!-- OPIS -->
+    <div class="csec">
+      <h2 class="csec-title">O ovom <em>iskustvu</em></h2>
+      <div class="desc-text" id="expDesc">Učitavam...</div>
+      <div class="desc-text desc-more" id="expDescMore"></div>
+      <button class="read-more-btn" id="readMoreBtn" onclick="toggleDesc()" style="display:none;">Pročitajte više →</button>
+    </div>
+
+    <!-- FAKTS -->
+    <div class="csec">
+      <h2 class="csec-title">Detalji <em>iskustva</em></h2>
+      <div class="facts-grid" id="factsGrid"></div>
+    </div>
+
+    <!-- ŠTO JE UKLJUČENO -->
+    <div class="csec" id="includesSec" style="display:none;">
+      <h2 class="csec-title">Što je <em>uključeno</em></h2>
+      <div class="includes-grid" id="includesGrid"></div>
+    </div>
+
+    <!-- OCJENE -->
+    <div class="csec" id="ratingsSec" style="display:none;">
+      <h2 class="csec-title">Recenzije <em>gostiju</em></h2>
+      <div class="rating-bar">
+        <div class="rating-num" id="ratingNum">—</div>
+        <div>
+          <div class="stars" id="ratingStars">★★★★★</div>
+          <div class="rating-count" id="ratingCount">—</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RIGHT — BOOKING CARD -->
+  <aside>
+    <div class="booking-card">
+      <div class="bc-header">
+        <div class="bc-badge">CPS Verificirano iskustvo</div>
+        <div class="bc-name" id="bcName">—</div>
+        <div class="bc-loc">
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M5.5 1C3.5 1 2 2.5 2 4.5c0 3 3.5 5.5 3.5 5.5S9 7.5 9 4.5C9 2.5 7.5 1 5.5 1z" stroke="rgba(255,255,255,0.4)" stroke-width="1.1"/></svg>
+          <span id="bcLoc">—</span>
+        </div>
+        <div class="bc-price-row">
+          <div class="bc-price" id="bcPrice">Na upit</div>
+          <div class="bc-price-unit" id="bcPriceUnit"></div>
+        </div>
+      </div>
+      <div class="bc-divider"></div>
+      <div class="bc-body">
+        <div class="bc-info-row">
+          <div class="bc-info-item">
+            <div class="bc-field-label">Trajanje</div>
+            <div class="bc-field-val" id="bcDuration">—</div>
+          </div>
+          <div class="bc-info-item">
+            <div class="bc-field-label">Osobe</div>
+            <div class="bc-field-val" id="bcPersons">—</div>
+          </div>
+        </div>
+        <button class="btn-gold" onclick="openContact()">Rezerviraj / Upiti</button>
+        <button class="btn-white-ol" onclick="openContact()">Kontaktiraj organizatora</button>
+        <div class="bc-note">Besplatna konzultacija &middot; Brz odgovor &middot; Prilagodba po zahtjevu</div>
+      </div>
+      <div class="bc-verified">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#115571" stroke-width="1.3"/><path d="M4.5 7l2 2 3-3" stroke="#115571" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        CPS tim je osobno verificirao ovo iskustvo
+      </div>
+    </div>
+  </aside>
+
+</div>
+
+<!-- RELATED EXPERIENCES -->
+<section style="max-width:1200px;margin:0 auto;padding:0 48px 80px;" id="relatedSec" style="display:none;">
+  <h2 style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;color:var(--navy);margin-bottom:24px;">Slična <em style="font-style:italic;color:var(--teal);">iskustva</em></h2>
+  <div class="related-grid" id="relatedGrid"></div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:var(--navy);padding:40px 48px;margin-top:0;">
+  <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+    <div style="font-family:'Cormorant Garamond',serif;font-size:18px;color:#fff;">Croatia <em>Premium</em> Stay</div>
+    <div style="display:flex;gap:20px;">
+      <a href="vile.html" style="font-size:12px;color:rgba(255,255,255,0.4);transition:color 0.2s;">Vile</a>
+      <a href="iskustva.html" style="font-size:12px;color:rgba(255,255,255,0.4);">Iskustva</a>
+      <a href="o-nama.html" style="font-size:12px;color:rgba(255,255,255,0.4);">O nama</a>
+    </div>
+    <div style="font-size:11px;color:rgba(255,255,255,0.2);">&copy; 2025 Croatia Premium Stay</div>
+  </div>
+</footer>
+
+<!-- GALLERY MODAL -->
+<div class="gal-modal" id="galModal">
+  <button class="gal-close" onclick="closeGallery()">×</button>
+  <button class="gal-nav gal-prev" onclick="navGal(-1)">‹</button>
+  <img class="gal-img" id="galImg" src="" alt="">
+  <button class="gal-nav gal-next" onclick="navGal(1)">›</button>
+  <div class="gal-counter" id="galCounter">1 / 1</div>
+</div>
+
+<!-- CONTACT MODAL -->
+<div class="contact-modal" id="contactModal" onclick="if(this===event.target)closeContact()">
+  <div class="cm-box">
+    <div class="cm-handle"></div>
+    <div class="cm-title" id="cmTitle">Rezervacija iskustva</div>
+    <div class="cm-sub" id="cmSub">Croatia Premium Stay · CPS Verificirano</div>
+    <a href="mailto:iskustva@croatiapremiumstay.com" class="cm-option">
+      <div class="cm-option-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="10" rx="1.5" stroke="#115571" stroke-width="1.4"/><path d="M1 4l7 5 7-5" stroke="#115571" stroke-width="1.4" stroke-linecap="round"/></svg></div>
+      <div><div class="cm-option-label">Pošalji email</div><div class="cm-option-sub">iskustva@croatiapremiumstay.com</div></div>
+    </a>
+    <a href="https://wa.me/385912345678" target="_blank" class="cm-option">
+      <div class="cm-option-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1.4C4.4 1.4 1.4 4.4 1.4 8c0 1.2.3 2.3.9 3.2l-.9 3.4 3.5-.9c.9.5 2 .8 3.1.8 3.6 0 6.6-3 6.6-6.6S11.6 1.4 8 1.4z" stroke="#177A40" stroke-width="1.3" stroke-linecap="round"/></svg></div>
+      <div><div class="cm-option-label">WhatsApp</div><div class="cm-option-sub">Odgovara unutar 1h</div></div>
+    </a>
+    <button class="cm-close-btn" onclick="closeContact()">Zatvori</button>
+  </div>
+</div>
+
+<script>
+const WORKER_URL = 'https://cps-booking.solitary-rice-38ed.workers.dev';
+const EXP_ID = new URLSearchParams(window.location.search).get('id') || 'exp-jedrenje-split';
+
+let expData = null;
+let galImgs = [];
+let galCur = 0;
+
+// ── LOAD ──────────────────────────────────────────────────────
+async function loadExperience() {
+  try {
+    const res = await fetch(`${WORKER_URL}/api/experience/${EXP_ID}`);
+    if (!res.ok) throw new Error('Iskustvo nije pronađeno');
+    expData = await res.json();
+    populatePage(expData);
+    loadRelated(expData.category, expData.id);
+  } catch(e) {
+    console.error(e);
+    document.getElementById('heroTitle').textContent = 'Iskustvo nije pronađeno';
+  }
+}
+
+function populatePage(e) {
+  // Meta
+  document.title = `${e.name} — Croatia Premium Stay`;
+  document.getElementById('pageTitle').textContent = `${e.name} — Croatia Premium Stay`;
+  const md = document.getElementById('metaDesc');
+  if (md) md.setAttribute('content', e.short_desc || e.name);
+
+  // Breadcrumb
+  document.getElementById('bcName').textContent = e.name;
+
+  // Hero
+  if (e.image_url) {
+    document.getElementById('heroImg').src = e.image_url;
+    document.getElementById('heroImg').alt = e.name;
+  }
+  document.getElementById('heroTitle').textContent = e.name;
+  document.getElementById('heroCat').textContent = catLabel(e.category);
+
+  if (e.rating) {
+    document.getElementById('heroRating').style.display = 'flex';
+    document.getElementById('heroRatingVal').textContent = e.rating + (e.review_count ? ` (${e.review_count} rec.)` : '');
+  }
+  if (e.duration) {
+    document.getElementById('heroDuration').style.display = 'flex';
+    document.getElementById('heroDurationVal').textContent = e.duration;
+  }
+  if (e.max_persons) {
+    document.getElementById('heroPersons').style.display = 'flex';
+    document.getElementById('heroPersonsVal').textContent = `Do ${e.max_persons} osoba`;
+  }
+  if (e.city) {
+    document.getElementById('heroLoc').style.display = 'flex';
+    document.getElementById('heroLocVal').textContent = e.city;
+  }
+
+  // Gallery
+  galImgs = e.images && e.images.length ? e.images : [e.image_url].filter(Boolean);
+  if (galImgs.length > 1) {
+    const strip = document.getElementById('galleryStrip');
+    strip.style.display = 'grid';
+    strip.innerHTML = galImgs.slice(1, 5).map((img, i) => {
+      if (i === 3 && galImgs.length > 5) {
+        return `<div class="gallery-strip-more" data-count="+ ${galImgs.length - 4} foto" onclick="openGallery(${i+1})"><img src="${img}" alt="slika ${i+2}" loading="lazy"></div>`;
+      }
+      return `<img src="${img}" alt="slika ${i+2}" loading="lazy" onclick="openGallery(${i+1})">`;
+    }).join('');
+  }
+
+  // Opis
+  const desc = e.description || e.short_desc || '';
+  const words = desc.split(' ');
+  if (words.length > 60) {
+    document.getElementById('expDesc').textContent = words.slice(0, 60).join(' ') + '...';
+    document.getElementById('expDescMore').textContent = desc;
+    document.getElementById('readMoreBtn').style.display = 'block';
+  } else {
+    document.getElementById('expDesc').textContent = desc;
+  }
+
+  // Facts
+  const facts = [
+    { icon: '⏱️', label: 'Trajanje', val: e.duration },
+    { icon: '👥', label: 'Kapacitet', val: e.max_persons ? `${e.min_persons||1}–${e.max_persons} osoba` : null },
+    { icon: '📍', label: 'Lokacija', val: e.location || e.city },
+    { icon: '💰', label: 'Cijena', val: e.price_from ? `Od ${e.price_from.toLocaleString()}€ ${e.price_unit || ''}` : 'Na upit' },
+    { icon: '⭐', label: 'Ocjena', val: e.rating ? `${e.rating} / 5.0` : null },
+    { icon: '🗣️', label: 'Jezik', val: 'Hrvatski, Engleski' },
+  ].filter(f => f.val);
+
+  document.getElementById('factsGrid').innerHTML = facts.map(f => `
+    <div class="fact-item">
+      <div class="fact-icon">${f.icon}</div>
+      <div>
+        <div class="fact-label">${f.label}</div>
+        <div class="fact-val">${f.val}</div>
+      </div>
+    </div>`).join('');
+
+  // Booking card
+  document.getElementById('bcName').textContent = e.name;
+  document.getElementById('bcLoc').textContent = e.location || e.city || '';
+  if (e.price_from) {
+    document.getElementById('bcPrice').textContent = `Od ${e.price_from.toLocaleString()}€`;
+    document.getElementById('bcPriceUnit').textContent = e.price_unit || 'po osobi';
+  }
+  document.getElementById('bcDuration').textContent = e.duration || '—';
+  document.getElementById('bcPersons').textContent = e.max_persons ? `Do ${e.max_persons}` : '—';
+
+  // Contact modal
+  document.getElementById('cmTitle').textContent = e.name;
+  document.getElementById('cmSub').textContent = `${e.category ? catLabel(e.category) + ' · ' : ''}${e.city || ''} · CPS Verificirano`;
+
+  // Rating
+  if (e.rating && e.review_count) {
+    document.getElementById('ratingsSec').style.display = 'block';
+    document.getElementById('ratingNum').textContent = e.rating;
+    document.getElementById('ratingCount').textContent = `${e.review_count} recenzija`;
+  }
+}
+
+async function loadRelated(category, currentId) {
+  try {
+    const res = await fetch(`${WORKER_URL}/api/experiences`);
+    if (!res.ok) return;
+    const all = await res.json();
+    const related = all.filter(e => e.id !== currentId).slice(0, 3);
+    if (!related.length) return;
+
+    document.getElementById('relatedSec').style.display = 'block';
+    document.getElementById('relatedGrid').innerHTML = related.map(e => `
+      <div class="rel-card" onclick="window.location.href='iskustvo.html?id=${e.id}'">
+        <div class="rel-img"><img src="${e.image_url || 'https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=600&q=80'}" alt="${e.name}" loading="lazy"></div>
+        <div class="rel-body">
+          <div class="rel-cat">${catLabel(e.category)} · ${e.city || ''}</div>
+          <div class="rel-name">${e.name}</div>
+          <div class="rel-price">${e.price_from ? `Od ${e.price_from.toLocaleString()}€ ${e.price_unit||''}` : 'Na upit'} ${e.duration ? `· ${e.duration}` : ''}</div>
+        </div>
+      </div>`).join('');
+  } catch(e) { console.error(e); }
+}
+
+// ── GALLERY ───────────────────────────────────────────────────
+function openGallery(i) {
+  if (!galImgs.length) return;
+  galCur = i;
+  document.getElementById('galImg').src = galImgs[galCur];
+  document.getElementById('galCounter').textContent = `${galCur + 1} / ${galImgs.length}`;
+  document.getElementById('galModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeGallery() { document.getElementById('galModal').classList.remove('open'); document.body.style.overflow = ''; }
+function navGal(d) { galCur = (galCur + d + galImgs.length) % galImgs.length; document.getElementById('galImg').src = galImgs[galCur]; document.getElementById('galCounter').textContent = `${galCur + 1} / ${galImgs.length}`; }
+document.getElementById('galModal').addEventListener('click', e => { if (e.target === document.getElementById('galModal')) closeGallery(); });
+
+// ── CONTACT ───────────────────────────────────────────────────
+function openContact() { document.getElementById('contactModal').classList.add('open'); document.body.style.overflow = 'hidden'; }
+function closeContact() { document.getElementById('contactModal').classList.remove('open'); document.body.style.overflow = ''; }
+
+// ── DESC ──────────────────────────────────────────────────────
+function toggleDesc() {
+  const more = document.getElementById('expDescMore');
+  const btn = document.getElementById('readMoreBtn');
+  const open = more.style.display !== 'none' && more.style.display !== '';
+  more.style.display = open ? 'none' : 'block';
+  btn.textContent = open ? 'Pročitajte više →' : 'Prikaži manje';
+}
+
+// ── NAV ───────────────────────────────────────────────────────
+function toggleMenu() {
+  document.getElementById('ham').classList.toggle('open');
+  document.getElementById('mobDrawer').classList.toggle('open');
+  document.body.style.overflow = document.getElementById('mobDrawer').classList.contains('open') ? 'hidden' : '';
+}
+
+// ── HELPERS ───────────────────────────────────────────────────
+function catLabel(cat) {
+  const labels = { brodovi:'Brodovi & Jedrenje', gastronomija:'Gastronomija', avanture:'Avanture', vinarije:'Vinarije', wellness:'Wellness', privatno:'Privatno', kultura:'Kultura', sport:'Sport', ostalo:'Iskustvo' };
+  return labels[cat] || cat || 'Iskustvo';
+}
+
+// ── KEYBOARD ──────────────────────────────────────────────────
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeGallery(); closeContact(); }
+  if (document.getElementById('galModal').classList.contains('open')) {
+    if (e.key === 'ArrowRight') navGal(1);
+    if (e.key === 'ArrowLeft') navGal(-1);
+  }
+});
+
+// ── INIT ──────────────────────────────────────────────────────
+loadExperience();
+</script>
+</body>
+</html>
