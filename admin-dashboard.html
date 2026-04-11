@@ -8,99 +8,173 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-:root{--navy:#0A2535;--teal:#115571;--teal-light:#1a6b8a;--gold:#C4974E;--cream:#F7F5F1;--border:#E8EEF2;--text:#0D1B24;--text-muted:#8AA8B0;--green:#22C55E;--green-pale:#ECFDF5;--red:#EF4444;--red-pale:#FFF5F5;--sidebar:240px;}
+:root{--navy:#0A2535;--teal:#115571;--teal2:#1a6b8a;--gold:#C4974E;--cream:#F7F5F1;--border:#E8EEF2;--text:#0D1B24;--muted:#8AA8B0;--light:#5A7880;--green:#22C55E;--gp:#ECFDF5;--red:#EF4444;--rp:#FFF5F5;--sidebar:240px;}
 html,body{height:100%;font-family:'Jost',sans-serif;background:var(--cream);color:var(--text);-webkit-font-smoothing:antialiased;}
-button{cursor:pointer;font-family:'Jost',sans-serif;}input,textarea,select{font-family:'Jost',sans-serif;}
+button,input,textarea,select{font-family:'Jost',sans-serif;}
 #authScreen{position:fixed;inset:0;background:var(--navy);display:flex;align-items:center;justify-content:center;z-index:1000;}
 .auth-box{background:#fff;border-radius:20px;padding:48px;width:100%;max-width:400px;}
 .auth-logo{font-family:'Cormorant Garamond',serif;font-size:22px;text-align:center;color:var(--navy);margin-bottom:5px;}
-.auth-sub{font-size:10px;text-align:center;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-muted);margin-bottom:32px;}
-.auth-badge{display:inline-block;background:var(--gold);color:#fff;font-size:9px;font-weight:700;letter-spacing:0.15em;padding:3px 8px;border-radius:4px;text-transform:uppercase;margin:0 auto 24px;display:block;width:fit-content;}
-.af{margin-bottom:12px;}.af label{display:block;font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:5px;}
+.auth-sub{font-size:10px;text-align:center;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+.auth-badge{display:block;background:var(--gold);color:#fff;font-size:9px;font-weight:700;letter-spacing:0.15em;padding:3px 10px;border-radius:4px;text-transform:uppercase;margin:0 auto 28px;width:fit-content;}
+.af{margin-bottom:12px;}.af label{display:block;font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:5px;}
 .af input{width:100%;padding:11px 13px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;outline:none;transition:border 0.2s;}
 .af input:focus{border-color:var(--teal);}
-.auth-btn{width:100%;padding:13px;background:var(--navy);border:none;border-radius:10px;color:#fff;font-size:11px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;margin-top:6px;}
+.auth-btn{width:100%;padding:13px;background:var(--navy);border:none;border-radius:10px;color:#fff;font-size:11px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;margin-top:6px;cursor:pointer;}
 .auth-btn:hover{background:var(--teal);}
-.auth-err{background:var(--red-pale);border:1px solid #FEB2B2;border-radius:7px;padding:9px 12px;font-size:12px;color:var(--red);margin-bottom:10px;display:none;}
+.auth-err{background:var(--rp);border:1px solid #FEB2B2;border-radius:7px;padding:9px 12px;font-size:12px;color:var(--red);margin-bottom:10px;display:none;}
 #appScreen{display:none;height:100vh;overflow:hidden;}
 .layout{display:flex;height:100%;}
-.sidebar{width:var(--sidebar);background:var(--navy);display:flex;flex-direction:column;flex-shrink:0;}
-.sb-logo{padding:24px 20px 16px;border-bottom:1px solid rgba(255,255,255,0.07);}
+.sidebar{width:var(--sidebar);background:var(--navy);display:flex;flex-direction:column;flex-shrink:0;overflow-y:auto;}
+.sb-logo{padding:22px 20px 16px;border-bottom:1px solid rgba(255,255,255,0.07);}
 .sb-logo-text{font-family:'Cormorant Garamond',serif;font-size:16px;color:#fff;line-height:1.3;}
 .sb-logo-badge{display:inline-block;background:var(--gold);color:#fff;font-size:8px;font-weight:700;letter-spacing:0.15em;padding:2px 7px;border-radius:3px;text-transform:uppercase;margin-top:5px;}
-.sb-nav{padding:12px 0;flex:1;overflow-y:auto;}
+.sb-nav{padding:12px 0;flex:1;}
 .sb-sec{font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.2);padding:10px 20px 4px;}
 .sb-item{display:flex;align-items:center;gap:9px;padding:9px 20px;color:rgba(255,255,255,0.55);font-size:12px;cursor:pointer;transition:all 0.15s;border-left:2px solid transparent;}
 .sb-item:hover{color:#fff;background:rgba(255,255,255,0.04);}
 .sb-item.active{color:#fff;background:rgba(255,255,255,0.07);border-left-color:var(--gold);}
 .sb-badge{margin-left:auto;background:var(--red);color:#fff;font-size:9px;font-weight:700;padding:1px 6px;border-radius:10px;min-width:18px;text-align:center;}
-.sb-badge.gold{background:var(--gold);}
 .sb-bottom{padding:14px 20px;border-top:1px solid rgba(255,255,255,0.07);}
 .sb-logout{display:flex;align-items:center;gap:7px;color:rgba(255,255,255,0.35);font-size:12px;cursor:pointer;}
 .sb-logout:hover{color:rgba(255,255,255,0.8);}
 .main{flex:1;overflow-y:auto;display:flex;flex-direction:column;}
 .topbar{padding:16px 26px;background:#fff;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
 .topbar-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;color:var(--navy);}
-.topbar-sub{font-size:11px;color:var(--text-muted);margin-top:1px;}
+.topbar-sub{font-size:11px;color:var(--muted);margin-top:1px;}
 .content{padding:22px 26px;flex:1;}
 .stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:22px;}
 .stat-card{background:#fff;border-radius:12px;padding:16px;border:1px solid var(--border);}
-.stat-label{font-size:9px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);margin-bottom:7px;}
+.stat-label{font-size:9px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:7px;}
 .stat-val{font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--navy);line-height:1;}
-.stat-sub{font-size:11px;color:var(--text-muted);margin-top:2px;}
+.stat-sub{font-size:11px;color:var(--muted);margin-top:2px;}
 .card{background:#fff;border-radius:12px;border:1px solid var(--border);overflow:hidden;margin-bottom:16px;}
-.card-header{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.card-hdr{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
 .card-title{font-size:14px;font-weight:600;color:var(--navy);}
-.filter-tabs{display:flex;gap:4px;}
-.ftab{padding:5px 12px;border-radius:6px;font-size:11px;font-weight:600;border:1.5px solid var(--border);background:#fff;color:var(--text-muted);cursor:pointer;transition:all 0.15s;}
-.ftab.active{background:var(--teal);color:#fff;border-color:var(--teal);}
+.ftabs{display:flex;gap:4px;}
+.ftab{padding:5px 12px;border-radius:6px;font-size:11px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;border:1.5px solid var(--border);background:#fff;color:var(--muted);cursor:pointer;transition:all 0.15s;}
+.ftab.on{background:var(--teal);color:#fff;border-color:var(--teal);}
 table{width:100%;border-collapse:collapse;}
-th{padding:9px 13px;text-align:left;font-size:9px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);border-bottom:1px solid var(--border);background:var(--cream);}
+th{padding:9px 13px;text-align:left;font-size:9px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);background:var(--cream);}
 td{padding:11px 13px;font-size:13px;border-bottom:1px solid var(--border);vertical-align:middle;}
 tr:last-child td{border-bottom:none;}tr:hover td{background:#FAFBFC;}
 .badge{display:inline-flex;align-items:center;padding:2px 8px;border-radius:20px;font-size:9px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;}
-.badge-draft{background:#F3F4F6;color:#6B7280;}.badge-pending{background:#FEF3C7;color:#D97706;}.badge-approved{background:var(--green-pale);color:#15803D;}.badge-rejected{background:var(--red-pale);color:var(--red);}
-.badge-confirmed{background:var(--green-pale);color:#15803D;}.badge-fully_paid{background:#DBEAFE;color:#1D4ED8;}.badge-cancelled{background:#F3F4F6;color:#6B7280;}
+.bd{background:#F3F4F6;color:#6B7280;}.bp{background:#FEF3C7;color:#D97706;}.ba{background:var(--gp);color:#15803D;}.br{background:var(--rp);color:var(--red);}
+.bc{background:var(--gp);color:#15803D;}.bf{background:#DBEAFE;color:#1D4ED8;}.bx{background:#F3F4F6;color:#6B7280;}
 .btn{padding:7px 14px;border-radius:7px;font-size:11px;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;border:none;transition:all 0.2s;cursor:pointer;}
-.btn-teal{background:var(--teal);color:#fff;}.btn-teal:hover{background:var(--teal-light);}
-.btn-outline{background:#fff;border:1.5px solid var(--border);color:var(--text);}.btn-outline:hover{border-color:var(--teal);color:var(--teal);}
-.btn-green{background:var(--green);color:#fff;}.btn-green:hover{opacity:0.9;}
-.btn-red{background:var(--red-pale);color:var(--red);border:1px solid #FEB2B2;}.btn-red:hover{background:var(--red);color:#fff;}
-.btn-sm{padding:4px 10px;font-size:10px;}
+.btn-teal{background:var(--teal);color:#fff;}.btn-teal:hover{background:var(--teal2);}
+.btn-navy{background:var(--navy);color:#fff;}.btn-navy:hover{background:var(--teal);}
+.btn-ol{background:#fff;border:1.5px solid var(--border);color:var(--text);}.btn-ol:hover{border-color:var(--teal);color:var(--teal);}
+.btn-green{background:var(--green);color:#fff;}.btn-red{background:var(--rp);color:var(--red);border:1px solid #FEB2B2;}
 .btn-gold{background:var(--gold);color:#fff;}
+.btn-sm{padding:4px 10px;font-size:10px;}
 .section{display:none;}.section.active{display:block;}
-.modal-overlay{position:fixed;inset:0;background:rgba(10,37,53,0.55);z-index:500;display:none;align-items:center;justify-content:center;padding:16px;}
-.modal-overlay.open{display:flex;}
-.modal{background:#fff;border-radius:18px;width:100%;max-width:900px;max-height:92vh;overflow-y:auto;}
-.modal-hdr{padding:20px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:#fff;z-index:1;}
-.modal-hdr-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;}
-.modal-close{background:none;border:none;font-size:22px;color:var(--text-muted);cursor:pointer;}
-.modal-body{padding:22px 24px;}
-.modal-footer{padding:14px 24px;border-top:1px solid var(--border);display:flex;gap:8px;justify-content:flex-end;align-items:center;position:sticky;bottom:0;background:#fff;}
-.preview-imgs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px;}
-.preview-img{aspect-ratio:3/2;border-radius:8px;overflow:hidden;}
-.preview-img img{width:100%;height:100%;object-fit:cover;}
-.preview-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
-.pinfo-label{font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:3px;}
-.pinfo-val{font-size:13px;}
-.am-tags{display:flex;flex-wrap:wrap;gap:5px;}
-.am-tag{background:var(--cream);border:1px solid var(--border);border-radius:5px;padding:3px 8px;font-size:11px;}
-.reject-input{width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;outline:none;transition:border 0.2s;}
-.reject-input:focus{border-color:var(--red);}
-.alert{padding:10px 13px;border-radius:7px;font-size:12px;margin-bottom:12px;display:none;}
-.alert-success{background:var(--green-pale);border:1px solid #BBF7D0;color:#15803D;}
-.alert-error{background:var(--red-pale);border:1px solid #FEB2B2;color:var(--red);}
-.add-villa-form .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-.add-villa-form .form-full{grid-column:1/-1;}
-.add-villa-form .field{display:flex;flex-direction:column;gap:4px;}
-.add-villa-form .field label{font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);}
-.add-villa-form .field input,.add-villa-form .field textarea,.add-villa-form .field select{padding:9px 11px;border:1.5px solid var(--border);border-radius:7px;font-size:13px;outline:none;transition:border 0.2s;}
-.add-villa-form .field input:focus,.add-villa-form .field textarea:focus{border-color:var(--teal);}
-.add-villa-form .field textarea{resize:vertical;min-height:80px;}
-@media(max-width:768px){.sidebar{display:none;}.stat-grid{grid-template-columns:1fr 1fr;}.content{padding:14px 16px;}.topbar{padding:12px 16px;}}
+/* MODAL */
+.modal-ov{position:fixed;inset:0;background:rgba(10,37,53,0.55);z-index:500;display:none;align-items:flex-start;justify-content:center;padding:0;overflow-y:auto;}
+.modal-ov.open{display:flex;}
+.modal{background:#fff;border-radius:18px;width:100%;max-width:900px;min-height:100px;margin:auto;box-shadow:0 20px 60px rgba(10,37,53,0.2);}
+.modal-hdr{padding:20px 26px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:#fff;z-index:1;border-radius:18px 18px 0 0;}
+.modal-hdr-title{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:500;}
+.modal-close{background:none;border:none;font-size:24px;color:var(--muted);cursor:pointer;line-height:1;}
+.modal-body{padding:24px 26px;}
+.modal-footer{padding:14px 26px;border-top:1px solid var(--border);display:flex;gap:8px;justify-content:flex-end;background:#fff;border-radius:0 0 18px 18px;}
+/* FORM */
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:0;}
+.ff{grid-column:1/-1;}
+.fld{display:flex;flex-direction:column;gap:5px;margin-bottom:14px;}
+.fld label{font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);}
+.fld input,.fld textarea,.fld select{padding:10px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;outline:none;transition:border 0.2s;background:#fff;width:100%;}
+.fld input:focus,.fld textarea:focus,.fld select:focus{border-color:var(--teal);}
+.fld textarea{resize:vertical;min-height:90px;}
+.fld-hint{font-size:11px;color:var(--muted);margin-top:3px;}
+/* STEPPER */
+.stepper{display:flex;align-items:center;background:#fff;border:1.5px solid var(--border);border-radius:8px;overflow:hidden;width:fit-content;}
+.stp-btn{width:36px;height:36px;border:none;background:none;font-size:18px;cursor:pointer;color:var(--navy);transition:background 0.15s;display:flex;align-items:center;justify-content:center;}
+.stp-btn:hover{background:var(--cream);}
+.stp-val{min-width:40px;text-align:center;font-size:14px;font-weight:500;border-left:1.5px solid var(--border);border-right:1.5px solid var(--border);height:36px;display:flex;align-items:center;justify-content:center;}
+.stp-row{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--border);}
+.stp-row:last-child{border-bottom:none;}
+/* AMENITIES */
+.am-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:8px;}
+.am-item{display:flex;align-items:center;gap:7px;padding:9px 10px;border:1.5px solid var(--border);border-radius:8px;cursor:pointer;transition:all 0.15s;font-size:12px;}
+.am-item:hover{border-color:var(--teal);}
+.am-item.on{border-color:var(--teal);background:#EFF8FF;color:var(--teal);}
+/* IMAGES */
+.img-drop{border:2px dashed var(--border);border-radius:12px;padding:28px;text-align:center;cursor:pointer;transition:all 0.2s;background:#FAFBFC;}
+.img-drop:hover,.img-drop.drag{border-color:var(--teal);background:#F0F9FF;}
+.img-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:12px;}
+.img-card{position:relative;border-radius:8px;overflow:hidden;aspect-ratio:4/3;background:var(--border);}
+.img-card img{width:100%;height:100%;object-fit:cover;}
+.img-del{position:absolute;top:4px;right:4px;width:20px;height:20px;border-radius:50%;background:rgba(0,0,0,0.65);border:none;color:#fff;font-size:14px;display:flex;align-items:center;justify-content:center;cursor:pointer;line-height:1;}
+.img-main{position:absolute;bottom:3px;left:3px;background:var(--gold);color:#fff;font-size:8px;font-weight:700;padding:2px 5px;border-radius:3px;}
+/* CALENDAR */
+.cal-wrap{border:1.5px solid var(--border);border-radius:12px;overflow:hidden;}
+.cal-hdr{padding:12px 16px;background:var(--cream);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.cal-nav{display:flex;align-items:center;gap:8px;}
+.cal-nav button{width:28px;height:28px;border-radius:6px;border:1.5px solid var(--border);background:#fff;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;}
+.cal-month-label{font-size:13px;font-weight:600;min-width:140px;text-align:center;}
+.cal-body{padding:12px;}
+.cal-dow{display:grid;grid-template-columns:repeat(7,1fr);margin-bottom:5px;}
+.cal-dow div{text-align:center;font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);padding:3px 0;}
+.cal-days{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;}
+.cday{aspect-ratio:1;border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:all 0.15s;border:1.5px solid transparent;font-size:11px;}
+.cday:hover:not(.empty):not(.past){background:var(--cream);border-color:var(--border);}
+.cday.empty,.cday.past{opacity:0.3;cursor:default;}
+.cday.sel{background:#EFF8FF;border-color:var(--teal);}
+.cday.has-p{background:#F0F9F0;}.cday.blk{background:#FEF2F2;border-color:#FECACA;}
+.cday-n{font-weight:500;line-height:1;}
+.cday-p{font-size:8px;color:var(--muted);margin-top:1px;}
+/* PRICE PANEL */
+.price-panel{margin-top:12px;padding:14px;background:var(--cream);border-radius:10px;display:none;}
+.price-panel.open{display:block;}
+.ptabs{display:flex;gap:5px;margin-bottom:12px;}
+.ptab{padding:5px 12px;border-radius:5px;font-size:10px;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;border:1.5px solid var(--border);background:#fff;color:var(--muted);cursor:pointer;}
+.ptab.on{background:var(--teal);color:#fff;border-color:var(--teal);}
+.pp-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.pp-row label{font-size:10px;font-weight:700;text-transform:uppercase;color:var(--muted);min-width:100px;margin:0;}
+.pp-row input{flex:1;padding:8px 10px;border:1.5px solid var(--border);border-radius:7px;font-size:13px;outline:none;}
+.pp-row input:focus{border-color:var(--teal);}
+/* TABS in modal */
+.modal-tabs{display:flex;border-bottom:1.5px solid var(--border);margin-bottom:22px;}
+.mtab{padding:10px 18px;font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-1.5px;transition:all 0.15s;}
+.mtab.on{color:var(--teal);border-bottom-color:var(--teal);}
+.mtab-pane{display:none;}.mtab-pane.on{display:block;}
+/* OWNER SEARCH */
+.owner-search-wrap{position:relative;}
+.owner-results{position:absolute;top:100%;left:0;right:0;background:#fff;border:1.5px solid var(--teal);border-radius:0 0 8px 8px;z-index:10;max-height:180px;overflow-y:auto;display:none;}
+.owner-result-item{padding:10px 12px;cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);}
+.owner-result-item:hover{background:var(--cream);}
+.owner-result-item:last-child{border-bottom:none;}
+.owner-selected{margin-top:8px;padding:10px 12px;background:var(--gp);border:1px solid #BBF7D0;border-radius:8px;font-size:13px;display:none;align-items:center;justify-content:space-between;}
+/* ALERT */
+.alert{padding:11px 14px;border-radius:8px;font-size:12px;margin-bottom:14px;display:none;}
+.alert-ok{background:var(--gp);border:1px solid #BBF7D0;color:#15803D;}
+.alert-err{background:var(--rp);border:1px solid #FEB2B2;color:var(--red);}
+/* CMS */
+.cms-card{background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:20px;margin-bottom:14px;}
+.cms-card-title{font-size:14px;font-weight:600;color:var(--navy);margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;}
+.cms-item{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);}
+.cms-item:last-child{border-bottom:none;}
+.cms-item-drag{color:var(--muted);cursor:grab;font-size:16px;}
+.cms-item-label{flex:1;font-size:13px;}
+.cms-item-val{font-size:12px;color:var(--muted);margin-right:8px;}
+.cms-add-row{display:flex;gap:8px;margin-top:12px;}
+.cms-add-row input{flex:1;padding:9px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;outline:none;}
+.cms-add-row input:focus{border-color:var(--teal);}
+/* PREVIEW */
+.pv-imgs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:14px;}
+.pv-img{aspect-ratio:3/2;border-radius:7px;overflow:hidden;}
+.pv-img img{width:100%;height:100%;object-fit:cover;}
+.pv-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;}
+.pv-field .pl{font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:3px;}
+.pv-field .pv{font-size:13px;}
+.am-tags{display:flex;flex-wrap:wrap;gap:4px;}
+.am-tag{background:var(--cream);border:1px solid var(--border);border-radius:4px;padding:2px 7px;font-size:11px;}
+@media(max-width:768px){.sidebar{display:none;}.stat-grid{grid-template-columns:1fr 1fr;}.content{padding:14px 16px;}.fg{grid-template-columns:1fr;}.am-grid{grid-template-columns:repeat(3,1fr);}.img-grid{grid-template-columns:repeat(3,1fr);}}
 </style>
 </head>
 <body>
+
+<!-- AUTH -->
 <div id="authScreen">
   <div class="auth-box">
     <div class="auth-logo">Croatia <em>Premium</em> Stay</div>
@@ -113,127 +187,379 @@ tr:last-child td{border-bottom:none;}tr:hover td{background:#FAFBFC;}
   </div>
 </div>
 
+<!-- APP -->
 <div id="appScreen">
-  <div class="layout">
-    <aside class="sidebar">
-      <div class="sb-logo"><div class="sb-logo-text">Croatia<br>Premium Stay</div><div class="sb-logo-badge">Admin</div></div>
-      <nav class="sb-nav">
-        <div class="sb-sec">Pregled</div>
-        <div class="sb-item active" onclick="show('overview',this)"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="1" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="8" y="1" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="1" y="8" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="8" y="8" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3"/></svg> Pregled</div>
-        <div class="sb-sec">Vile</div>
-        <div class="sb-item" onclick="show('pending',this)"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.3"/><path d="M7 4v3.5l2 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg> Na odobrenju <span class="sb-badge" id="sbPend">0</span></div>
-        <div class="sb-item" onclick="show('allVillas',this)"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1.5 13V6.5L7 1.5 12.5 6.5V13" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><rect x="4.5" y="8.5" width="5" height="4.5" rx="0.5" stroke="currentColor" stroke-width="1.3"/></svg> Sve vile</div>
-        <div class="sb-item" onclick="openAddVillaModal()"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.3"/><path d="M7 4.5v5M4.5 7h5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg> Dodaj vilu</div>
-        <div class="sb-sec">Bookings</div>
-        <div class="sb-item" onclick="show('bookings',this)"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="2" width="12" height="10.5" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M4.5 1v2.5M9.5 1v2.5M1 6h12" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg> Rezervacije</div>
-        <div class="sb-sec">Vlasnici</div>
-        <div class="sb-item" onclick="show('owners',this)"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="4.5" r="2.5" stroke="currentColor" stroke-width="1.3"/><path d="M1.5 13c0-3 2.5-5 5.5-5s5.5 2 5.5 5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg> Vlasnici</div>
-      </nav>
-      <div class="sb-bottom"><div class="sb-logout" onclick="doLogout()"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M4.5 11H2a1 1 0 01-1-1V3a1 1 0 011-1h2.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M9 9.5l3-3-3-3M12 6.5H5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg> Odjava</div></div>
-    </aside>
+<div class="layout">
 
-    <main class="main">
-      <!-- OVERVIEW -->
-      <div id="secOverview" class="section active">
-        <div class="topbar"><div><div class="topbar-title">Admin Dashboard</div><div class="topbar-sub">Croatia Premium Stay</div></div><button class="btn btn-teal" onclick="openAddVillaModal()">+ Dodaj vilu</button></div>
-        <div class="content">
-          <div class="stat-grid">
-            <div class="stat-card"><div class="stat-label">Aktivne vile</div><div class="stat-val" id="stActive">—</div><div class="stat-sub">odobrenih</div></div>
-            <div class="stat-card"><div class="stat-label">Na odobrenju</div><div class="stat-val" id="stPend" style="color:var(--gold);">—</div><div class="stat-sub">čeka pregled</div></div>
-            <div class="stat-card"><div class="stat-label">Rezervacije</div><div class="stat-val" id="stBook">—</div><div class="stat-sub">ukupno</div></div>
-            <div class="stat-card"><div class="stat-label">Prihodi</div><div class="stat-val" id="stRev">—</div><div class="stat-sub">€ naplaćeno</div></div>
-          </div>
-          <div class="card"><div class="card-header"><div class="card-title">Na odobrenju</div><button class="btn btn-outline btn-sm" onclick="show('pending',null)">Sve →</button></div><div id="ovPending"><div style="padding:18px;text-align:center;color:var(--text-muted);">Učitavam...</div></div></div>
-          <div class="card"><div class="card-header"><div class="card-title">Zadnje rezervacije</div></div><div id="ovBookings"><div style="padding:18px;text-align:center;color:var(--text-muted);">Učitavam...</div></div></div>
-        </div>
-      </div>
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sb-logo"><div class="sb-logo-text">Croatia<br>Premium Stay</div><div class="sb-logo-badge">Admin</div></div>
+  <nav class="sb-nav">
+    <div class="sb-sec">Pregled</div>
+    <div class="sb-item active" onclick="show('overview',this)">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="1" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="8" y="1" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="1" y="8" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3"/><rect x="8" y="8" width="5" height="5" rx="1" stroke="currentColor" stroke-width="1.3"/></svg> Pregled</div>
+    <div class="sb-sec">Vile</div>
+    <div class="sb-item" onclick="show('pending',this)">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.3"/><path d="M7 4v3.5l2 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+      Na odobrenju <span class="sb-badge" id="sbPend">0</span></div>
+    <div class="sb-item" onclick="show('allVillas',this)">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1.5 13V6.5L7 1.5 12.5 6.5V13" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><rect x="4.5" y="8.5" width="5" height="4.5" rx="0.5" stroke="currentColor" stroke-width="1.3"/></svg> Sve vile</div>
+    <div class="sb-item" onclick="openAddVilla()">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.3"/><path d="M7 4.5v5M4.5 7h5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg> Dodaj vilu</div>
+    <div class="sb-sec">Rezervacije</div>
+    <div class="sb-item" onclick="show('bookings',this)">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="2" width="12" height="10.5" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M4.5 1v2.5M9.5 1v2.5M1 6h12" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg> Rezervacije</div>
+    <div class="sb-sec">Vlasnici</div>
+    <div class="sb-item" onclick="show('owners',this)">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="4.5" r="2.5" stroke="currentColor" stroke-width="1.3"/><path d="M1.5 13c0-3 2.5-5 5.5-5s5.5 2 5.5 5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg> Vlasnici</div>
+    <div class="sb-sec">CMS</div>
+    <div class="sb-item" onclick="show('cms',this)">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="1" width="12" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M1 5h12M5 5v8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg> Uredi stranicu</div>
+  </nav>
+  <div class="sb-bottom"><div class="sb-logout" onclick="doLogout()">
+    <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M4.5 11H2a1 1 0 01-1-1V3a1 1 0 011-1h2.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M9 9.5l3-3-3-3M12 6.5H5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg> Odjava</div></div>
+</aside>
 
-      <!-- PENDING -->
-      <div id="secPending" class="section">
-        <div class="topbar"><div><div class="topbar-title">Na odobrenju</div><div class="topbar-sub" id="pendSub">—</div></div></div>
-        <div class="content"><div class="card"><div class="card-header"><div class="card-title">Vile na čekanju</div></div><div id="pendingWrap"></div></div></div>
-      </div>
+<main class="main">
 
-      <!-- ALL VILLAS -->
-      <div id="secAllVillas" class="section">
-        <div class="topbar"><div><div class="topbar-title">Sve vile</div></div><button class="btn btn-teal" onclick="openAddVillaModal()">+ Dodaj vilu</button></div>
-        <div class="content">
-          <div class="card">
-            <div class="card-header">
-              <div class="card-title">Svi oglasi</div>
-              <div class="filter-tabs">
-                <button class="ftab active" onclick="filterVillas('all',this)">Sve</button>
-                <button class="ftab" onclick="filterVillas('approved',this)">Odobrene</button>
-                <button class="ftab" onclick="filterVillas('pending',this)">Na čekanju</button>
-                <button class="ftab" onclick="filterVillas('draft',this)">Draft</button>
-                <button class="ftab" onclick="filterVillas('rejected',this)">Odbijene</button>
-              </div>
-            </div>
-            <div id="allVillasWrap"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- BOOKINGS -->
-      <div id="secBookings" class="section">
-        <div class="topbar"><div><div class="topbar-title">Rezervacije</div></div></div>
-        <div class="content"><div class="card"><div class="card-header"><div class="card-title">Sve rezervacije</div></div><div id="bookingsWrap"><div style="padding:18px;text-align:center;color:var(--text-muted);">Učitavam...</div></div></div></div>
-      </div>
-
-      <!-- OWNERS -->
-      <div id="secOwners" class="section">
-        <div class="topbar"><div><div class="topbar-title">Vlasnici</div></div></div>
-        <div class="content"><div class="card"><div class="card-header"><div class="card-title">Registrirani vlasnici</div></div><div id="ownersWrap"><div style="padding:18px;text-align:center;color:var(--text-muted);">Učitavam...</div></div></div></div>
-      </div>
-    </main>
+<!-- OVERVIEW -->
+<div id="secOverview" class="section active">
+  <div class="topbar"><div><div class="topbar-title">Admin Dashboard</div><div class="topbar-sub">Croatia Premium Stay</div></div>
+  <button class="btn btn-navy" onclick="openAddVilla()">+ Dodaj vilu</button></div>
+  <div class="content">
+    <div class="stat-grid">
+      <div class="stat-card"><div class="stat-label">Aktivne vile</div><div class="stat-val" id="stActive">—</div><div class="stat-sub">odobrenih</div></div>
+      <div class="stat-card"><div class="stat-label">Na odobrenju</div><div class="stat-val" id="stPend" style="color:var(--gold);">—</div><div class="stat-sub">čeka pregled</div></div>
+      <div class="stat-card"><div class="stat-label">Rezervacije</div><div class="stat-val" id="stBook">—</div><div class="stat-sub">ukupno</div></div>
+      <div class="stat-card"><div class="stat-label">Prihodi</div><div class="stat-val" id="stRev">—</div><div class="stat-sub">€ naplaćeno</div></div>
+    </div>
+    <div class="card"><div class="card-hdr"><div class="card-title">Na odobrenju</div><button class="btn btn-ol btn-sm" onclick="show('pending',null)">Sve →</button></div><div id="ovPending"><div style="padding:18px;text-align:center;color:var(--muted);">Učitavam...</div></div></div>
+    <div class="card"><div class="card-hdr"><div class="card-title">Zadnje rezervacije</div></div><div id="ovBookings"><div style="padding:18px;text-align:center;color:var(--muted);">Učitavam...</div></div></div>
   </div>
 </div>
 
-<!-- PREVIEW/APPROVE MODAL -->
-<div class="modal-overlay" id="previewModal">
-  <div class="modal">
+<!-- PENDING -->
+<div id="secPending" class="section">
+  <div class="topbar"><div><div class="topbar-title">Na odobrenju</div><div class="topbar-sub" id="pendSub">—</div></div></div>
+  <div class="content"><div class="card"><div class="card-hdr"><div class="card-title">Vile na čekanju</div></div><div id="pendingWrap"></div></div></div>
+</div>
+
+<!-- ALL VILLAS -->
+<div id="secAllVillas" class="section">
+  <div class="topbar"><div><div class="topbar-title">Sve vile</div></div><button class="btn btn-navy" onclick="openAddVilla()">+ Dodaj vilu</button></div>
+  <div class="content">
+    <div class="card">
+      <div class="card-hdr">
+        <div class="card-title">Svi oglasi</div>
+        <div class="ftabs">
+          <button class="ftab on" onclick="filterV('all',this)">Sve</button>
+          <button class="ftab" onclick="filterV('approved',this)">Odobrene</button>
+          <button class="ftab" onclick="filterV('pending',this)">Na čekanju</button>
+          <button class="ftab" onclick="filterV('draft',this)">Draft</button>
+          <button class="ftab" onclick="filterV('rejected',this)">Odbijene</button>
+        </div>
+      </div>
+      <div id="allVillasWrap"></div>
+    </div>
+  </div>
+</div>
+
+<!-- BOOKINGS -->
+<div id="secBookings" class="section">
+  <div class="topbar"><div><div class="topbar-title">Rezervacije</div></div></div>
+  <div class="content"><div class="card"><div class="card-hdr"><div class="card-title">Sve rezervacije</div></div><div id="bookingsWrap"><div style="padding:18px;text-align:center;color:var(--muted);">Učitavam...</div></div></div></div>
+</div>
+
+<!-- OWNERS -->
+<div id="secOwners" class="section">
+  <div class="topbar"><div><div class="topbar-title">Vlasnici</div></div></div>
+  <div class="content"><div class="card"><div class="card-hdr"><div class="card-title">Registrirani vlasnici</div></div><div id="ownersWrap"><div style="padding:18px;text-align:center;color:var(--muted);">Učitavam...</div></div></div></div>
+</div>
+
+<!-- CMS -->
+<div id="secCms" class="section">
+  <div class="topbar"><div><div class="topbar-title">Uredi stranicu</div><div class="topbar-sub">CMS — dinamički sadržaj</div></div><button class="btn btn-navy" onclick="saveCMS()">Spremi promjene</button></div>
+  <div class="content">
+    <div id="cmsAlert" class="alert"></div>
+    <!-- DESTINATIONS -->
+    <div class="cms-card">
+      <div class="cms-card-title">
+        Destinacije / Regije
+        <span style="font-size:11px;color:var(--muted);font-weight:400;">Prikazuje se u search baru i filterima</span>
+      </div>
+      <div id="cmsDestList"></div>
+      <div class="cms-add-row">
+        <input type="text" id="cmsDestName" placeholder="Naziv destinacije (npr. Brela)">
+        <input type="text" id="cmsDestKey" placeholder="key (npr. brela)">
+        <input type="number" id="cmsDestCount" placeholder="Broj vila" style="max-width:100px;">
+        <button class="btn btn-teal btn-sm" onclick="addCMSItem('dest')">+ Dodaj</button>
+      </div>
+    </div>
+    <!-- QUICK FILTERS -->
+    <div class="cms-card">
+      <div class="cms-card-title">
+        Quick filteri
+        <span style="font-size:11px;color:var(--muted);font-weight:400;">Gumbi ispod search bara</span>
+      </div>
+      <div id="cmsFilterList"></div>
+      <div class="cms-add-row">
+        <input type="text" id="cmsFilterLabel" placeholder="Naziv filtera (npr. Uz more)">
+        <input type="text" id="cmsFilterKey" placeholder="key (npr. beach)">
+        <button class="btn btn-teal btn-sm" onclick="addCMSItem('filter')">+ Dodaj</button>
+      </div>
+    </div>
+    <!-- HOMEPAGE TEXT -->
+    <div class="cms-card">
+      <div class="cms-card-title">Tekst na naslovnici</div>
+      <div class="fld"><label>Glavni naslov</label><input type="text" id="cmsHeroTitle" placeholder="Luksuzni odmor u Hrvatskoj"></div>
+      <div class="fld"><label>Podnaslov</label><input type="text" id="cmsHeroSub" placeholder="200+ verificiranih vila direktno od vlasnika"></div>
+      <div class="fld"><label>SEO meta description</label><textarea id="cmsMeta" style="min-height:60px;" placeholder="Croatia Premium Stay — luksuzne vile..."></textarea></div>
+    </div>
+    <!-- FEATURED SETTINGS -->
+    <div class="cms-card">
+      <div class="cms-card-title">Istaknute vile na naslovnici</div>
+      <div class="fld"><label>Max. istaknutih vila</label><input type="number" id="cmsFeatMax" placeholder="6" min="1" max="12"></div>
+      <div class="fld"><label>Naslov sekcije</label><input type="text" id="cmsFeatTitle" placeholder="Odabrane vile ove sezone"></div>
+    </div>
+  </div>
+</div>
+
+</main>
+</div>
+</div>
+
+<!-- PREVIEW MODAL -->
+<div class="modal-ov" id="previewModal">
+  <div class="modal" style="margin:20px auto;max-width:800px;">
     <div class="modal-hdr"><div class="modal-hdr-title" id="pvTitle">Pregled vile</div><button class="modal-close" onclick="closePv()">×</button></div>
     <div class="modal-body" id="pvBody"></div>
     <div class="modal-footer" id="pvFooter"></div>
   </div>
 </div>
 
-<!-- ADD VILLA MODAL (admin) -->
-<div class="modal-overlay" id="addVillaModal">
-  <div class="modal">
-    <div class="modal-hdr"><div class="modal-hdr-title" id="avTitle">Dodaj vilu (Admin)</div><button class="modal-close" onclick="closeAV()">×</button></div>
+<!-- ADD/EDIT VILLA MODAL -->
+<div class="modal-ov" id="addVillaModal">
+  <div class="modal" style="margin:20px auto;max-width:860px;">
+    <div class="modal-hdr">
+      <div class="modal-hdr-title" id="avModalTitle">Dodaj vilu</div>
+      <button class="modal-close" onclick="closeAV()">×</button>
+    </div>
     <div class="modal-body">
       <div id="avAlert" class="alert"></div>
-      <div class="add-villa-form">
-        <div class="form-grid">
-          <div class="field form-full"><label>Naziv vile *</label><input type="text" id="avName" placeholder="Villa Amelie Split"></div>
-          <div class="field"><label>Cijena/noć (€) *</label><input type="number" id="avPrice" placeholder="2000"></div>
-          <div class="field"><label>Čišćenje (€)</label><input type="number" id="avClean" placeholder="250"></div>
-          <div class="field"><label>Depozit (€)</label><input type="number" id="avDep" placeholder="1000"></div>
-          <div class="field"><label>Payment policy</label><select id="avPol"><option value="30">30 dana</option><option value="45">45 dana</option><option value="60">60 dana</option></select></div>
-          <div class="field"><label>Max. gostiju</label><input type="number" id="avMax" placeholder="10"></div>
-          <div class="field"><label>Grad</label><input type="text" id="avCity" placeholder="Split"></div>
-          <div class="field"><label>Email vlasnika</label><input type="email" id="avOwner" placeholder="vlasnik@email.com"></div>
-          <div class="field form-full"><label>Lokacija (prikaz)</label><input type="text" id="avLoc" placeholder="Uz more · Split · Dalmacija"></div>
-          <div class="field form-full"><label>Naslovna slika URL</label><input type="text" id="avImg" placeholder="https://..."></div>
-          <div class="field form-full"><label>Kratki opis</label><input type="text" id="avShort" placeholder="Beachfront vila s bazenom"></div>
-          <div class="field form-full"><label>Puni opis</label><textarea id="avDesc" placeholder="Opišite vilu..."></textarea></div>
+      <!-- TABS -->
+      <div class="modal-tabs">
+        <div class="mtab on" onclick="switchTab('basic',this)">Osnovno</div>
+        <div class="mtab" onclick="switchTab('details',this)">Detalji & Sadržaji</div>
+        <div class="mtab" onclick="switchTab('images',this)">Slike</div>
+        <div class="mtab" onclick="switchTab('pricing',this)">Cijene & Kalendar</div>
+        <div class="mtab" onclick="switchTab('owner',this)">Vlasnik</div>
+      </div>
+
+      <!-- TAB: OSNOVNO -->
+      <div class="mtab-pane on" id="paneBasic">
+        <div class="fg">
+          <div class="fld ff"><label>Naziv vile *</label><input type="text" id="avName" placeholder="Villa Amelie Split"></div>
+          <div class="fld"><label>Grad *</label><input type="text" id="avCity" placeholder="Split"></div>
+          <div class="fld"><label>Regija</label>
+            <select id="avRegion">
+              <option value="dalmacija">Dalmacija</option>
+              <option value="istra">Istra</option>
+              <option value="kvarner">Kvarner</option>
+              <option value="dubrovnik">Dubrovnik</option>
+              <option value="otoci">Otoci</option>
+            </select>
+          </div>
+          <div class="fld ff"><label>Adresa</label><input type="text" id="avAddr" placeholder="Ul. Kralja Tomislava 12"></div>
+          <div class="fld ff"><label>Lokacija (prikaz na kartici)</label><input type="text" id="avLoc" placeholder="Uz more · Split · Dalmacija"></div>
+          <div class="fld ff"><label>Kratki opis <span style="font-size:10px;color:var(--muted);text-transform:none;letter-spacing:0;">(prikazuje se na kartici)</span></label><input type="text" id="avShort" placeholder="Beachfront vila s bazenom i privatnom plažom" maxlength="100"></div>
+          <div class="fld ff"><label>Puni opis *</label><textarea id="avDesc" placeholder="Opišite vilu — lokacija, posebnosti, sadržaji, okolica..."></textarea></div>
         </div>
       </div>
+
+      <!-- TAB: DETALJI -->
+      <div class="mtab-pane" id="paneDetails">
+        <div style="background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:16px;margin-bottom:16px;">
+          <div class="stp-row"><div><div style="font-size:13px;font-weight:500;">Gosti</div></div><div class="stepper"><button class="stp-btn" onclick="stp('guests',-1)">−</button><div class="stp-val" id="svGuests">8</div><button class="stp-btn" onclick="stp('guests',1)">+</button></div></div>
+          <div class="stp-row"><div><div style="font-size:13px;font-weight:500;">Spavaće sobe</div></div><div class="stepper"><button class="stp-btn" onclick="stp('bedrooms',-1)">−</button><div class="stp-val" id="svBedrooms">4</div><button class="stp-btn" onclick="stp('bedrooms',1)">+</button></div></div>
+          <div class="stp-row"><div><div style="font-size:13px;font-weight:500;">Kreveti</div></div><div class="stepper"><button class="stp-btn" onclick="stp('beds',-1)">−</button><div class="stp-val" id="svBeds">5</div><button class="stp-btn" onclick="stp('beds',1)">+</button></div></div>
+          <div class="stp-row"><div><div style="font-size:13px;font-weight:500;">Kupaonice</div></div><div class="stepper"><button class="stp-btn" onclick="stp('baths',-1)">−</button><div class="stp-val" id="svBaths">3</div><button class="stp-btn" onclick="stp('baths',1)">+</button></div></div>
+        </div>
+        <div class="fg">
+          <div class="fld"><label>Površina (m²)</label><input type="number" id="avSqm" placeholder="220" min="1"></div>
+          <div class="fld"><label>Broj katova</label><input type="number" id="avFloors" placeholder="2" min="1"></div>
+        </div>
+        <div class="fld"><label>Sadržaji</label><div class="am-grid" id="avAmGrid"></div></div>
+      </div>
+
+      <!-- TAB: SLIKE -->
+      <div class="mtab-pane" id="paneImages">
+        <div class="img-drop" id="avDropzone" onclick="document.getElementById('avImgInput').click()" ondragover="event.preventDefault();this.classList.add('drag')" ondragleave="this.classList.remove('drag')" ondrop="avOnDrop(event)">
+          <input type="file" id="avImgInput" accept="image/jpeg,image/png,image/webp" multiple onchange="avOnFiles(event)" style="display:none;">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style="margin:0 auto 10px;display:block;"><rect x="2" y="7" width="28" height="19" rx="2.5" stroke="#8AA8B0" stroke-width="1.5"/><circle cx="11" cy="15" r="3" stroke="#8AA8B0" stroke-width="1.5"/><path d="M2 23l7-6 4 4 5-4 7 6" stroke="#8AA8B0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M23 2v7M20 5l3-3 3 3" stroke="#C4974E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div style="font-size:14px;font-weight:600;color:var(--navy);margin-bottom:4px;">Kliknite ili povucite slike</div>
+          <div style="font-size:12px;color:var(--muted);">JPG, PNG, WebP · Max 10MB · Automatska kompresija 1200×800</div>
+        </div>
+        <div class="img-grid" id="avImgGrid"></div>
+        <div id="avUpProg" style="display:none;margin-top:8px;font-size:12px;color:var(--teal);">Uploading...</div>
+        <div style="margin-top:12px;padding:12px;background:var(--cream);border-radius:8px;font-size:12px;color:var(--muted);">
+          Možete unijeti i direktan URL slike:
+        </div>
+        <div class="fg" style="margin-top:10px;">
+          <div class="fld ff">
+            <label>Ili unesite URL slike</label>
+            <div style="display:flex;gap:8px;">
+              <input type="text" id="avImgUrl" placeholder="https://images.unsplash.com/...">
+              <button class="btn btn-ol" onclick="addImgUrl()">Dodaj</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: CIJENE -->
+      <div class="mtab-pane" id="panePricing">
+        <div class="fg" style="margin-bottom:16px;">
+          <div class="fld"><label>Osnovna cijena/noć (€) *</label><input type="number" id="avPrice" placeholder="2000" min="0" oninput="updateSeasonPrev()"></div>
+          <div class="fld"><label>Naknada čišćenje (€)</label><input type="number" id="avClean" placeholder="250" min="0"></div>
+          <div class="fld"><label>Sigurnosni depozit (€)</label><input type="number" id="avDep" placeholder="1000" min="0"></div>
+          <div class="fld"><label>Minimalni boravak (noći)</label><input type="number" id="avMinN" placeholder="3" min="1"></div>
+          <div class="fld"><label>Payment policy</label>
+            <select id="avPol">
+              <option value="30">30 dana unaprijed</option>
+              <option value="45">45 dana unaprijed</option>
+              <option value="60">60 dana unaprijed</option>
+              <option value="0">100% odmah</option>
+            </select>
+          </div>
+          <div class="fld"><label>Min. noćenja visoka sezona</label><input type="number" id="avMinHigh" placeholder="7" min="1"></div>
+        </div>
+        <!-- SEASON QUICK SET -->
+        <div style="display:flex;gap:8px;margin-bottom:16px;">
+          <button class="btn btn-ol btn-sm" onclick="applySeason('low')">🌿 Postavi nisku sezonu</button>
+          <button class="btn btn-ol btn-sm" onclick="applySeason('mid')">☀️ Postavi srednju sezonu</button>
+          <button class="btn btn-ol btn-sm" onclick="applySeason('high')">🔥 Postavi visoku sezonu</button>
+        </div>
+        <div style="font-size:11px;color:var(--muted);margin-bottom:10px;" id="seasonPrev"></div>
+        <!-- CALENDAR -->
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Kalendar cijena — kliknite dan ili raspon</div>
+        <div class="cal-wrap">
+          <div class="cal-hdr">
+            <div class="cal-nav">
+              <button onclick="cPrev()">‹</button>
+              <div class="cal-month-label" id="calLabel"></div>
+              <button onclick="cNext()">›</button>
+            </div>
+            <div style="font-size:11px;color:var(--muted);">Klik = 1 dan · Klik+Klik = raspon</div>
+          </div>
+          <div class="cal-body">
+            <div class="cal-dow"><div>Pon</div><div>Uto</div><div>Sri</div><div>Čet</div><div>Pet</div><div>Sub</div><div>Ned</div></div>
+            <div class="cal-days" id="calDays"></div>
+          </div>
+        </div>
+        <div class="price-panel" id="pricePanel">
+          <div style="font-size:12px;font-weight:600;margin-bottom:8px;">Postavi za: <span id="ppRange"></span></div>
+          <div class="ptabs">
+            <button class="ptab on" onclick="setPType('custom',this)">Prilagođena cijena</button>
+            <button class="ptab" onclick="setPType('blocked',this)">Blokiraj datume</button>
+            <button class="ptab" onclick="setPType('clear',this)">Ukloni posebnu cijenu</button>
+          </div>
+          <div id="ppCustomFields">
+            <div class="pp-row"><label>Cijena/noć (€)</label><input type="number" id="ppPrice" placeholder="Unesite cijenu"></div>
+            <div class="pp-row"><label>Min. noćenja</label><input type="number" id="ppMin" placeholder="3"></div>
+          </div>
+          <div style="display:flex;gap:8px;margin-top:10px;">
+            <button onclick="applyPP()" style="padding:8px 16px;background:var(--teal);color:#fff;border:none;border-radius:7px;font-size:11px;font-weight:600;cursor:pointer;">Primijeni</button>
+            <button onclick="clearSel()" style="padding:8px 16px;background:#fff;border:1.5px solid var(--border);border-radius:7px;font-size:11px;font-weight:600;cursor:pointer;">Odustani</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: VLASNIK -->
+      <div class="mtab-pane" id="paneOwner">
+        <div style="margin-bottom:20px;padding:16px;background:var(--cream);border-radius:10px;font-size:13px;color:var(--muted);line-height:1.7;">
+          Dodijelite vilu postojećem vlasniku ili kreirajte novi račun. Vlasnik će automatski vidjeti vilu u svom Owner Dashboardu i moći je uređivati.
+        </div>
+        <!-- SEARCH EXISTING -->
+        <div class="fld">
+          <label>Pretraži postojeće vlasnike</label>
+          <div class="owner-search-wrap">
+            <input type="text" id="ownerSearch" placeholder="Unesite ime ili email vlasnika..." oninput="searchOwners()" autocomplete="off">
+            <div class="owner-results" id="ownerResults"></div>
+          </div>
+          <div class="owner-selected" id="ownerSelected">
+            <div>
+              <div style="font-weight:500;" id="oSelName">—</div>
+              <div style="font-size:11px;color:var(--muted);" id="oSelEmail">—</div>
+            </div>
+            <button onclick="clearOwner()" style="background:none;border:none;color:var(--red);cursor:pointer;font-size:18px;line-height:1;">×</button>
+          </div>
+          <div class="fld-hint">Ili ostavite prazno da objavite bez vlasnika (možete dodijeliti kasnije)</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;margin:20px 0;">
+          <div style="flex:1;height:1px;background:var(--border);"></div>
+          <div style="font-size:12px;color:var(--muted);font-weight:600;">ILI KREIRAJTE NOVOG VLASNIKA</div>
+          <div style="flex:1;height:1px;background:var(--border);"></div>
+        </div>
+        <!-- NEW OWNER FORM -->
+        <div class="fg">
+          <div class="fld"><label>Ime i prezime</label><input type="text" id="newOwnerName" placeholder="Marko Marković"></div>
+          <div class="fld"><label>Email</label><input type="email" id="newOwnerEmail" placeholder="vlasnik@email.com"></div>
+          <div class="fld"><label>Telefon</label><input type="tel" id="newOwnerPhone" placeholder="+385 91 234 5678"></div>
+          <div class="fld"><label>Privremena lozinka</label><input type="text" id="newOwnerPass" placeholder="Vlasnik će je moći promijeniti"></div>
+        </div>
+        <button class="btn btn-ol" onclick="createAndSelectOwner()">Kreiraj i dodijeli vlasnika</button>
+        <div id="newOwnerAlert" class="alert" style="margin-top:12px;"></div>
+      </div>
+
+    </div><!-- modal-body -->
+    <div class="modal-footer">
+      <button class="btn btn-ol" onclick="closeAV()">Odustani</button>
+      <button class="btn btn-ol" onclick="saveVilla('draft')" id="btnDraft">Spremi draft</button>
+      <button class="btn btn-navy" onclick="saveVilla('approved')" id="btnPublish">Objavi odmah</button>
     </div>
-    <div class="modal-footer"><button class="btn btn-outline" onclick="closeAV()">Odustani</button><button class="btn btn-teal" onclick="saveAdminVilla()">Objavi vilu</button></div>
   </div>
 </div>
 
 <script>
 const API='https://cps-booking.solitary-rice-38ed.workers.dev';
 let token=localStorage.getItem('cps_admin_token');
-let allVillasData=[],currentFilter='all',previewVilla=null;
+let allVillasData=[],vFilter='all';
+let editVillaId=null;
+let avImgs=[];
+let steppers={guests:8,bedrooms:4,beds:5,baths:3};
+let calY,calM,calPrices={},calBlocked={},selStart=null,selEnd=null,pType='custom';
+let selectedOwnerId=null;
 
-window.addEventListener('DOMContentLoaded',()=>{if(token)autoLogin();});
-async function autoLogin(){try{const r=await req('GET','/api/auth/me');if(r.type==='admin'){showApp();}else{clearT();}}catch{clearT();}}
+const MONTHS=['Siječanj','Veljača','Ožujak','Travanj','Svibanj','Lipanj','Srpanj','Kolovoz','Rujan','Listopad','Studeni','Prosinac'];
+const AMENITIES=[
+  {i:'🏊',l:'Bazen'},{i:'🌊',l:'Infinity bazen'},{i:'🏖️',l:'Privatna plaža'},{i:'🛁',l:'Jacuzzi'},
+  {i:'🧖',l:'Sauna'},{i:'🌡️',l:'Klima'},{i:'📶',l:'WiFi'},{i:'🅿️',l:'Parking'},
+  {i:'🔥',l:'BBQ'},{i:'🌿',l:'Vrt'},{i:'🏡',l:'Terasa'},{i:'🌅',l:'Pogled na more'},
+  {i:'👨‍🍳',l:'Chef'},{i:'🧹',l:'Domaćica'},{i:'🚤',l:'Čamac'},{i:'🚗',l:'Prijevoz'},
+  {i:'🚲',l:'Bicikli'},{i:'💪',l:'Fitnes'},{i:'🎬',l:'Kino soba'},{i:'🍷',l:'Vinska klijet'},
+];
+
+// CMS data (local state)
+let cmsData = {
+  destinations: [
+    {name:'Split & okolica',key:'split',count:18},{name:'Hvar',key:'hvar',count:9},
+    {name:'Dubrovnik',key:'dubrovnik',count:12},{name:'Brač',key:'brac',count:7},
+    {name:'Rovinj',key:'rovinj',count:8},{name:'Pelješac',key:'peljesac',count:4},
+  ],
+  filters: [
+    {label:'Uz more',key:'beach'},{label:'Bazen',key:'pool'},{label:'Privatna plaža',key:'private-beach'},
+    {label:'Pet friendly',key:'pets'},{label:'Chef',key:'chef'},
+  ]
+};
+
+window.addEventListener('DOMContentLoaded',()=>{
+  buildAmGrid();
+  if(token) autoLogin();
+});
+
+async function autoLogin(){
+  try{const r=await req('GET','/api/auth/me');if(r.type==='admin'){showApp();}else{clearT();}}catch{clearT();}
+}
 function clearT(){localStorage.removeItem('cps_admin_token');token=null;}
-
 async function doLogin(){
   const email=document.getElementById('aEmail').value.trim(),pass=document.getElementById('aPass').value;
   if(!email||!pass)return setErr('Unesite email i lozinku');
@@ -246,7 +572,7 @@ function setErr(m){const e=document.getElementById('aErr');e.textContent=m;e.sty
 function showApp(){
   document.getElementById('authScreen').style.display='none';
   document.getElementById('appScreen').style.display='block';
-  loadAll();
+  loadAll();renderCMS();
 }
 
 async function loadAll(){loadStats();loadVillas();loadBookings();loadOwners();}
@@ -254,97 +580,94 @@ async function loadAll(){loadStats();loadVillas();loadBookings();loadOwners();}
 async function loadStats(){
   try{
     const s=await req('GET','/api/admin/stats');
-    const av=s.villas.find(x=>x.status==='approved')?.count||0;
-    const pv=s.villas.find(x=>x.status==='pending')?.count||0;
-    const bk=s.bookings.reduce((a,x)=>a+x.count,0);
-    document.getElementById('stActive').textContent=av;
-    document.getElementById('stPend').textContent=pv;
-    document.getElementById('stBook').textContent=bk;
+    document.getElementById('stActive').textContent=s.villas.find(x=>x.status==='approved')?.count||0;
+    document.getElementById('stPend').textContent=s.villas.find(x=>x.status==='pending')?.count||0;
+    document.getElementById('stBook').textContent=s.bookings.reduce((a,x)=>a+x.count,0);
     document.getElementById('stRev').textContent='€'+(s.revenue||0).toLocaleString();
-    document.getElementById('sbPend').textContent=pv;
+    document.getElementById('sbPend').textContent=s.villas.find(x=>x.status==='pending')?.count||0;
   }catch(e){console.error(e);}
 }
 
 async function loadVillas(){
   try{
     allVillasData=await req('GET','/api/admin/villas?status=all');
-    renderAllVillas();
-    renderPending();
+    renderPending();renderAllVillas();
   }catch(e){console.error(e);}
 }
 
 function renderPending(){
-  const pending=allVillasData.filter(v=>v.status==='pending');
-  document.getElementById('pendSub').textContent=`${pending.length} vila na čekanju`;
-  const makeRow=(v,compact=false)=>{
-    const img=(v.images&&v.images.length?v.images[0]:v.image_url)||'https://images.unsplash.com/photo-1613977257363-707ba9348227?w=120&q=60';
-    return `<tr>
-      <td><div style="display:flex;align-items:center;gap:10px;">
-        <img src="${img}" style="width:52px;height:34px;object-fit:cover;border-radius:5px;flex-shrink:0;">
-        <div><div style="font-weight:500;">${v.villa_name}</div><div style="font-size:11px;color:var(--text-muted);">${v.city||'—'} · ${v.owner_name||v.owner_email_display||'—'}</div></div>
-      </div></td>
-      <td>€${(v.price_per_night||0).toLocaleString()}/noć</td>
-      <td style="font-size:11px;color:var(--text-muted);">${v.submitted_at?v.submitted_at.slice(0,10):'—'}</td>
-      <td style="white-space:nowrap;">
-        <button class="btn btn-outline btn-sm" onclick="openPreview('${v.villa_id}')">Pregled</button>
-        <button class="btn btn-green btn-sm" style="margin-left:4px;" onclick="quickApprove('${v.villa_id}')">✓ Odobri</button>
-        <button class="btn btn-red btn-sm" style="margin-left:4px;" onclick="quickReject('${v.villa_id}')">✕ Odbij</button>
-      </td></tr>`;
-  };
-  const html=pending.length===0
-    ?`<div style="padding:24px;text-align:center;color:var(--text-muted);">Nema vila na odobrenju ✓</div>`
-    :`<table><thead><tr><th>Vila</th><th>Cijena</th><th>Poslano</th><th>Akcija</th></tr></thead><tbody>${pending.map(v=>makeRow(v)).join('')}</tbody></table>`;
+  const pv=allVillasData.filter(v=>v.status==='pending');
+  document.getElementById('pendSub').textContent=`${pv.length} vila na čekanju`;
+  const html=!pv.length
+    ?`<div style="padding:24px;text-align:center;color:var(--muted);">Nema vila na odobrenju ✓</div>`
+    :`<table><thead><tr><th>Vila</th><th>Vlasnik</th><th>Cijena</th><th>Poslano</th><th>Akcije</th></tr></thead><tbody>${
+      pv.map(v=>{
+        const img=getImg(v);
+        return `<tr>
+          <td><div style="display:flex;align-items:center;gap:10px;">
+            <img src="${img}" style="width:50px;height:34px;object-fit:cover;border-radius:5px;flex-shrink:0;">
+            <div><div style="font-weight:500;">${v.villa_name}</div><div style="font-size:11px;color:var(--muted);">${v.city||'—'}</div></div>
+          </div></td>
+          <td>${v.owner_name||v.owner_email_display||'—'}</td>
+          <td>€${(v.price_per_night||0).toLocaleString()}</td>
+          <td style="font-size:11px;color:var(--muted);">${v.submitted_at?v.submitted_at.slice(0,10):'—'}</td>
+          <td style="white-space:nowrap;">
+            <button class="btn btn-ol btn-sm" onclick="openPreview('${v.villa_id}')">Pregled</button>
+            <button class="btn btn-green btn-sm" style="margin-left:4px;" onclick="quickApprove('${v.villa_id}')">✓</button>
+            <button class="btn btn-red btn-sm" style="margin-left:4px;" onclick="quickReject('${v.villa_id}')">✕</button>
+            <button class="btn btn-ol btn-sm" style="margin-left:4px;" onclick="openEditVilla('${v.villa_id}')">✏️</button>
+          </td></tr>`;
+      }).join('')
+    }</tbody></table>`;
   document.getElementById('pendingWrap').innerHTML=html;
   document.getElementById('ovPending').innerHTML=html;
 }
 
 function renderAllVillas(){
-  const filtered=currentFilter==='all'?allVillasData:allVillasData.filter(v=>v.status===currentFilter);
-  const rows=filtered.length===0
-    ?`<tr><td colspan="6" style="text-align:center;padding:24px;color:var(--text-muted);">Nema vila</td></tr>`
-    :filtered.map(v=>{
-      const img=(v.images&&v.images.length?v.images[0]:v.image_url)||'https://images.unsplash.com/photo-1613977257363-707ba9348227?w=120&q=60';
+  const list=vFilter==='all'?allVillasData:allVillasData.filter(v=>v.status===vFilter);
+  const rows=!list.length
+    ?`<tr><td colspan="7" style="text-align:center;padding:24px;color:var(--muted);">Nema vila</td></tr>`
+    :list.map(v=>{
+      const img=getImg(v);
+      const sc=v.status==='approved'?'ba':v.status==='pending'?'bp':v.status==='rejected'?'br':'bd';
       return `<tr>
         <td><div style="display:flex;align-items:center;gap:10px;">
-          <img src="${img}" style="width:48px;height:32px;object-fit:cover;border-radius:5px;flex-shrink:0;">
+          <img src="${img}" style="width:46px;height:32px;object-fit:cover;border-radius:5px;flex-shrink:0;">
           <div style="font-weight:500;">${v.villa_name}</div>
         </div></td>
-        <td style="font-size:11px;color:var(--text-muted);">${v.owner_name||v.owner_email_display||'Admin'}</td>
+        <td style="font-size:11px;color:var(--muted);">${v.owner_name||v.owner_email_display||'Admin'}</td>
         <td>${v.city||'—'}</td>
         <td>€${(v.price_per_night||0).toLocaleString()}</td>
-        <td><span class="badge badge-${v.status}">${sLabel(v.status)}</span></td>
+        <td><span class="badge ${sc}">${sLabel(v.status)}</span></td>
+        <td style="font-size:11px;color:var(--muted);max-width:140px;">${v.admin_notes||'—'}</td>
         <td style="white-space:nowrap;">
-          <button class="btn btn-outline btn-sm" onclick="openPreview('${v.villa_id}')">Pregled</button>
+          <button class="btn btn-ol btn-sm" onclick="openPreview('${v.villa_id}')">Pregled</button>
+          <button class="btn btn-ol btn-sm" style="margin-left:4px;" onclick="openEditVilla('${v.villa_id}')">Uredi</button>
           ${v.status==='pending'?`<button class="btn btn-green btn-sm" style="margin-left:4px;" onclick="quickApprove('${v.villa_id}')">Odobri</button>`:''}
-          ${v.status==='approved'?`<button class="btn btn-red btn-sm" style="margin-left:4px;" onclick="quickReject('${v.villa_id}')">Deaktiviraj</button>`:''}
+          ${v.status==='approved'?`<button class="btn btn-red btn-sm" style="margin-left:4px;" onclick="quickReject('${v.villa_id}')">Deaktiv.</button>`:''}
         </td></tr>`;
     }).join('');
-  document.getElementById('allVillasWrap').innerHTML=`<table><thead><tr><th>Vila</th><th>Vlasnik</th><th>Grad</th><th>Cijena/noć</th><th>Status</th><th>Akcije</th></tr></thead><tbody>${rows}</tbody></table>`;
+  document.getElementById('allVillasWrap').innerHTML=`<table><thead><tr><th>Vila</th><th>Vlasnik</th><th>Grad</th><th>Cijena</th><th>Status</th><th>Napomena</th><th>Akcije</th></tr></thead><tbody>${rows}</tbody></table>`;
 }
-
-function filterVillas(f,btn){
-  currentFilter=f;
-  document.querySelectorAll('.ftab').forEach(b=>b.classList.remove('active'));
-  if(btn)btn.classList.add('active');
-  renderAllVillas();
-}
+function filterV(f,btn){vFilter=f;document.querySelectorAll('.ftab').forEach(b=>b.classList.remove('on'));if(btn)btn.classList.add('on');renderAllVillas();}
 
 async function loadBookings(){
   try{
     const bks=await req('GET','/api/admin/bookings');
-    const rows=bks.length===0
-      ?`<div style="padding:18px;text-align:center;color:var(--text-muted);">Nema rezervacija</div>`
-      :`<table><thead><tr><th>Vila</th><th>Gost</th><th>Termin</th><th>Iznos</th><th>Depozit</th><th>Status</th></tr></thead><tbody>${
-        bks.slice(0,10).map(b=>`<tr>
+    const html=!bks.length
+      ?`<div style="padding:18px;text-align:center;color:var(--muted);">Nema rezervacija</div>`
+      :`<table><thead><tr><th>Vila</th><th>Gost</th><th>Termin</th><th>Ukupno</th><th>Depozit</th><th>Status</th></tr></thead><tbody>${
+        bks.map(b=>`<tr>
           <td>${b.villa_name}</td>
-          <td>${b.guest_name}<br><span style="font-size:11px;color:var(--text-muted);">${b.guest_email}</span></td>
-          <td>${b.check_in} → ${b.check_out}<br><span style="font-size:11px;color:var(--text-muted);">${b.nights}n · ${b.guests}g</span></td>
+          <td>${b.guest_name}<br><span style="font-size:11px;color:var(--muted);">${b.guest_email}</span></td>
+          <td>${b.check_in}→${b.check_out}<br><span style="font-size:11px;color:var(--muted);">${b.nights}n·${b.guests}g</span></td>
           <td>€${(b.total_amount||0).toLocaleString()}</td>
           <td>€${(b.deposit_amount||0).toLocaleString()}</td>
-          <td><span class="badge badge-${b.status}">${b.status}</span></td></tr>`).join('')
+          <td><span class="badge bc">${b.status}</span></td></tr>`).join('')
       }</tbody></table>`;
-    document.getElementById('bookingsWrap').innerHTML=rows;
-    document.getElementById('ovBookings').innerHTML=rows;
+    document.getElementById('bookingsWrap').innerHTML=html;
+    document.getElementById('ovBookings').innerHTML=html;
+    document.getElementById('stBook').textContent=bks.length;
   }catch(e){console.error(e);}
 }
 
@@ -352,105 +675,381 @@ async function loadOwners(){
   try{
     const owners=await req('GET','/api/admin/owners');
     document.getElementById('ownersWrap').innerHTML=!owners.length
-      ?`<div style="padding:18px;text-align:center;color:var(--text-muted);">Nema vlasnika</div>`
+      ?`<div style="padding:18px;text-align:center;color:var(--muted);">Nema vlasnika</div>`
       :`<table><thead><tr><th>Ime</th><th>Email</th><th>Telefon</th><th>Vile</th><th>Registriran</th></tr></thead><tbody>${
-        owners.map(o=>`<tr><td><div style="font-weight:500;">${o.name}</div></td><td>${o.email}</td><td>${o.phone||'—'}</td><td>${o.villa_count||0}</td><td style="font-size:11px;color:var(--text-muted);">${o.created_at?o.created_at.slice(0,10):'—'}</td></tr>`).join('')
+        owners.map(o=>`<tr>
+          <td style="font-weight:500;">${o.name}</td>
+          <td>${o.email}</td>
+          <td>${o.phone||'—'}</td>
+          <td>${o.villa_count||0}</td>
+          <td style="font-size:11px;color:var(--muted);">${o.created_at?o.created_at.slice(0,10):'—'}</td></tr>`).join('')
       }</tbody></table>`;
   }catch(e){console.error(e);}
 }
 
+// ── PREVIEW ───────────────────────────────────────────────────
 function openPreview(id){
-  const v=allVillasData.find(x=>x.villa_id===id);
-  if(!v)return;
-  previewVilla=v;
-  const imgs=v.images||[];
-  const am=v.amenities||[];
+  const v=allVillasData.find(x=>x.villa_id===id);if(!v)return;
+  const imgs=v.images||[];const am=v.amenities||[];
   document.getElementById('pvTitle').textContent=v.villa_name;
   document.getElementById('pvBody').innerHTML=`
-    ${imgs.length?`<div class="preview-imgs">${imgs.slice(0,4).map(u=>`<div class="preview-img"><img src="${u}" alt="slika"></div>`).join('')}</div>`:''}
-    <div class="preview-grid">
-      <div><div class="pinfo-label">Vlasnik</div><div class="pinfo-val">${v.owner_name||v.owner_email_display||'—'}</div></div>
-      <div><div class="pinfo-label">Lokacija</div><div class="pinfo-val">${v.city||'—'}</div></div>
-      <div><div class="pinfo-label">Cijena/noć</div><div class="pinfo-val">€${(v.price_per_night||0).toLocaleString()}</div></div>
-      <div><div class="pinfo-label">Naknada čišćenje</div><div class="pinfo-val">€${v.cleaning_fee||0}</div></div>
-      <div><div class="pinfo-label">Max gostiju</div><div class="pinfo-val">${v.max_guests||'—'}</div></div>
-      <div><div class="pinfo-label">Sobe / Kupaonice</div><div class="pinfo-val">${v.bedrooms||'—'} / ${v.bathrooms||'—'}</div></div>
-      <div><div class="pinfo-label">Payment policy</div><div class="pinfo-val">${v.payment_policy_days||30} dana</div></div>
-      <div><div class="pinfo-label">Status</div><div class="pinfo-val"><span class="badge badge-${v.status}">${sLabel(v.status)}</span></div></div>
+    ${imgs.length?`<div class="pv-imgs">${imgs.slice(0,4).map(u=>`<div class="pv-img"><img src="${u}"></div>`).join('')}</div>`:''}
+    <div class="pv-grid">
+      <div class="pv-field"><div class="pl">Vlasnik</div><div class="pv">${v.owner_name||v.owner_email_display||'—'}</div></div>
+      <div class="pv-field"><div class="pl">Lokacija</div><div class="pv">${v.city||'—'}</div></div>
+      <div class="pv-field"><div class="pl">Cijena/noć</div><div class="pv">€${(v.price_per_night||0).toLocaleString()}</div></div>
+      <div class="pv-field"><div class="pl">Gosti / Sobe</div><div class="pv">${v.max_guests||'—'} / ${v.bedrooms||'—'}</div></div>
+      <div class="pv-field"><div class="pl">Payment policy</div><div class="pv">${v.payment_policy_days||30} dana</div></div>
+      <div class="pv-field"><div class="pl">Status</div><div class="pv"><span class="badge ${v.status==='approved'?'ba':v.status==='pending'?'bp':'br'}">${sLabel(v.status)}</span></div></div>
     </div>
-    ${v.description?`<div style="margin-bottom:14px;"><div class="pinfo-label" style="margin-bottom:5px;">Opis</div><div style="font-size:13px;line-height:1.7;color:var(--text-light);">${v.description}</div></div>`:''}
-    ${am.length?`<div><div class="pinfo-label" style="margin-bottom:6px;">Sadržaji</div><div class="am-tags">${am.map(a=>`<span class="am-tag">${a}</span>`).join('')}</div></div>`:''}
-    ${v.status==='pending'?`<div style="margin-top:18px;padding-top:16px;border-top:1px solid var(--border);"><div class="pinfo-label" style="margin-bottom:6px;">Razlog odbijanja (opcionalno)</div><input class="reject-input" id="rejectReason" placeholder="npr. Nedovoljno slika, netočne informacije..."></div>`:''}
-  `;
-  const footer=document.getElementById('pvFooter');
-  if(v.status==='pending'){
-    footer.innerHTML=`
-      <span style="font-size:12px;color:var(--text-muted);margin-right:auto;">Pregled oglasa vlasnika</span>
-      <button class="btn btn-outline" onclick="closePv()">Zatvori</button>
-      <button class="btn btn-red" onclick="rejectWithReason('${v.villa_id}')">✕ Odbij</button>
-      <button class="btn btn-green" onclick="approveV('${v.villa_id}')">✓ Odobri i objavi</button>`;
-  } else {
-    footer.innerHTML=`<button class="btn btn-outline" onclick="closePv()">Zatvori</button>${v.status==='approved'?`<button class="btn btn-red" onclick="rejectWithReason('${v.villa_id}');closePv()">Deaktiviraj</button>`:''}`;
-  }
-  document.getElementById('previewModal').classList.add('open');
-  document.body.style.overflow='hidden';
+    ${v.description?`<div style="margin-bottom:14px;"><div style="font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:5px;">Opis</div><div style="font-size:13px;line-height:1.7;color:var(--light);">${v.description}</div></div>`:''}
+    ${am.length?`<div><div style="font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Sadržaji</div><div class="am-tags">${am.map(a=>`<span class="am-tag">${a}</span>`).join('')}</div></div>`:''}
+    ${v.status==='pending'?`<div style="margin-top:18px;padding-top:16px;border-top:1px solid var(--border);"><div style="font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Razlog odbijanja (opcionalno)</div><input style="width:100%;padding:9px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;outline:none;" id="rejectReason" placeholder="npr. Nedovoljno slika..."></div>`:``}`;
+  const ff=document.getElementById('pvFooter');
+  ff.innerHTML=v.status==='pending'
+    ?`<button class="btn btn-ol" onclick="closePv()">Zatvori</button>
+       <button class="btn btn-ol" onclick="openEditVilla('${v.villa_id}');closePv()">✏️ Uredi</button>
+       <button class="btn btn-red" onclick="rejectV('${v.villa_id}')">✕ Odbij</button>
+       <button class="btn btn-green" onclick="approveV('${v.villa_id}')">✓ Odobri i objavi</button>`
+    :`<button class="btn btn-ol" onclick="closePv()">Zatvori</button>
+      <button class="btn btn-ol" onclick="openEditVilla('${v.villa_id}');closePv()">✏️ Uredi</button>
+      ${v.status==='approved'?`<button class="btn btn-red btn-sm" onclick="quickReject('${v.villa_id}');closePv()">Deaktiv.</button>`:''}`;
+  document.getElementById('previewModal').classList.add('open');document.body.style.overflow='hidden';
 }
 function closePv(){document.getElementById('previewModal').classList.remove('open');document.body.style.overflow='';}
 
 async function approveV(id){
-  try{await req('POST',`/api/admin/villas/${id}/approve`);closePv();await loadAll();alert('Vila odobrena i objavljena! Email poslan vlasniku.');}
+  try{await req('POST',`/api/admin/villas/${id}/approve`);closePv();await loadAll();alert('Vila odobrena! Email poslan vlasniku.');}
   catch(e){alert('Greška: '+e.message);}
 }
 async function quickApprove(id){if(!confirm('Odobri vilu?'))return;try{await req('POST',`/api/admin/villas/${id}/approve`);await loadAll();}catch(e){alert(e.message);}}
-async function rejectWithReason(id){
+async function rejectV(id){
   const reason=document.getElementById('rejectReason')?.value||'';
-  if(!confirm('Odbijaš ovu vilu?'))return;
-  try{await req('POST',`/api/admin/villas/${id}/reject`,{reason});closePv();await loadAll();alert('Vila odbijena. Email poslan vlasniku.');}
-  catch(e){alert('Greška: '+e.message);}
+  if(!confirm('Odbij ovu vilu?'))return;
+  try{await req('POST',`/api/admin/villas/${id}/reject`,{reason});closePv();await loadAll();}catch(e){alert(e.message);}
 }
-async function quickReject(id){
-  const reason=prompt('Razlog odbijanja (opcionalno):');
-  if(reason===null)return;
-  try{await req('POST',`/api/admin/villas/${id}/reject`,{reason});await loadAll();}catch(e){alert(e.message);}
+async function quickReject(id){const r=prompt('Razlog (opcionalno):');if(r===null)return;try{await req('POST',`/api/admin/villas/${id}/reject`,{reason:r||''});await loadAll();}catch(e){alert(e.message);}}
+
+// ── ADD/EDIT VILLA ────────────────────────────────────────────
+function buildAmGrid(){
+  document.getElementById('avAmGrid').innerHTML=AMENITIES.map(a=>
+    `<div class="am-item" data-v="${a.l}" onclick="this.classList.toggle('on')">${a.i} ${a.l}</div>`
+  ).join('');
 }
 
-function openAddVillaModal(){document.getElementById('addVillaModal').classList.add('open');document.body.style.overflow='hidden';}
+function openAddVilla(){
+  editVillaId=null;
+  document.getElementById('avModalTitle').textContent='Dodaj vilu';
+  document.getElementById('btnDraft').style.display='';
+  document.getElementById('btnPublish').textContent='Objavi odmah';
+  resetAVForm();
+  initCal();
+  switchTab('basic',document.querySelector('.mtab'));
+  document.getElementById('addVillaModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function openEditVilla(id){
+  const v=allVillasData.find(x=>x.villa_id===id);if(!v)return;
+  editVillaId=id;
+  document.getElementById('avModalTitle').textContent='Uredi vilu';
+  document.getElementById('btnPublish').textContent=v.status==='approved'?'Spremi promjene':'Objavi';
+  resetAVForm();
+  // Popuni
+  sv('avName',v.villa_name);sv('avCity',v.city);sv('avAddr',v.address);
+  sv('avLoc',v.location);sv('avShort',v.short_desc);sv('avDesc',v.description);
+  sv('avSqm',v.size_m2);sv('avFloors','');
+  sv('avPrice',v.price_per_night);sv('avClean',v.cleaning_fee);
+  sv('avDep',v.security_deposit);sv('avMinN',v.min_nights);
+  document.getElementById('avPol').value=v.payment_policy_days||30;
+  if(v.region) document.getElementById('avRegion').value=v.region||'dalmacija';
+  // Steppers
+  steppers.guests=v.max_guests||8;steppers.bedrooms=v.bedrooms||4;
+  steppers.beds=v.beds||5;steppers.baths=v.bathrooms||3;
+  ['guests','bedrooms','beds','baths'].forEach(k=>{
+    const el=document.getElementById('sv'+k.charAt(0).toUpperCase()+k.slice(1));
+    if(el)el.textContent=steppers[k];
+  });
+  // Amenities
+  const am=v.amenities||[];
+  document.querySelectorAll('.am-item').forEach(el=>el.classList.toggle('on',am.includes(el.dataset.v)));
+  // Images
+  avImgs=(v.images||[]).map(u=>({url:u,uploading:false}));
+  renderAvImgs();
+  initCal();
+  switchTab('basic',document.querySelector('.mtab'));
+  document.getElementById('addVillaModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
 function closeAV(){document.getElementById('addVillaModal').classList.remove('open');document.body.style.overflow='';}
-async function saveAdminVilla(){
-  const name=document.getElementById('avName').value.trim();
-  if(!name)return avAlert('Naziv je obavezan','error');
-  const price=parseFloat(document.getElementById('avPrice').value)||0;
-  if(!price)return avAlert('Cijena je obavezna','error');
-  try{
-    await req('POST','/api/admin/villas',{
-      villa_name:name,price_per_night:price,
-      cleaning_fee:parseFloat(document.getElementById('avClean').value)||0,
-      security_deposit:parseFloat(document.getElementById('avDep').value)||0,
-      payment_policy_days:parseInt(document.getElementById('avPol').value)||30,
-      max_guests:parseInt(document.getElementById('avMax').value)||10,
-      city:document.getElementById('avCity').value.trim(),
-      owner_email:document.getElementById('avOwner').value.trim(),
-      location:document.getElementById('avLoc').value.trim(),
-      location_key:document.getElementById('avCity').value.trim().toLowerCase().replace(/\s+/g,'-'),
-      image_url:document.getElementById('avImg').value.trim(),
-      images:document.getElementById('avImg').value.trim()?[document.getElementById('avImg').value.trim()]:[],
-      short_desc:document.getElementById('avShort').value.trim(),
-      description:document.getElementById('avDesc').value.trim(),
+
+function resetAVForm(){
+  ['avName','avCity','avAddr','avLoc','avShort','avDesc','avSqm','avFloors','avPrice','avClean','avDep','avMinN','avMinHigh','ownerSearch','newOwnerName','newOwnerEmail','newOwnerPhone','newOwnerPass'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
+  steppers={guests:8,bedrooms:4,beds:5,baths:3};
+  ['guests','bedrooms','beds','baths'].forEach(k=>{const e=document.getElementById('sv'+k.charAt(0).toUpperCase()+k.slice(1));if(e)e.textContent=steppers[k];});
+  document.querySelectorAll('.am-item').forEach(el=>el.classList.remove('on'));
+  avImgs=[];renderAvImgs();
+  document.getElementById('avAlert').style.display='none';
+  document.getElementById('newOwnerAlert').style.display='none';
+  selectedOwnerId=null;
+  document.getElementById('ownerSelected').style.display='none';
+  calPrices={};calBlocked={};selStart=null;selEnd=null;
+}
+function sv(id,v){const e=document.getElementById(id);if(e&&v!==null&&v!==undefined)e.value=v;}
+
+function switchTab(tab,btn){
+  document.querySelectorAll('.mtab').forEach(b=>b.classList.remove('on'));
+  document.querySelectorAll('.mtab-pane').forEach(p=>p.classList.remove('on'));
+  if(btn)btn.classList.add('on');
+  document.getElementById('pane'+tab.charAt(0).toUpperCase()+tab.slice(1)).classList.add('on');
+}
+
+function stp(k,d){steppers[k]=Math.max(1,Math.min(30,steppers[k]+d));document.getElementById('sv'+k.charAt(0).toUpperCase()+k.slice(1)).textContent=steppers[k];}
+
+// IMAGES
+function avOnFiles(e){avUploadAll([...e.target.files]);}
+function avOnDrop(e){e.preventDefault();document.getElementById('avDropzone').classList.remove('drag');avUploadAll([...e.dataTransfer.files]);}
+async function avUploadAll(files){
+  const valid=files.filter(f=>['image/jpeg','image/png','image/webp'].includes(f.type));
+  if(!valid.length)return;
+  document.getElementById('avUpProg').style.display='block';
+  for(const f of valid){
+    document.getElementById('avUpProg').textContent=`Uploading ${f.name}...`;
+    const idx=avImgs.length;avImgs.push({url:null,uploading:true});renderAvImgs();
+    try{
+      const fd=new FormData();fd.append('image',f);
+      const r=await fetch(`${API}/api/owner/upload-image`,{method:'POST',headers:{'Authorization':`Bearer ${token}`},body:fd});
+      const d=await r.json();if(d.error)throw new Error(d.error);
+      avImgs[idx]={url:d.url,uploading:false};renderAvImgs();
+    }catch(e){avImgs.splice(idx,1);avAlert('Upload greška: '+e.message,'err');renderAvImgs();}
+  }
+  document.getElementById('avUpProg').style.display='none';
+}
+function addImgUrl(){
+  const url=document.getElementById('avImgUrl').value.trim();
+  if(!url)return;
+  avImgs.push({url,uploading:false});renderAvImgs();
+  document.getElementById('avImgUrl').value='';
+}
+function renderAvImgs(){
+  document.getElementById('avImgGrid').innerHTML=avImgs.map((img,i)=>img.uploading
+    ?`<div class="img-card"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><div style="width:18px;height:18px;border:2px solid var(--teal);border-top-color:transparent;border-radius:50%;animation:spin 0.7s linear infinite;"></div></div></div>`
+    :`<div class="img-card"><img src="${img.url}"><button class="img-del" onclick="avImgs.splice(${i},1);renderAvImgs()">×</button>${i===0?'<div class="img-main">Naslovna</div>':''}</div>`
+  ).join('');
+}
+
+// CALENDAR
+function initCal(){const n=new Date();calY=n.getFullYear();calM=n.getMonth();renderCal();}
+function renderCal(){
+  document.getElementById('calLabel').textContent=MONTHS[calM]+' '+calY;
+  const first=new Date(calY,calM,1),last=new Date(calY,calM+1,0);
+  let dow=first.getDay();if(dow===0)dow=7;dow--;
+  const today=new Date();today.setHours(0,0,0,0);
+  let html='';
+  for(let i=0;i<dow;i++)html+=`<div class="cday empty"></div>`;
+  for(let d=1;d<=last.getDate();d++){
+    const dt=new Date(calY,calM,d),key=dt.toISOString().split('T')[0];
+    const past=dt<today,blk=calBlocked[key],hp=calPrices[key];
+    const inS=selStart&&selEnd&&dt>=Math.min(selStart,selEnd)&&dt<=Math.max(selStart,selEnd);
+    let cls='cday';
+    if(past)cls+=' past';else if(blk)cls+=' blk';else if(inS)cls+=' sel';else if(hp)cls+=' has-p';
+    html+=`<div class="${cls}" onclick="cDayClick('${key}',${past})"><div class="cday-n">${d}</div><div class="cday-p">${blk?'blok':hp?'€'+hp.price:''}</div></div>`;
+  }
+  document.getElementById('calDays').innerHTML=html;
+}
+function cPrev(){calM--;if(calM<0){calM=11;calY--;}renderCal();}
+function cNext(){calM++;if(calM>11){calM=0;calY++;}renderCal();}
+function cDayClick(key,past){
+  if(past)return;
+  if(!selStart||(selStart&&selEnd)){selStart=new Date(key);selEnd=null;}
+  else{selEnd=new Date(key);if(selEnd<selStart){const t=selEnd;selEnd=selStart;selStart=t;}showPP();}
+  renderCal();
+}
+function showPP(){
+  const fmt=d=>d.toLocaleDateString('hr-HR',{day:'2-digit',month:'2-digit'});
+  document.getElementById('ppRange').textContent=selEnd?`${fmt(selStart)}—${fmt(selEnd)}`:fmt(selStart);
+  document.getElementById('pricePanel').classList.add('open');
+  document.getElementById('ppPrice').value=document.getElementById('avPrice').value||'';
+  document.getElementById('ppMin').value=document.getElementById('avMinN').value||'3';
+}
+function applyPP(){
+  if(!selStart)return;
+  const end=selEnd||selStart;
+  for(let d=new Date(selStart);d<=end;d.setDate(d.getDate()+1)){
+    const key=d.toISOString().split('T')[0];
+    if(pType==='blocked'){calBlocked[key]=true;delete calPrices[key];}
+    else if(pType==='clear'){delete calBlocked[key];delete calPrices[key];}
+    else{const p=parseFloat(document.getElementById('ppPrice').value);const m=parseInt(document.getElementById('ppMin').value)||3;if(p)calPrices[key]={price:p,min:m};delete calBlocked[key];}
+  }
+  clearSel();
+}
+function clearSel(){selStart=null;selEnd=null;document.getElementById('pricePanel').classList.remove('open');renderCal();}
+function setPType(t,btn){pType=t;document.querySelectorAll('.ptab').forEach(b=>b.classList.remove('on'));btn.classList.add('on');document.getElementById('ppCustomFields').style.display=t==='custom'?'':'none';}
+function applySeason(s){
+  const base=parseFloat(document.getElementById('avPrice').value)||1000;
+  const m={low:0.65,mid:0.85,high:1.3};
+  const price=Math.round(base*m[s]/50)*50;
+  const sm={low:[10,11,12,1,2,3],mid:[5,6,9],high:[7,8]};
+  const min=parseInt(document.getElementById('avMinN').value)||3;
+  const highMin=parseInt(document.getElementById('avMinHigh').value)||7;
+  [calY,calY+1].forEach(y=>{
+    sm[s].forEach(mo=>{
+      const days=new Date(y,mo,0).getDate();
+      for(let d=1;d<=days;d++){
+        const key=`${y}-${String(mo).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+        calPrices[key]={price,min:s==='high'?highMin:min};
+      }
     });
-    avAlert('Vila objavljena!','success');
+  });
+  renderCal();
+}
+function updateSeasonPrev(){
+  const base=parseFloat(document.getElementById('avPrice').value)||0;
+  document.getElementById('seasonPrev').textContent=base
+    ?`Niska: €${Math.round(base*0.65/50)*50} · Srednja: €${Math.round(base*0.85/50)*50} · Visoka: €${Math.round(base*1.3/50)*50}`:'';
+}
+
+// OWNER SEARCH
+let ownerSearchTimer;
+async function searchOwners(){
+  const q=document.getElementById('ownerSearch').value.trim();
+  const res=document.getElementById('ownerResults');
+  if(q.length<2){res.style.display='none';return;}
+  clearTimeout(ownerSearchTimer);
+  ownerSearchTimer=setTimeout(async()=>{
+    try{
+      const owners=await req('GET','/api/admin/owners');
+      const filtered=owners.filter(o=>o.name.toLowerCase().includes(q.toLowerCase())||o.email.toLowerCase().includes(q.toLowerCase()));
+      if(!filtered.length){res.style.display='none';return;}
+      res.innerHTML=filtered.slice(0,6).map(o=>`<div class="owner-result-item" onclick="selectOwner('${o.id}','${o.name}','${o.email}')"><div><div style="font-weight:500;">${o.name}</div><div style="font-size:11px;color:var(--muted);">${o.email}</div></div><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="#115571" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>`).join('');
+      res.style.display='block';
+    }catch(e){}
+  },300);
+}
+function selectOwner(id,name,email){
+  selectedOwnerId=id;
+  document.getElementById('oSelName').textContent=name;
+  document.getElementById('oSelEmail').textContent=email;
+  document.getElementById('ownerSelected').style.display='flex';
+  document.getElementById('ownerResults').style.display='none';
+  document.getElementById('ownerSearch').value='';
+}
+function clearOwner(){selectedOwnerId=null;document.getElementById('ownerSelected').style.display='none';}
+
+async function createAndSelectOwner(){
+  const name=document.getElementById('newOwnerName').value.trim();
+  const email=document.getElementById('newOwnerEmail').value.trim();
+  const phone=document.getElementById('newOwnerPhone').value.trim();
+  const pass=document.getElementById('newOwnerPass').value.trim();
+  if(!name||!email||!pass)return noAlert('Ime, email i lozinka su obavezni','err');
+  try{
+    const r=await req('POST','/api/auth/owner/register',{name,email,phone,password:pass});
+    selectOwner(r.owner.id,r.owner.name,r.owner.email);
+    noAlert('Vlasnik kreiran i dodijeljen!','ok');
+    ['newOwnerName','newOwnerEmail','newOwnerPhone','newOwnerPass'].forEach(id=>document.getElementById(id).value='');
+  }catch(e){noAlert(e.message,'err');}
+}
+function noAlert(m,t){const e=document.getElementById('newOwnerAlert');e.className='alert alert-'+t;e.textContent=m;e.style.display='block';}
+
+// SAVE VILLA
+async function saveVilla(status){
+  const name=document.getElementById('avName').value.trim();
+  if(!name)return avAlert('Unesite naziv vile','err');
+  const price=parseFloat(document.getElementById('avPrice').value)||0;
+  if(!price)return avAlert('Unesite cijenu','err');
+  const btnPub=document.getElementById('btnPublish');
+  btnPub.disabled=true;btnPub.textContent='Spremam...';
+  const imgs=avImgs.filter(i=>!i.uploading&&i.url).map(i=>i.url);
+  const am=[...document.querySelectorAll('.am-item.on')].map(e=>e.dataset.v);
+  const payload={
+    villa_name:name,city:document.getElementById('avCity').value.trim(),
+    address:document.getElementById('avAddr').value.trim(),
+    location:document.getElementById('avLoc').value.trim(),
+    location_key:(document.getElementById('avCity').value.trim()||'split').toLowerCase().replace(/\s+/g,'-'),
+    short_desc:document.getElementById('avShort').value.trim(),
+    description:document.getElementById('avDesc').value.trim(),
+    max_guests:steppers.guests,bedrooms:steppers.bedrooms,
+    bathrooms:steppers.baths,size_m2:parseInt(document.getElementById('avSqm').value)||null,
+    price_per_night:price,cleaning_fee:parseFloat(document.getElementById('avClean').value)||0,
+    security_deposit:parseFloat(document.getElementById('avDep').value)||0,
+    min_nights:parseInt(document.getElementById('avMinN').value)||3,
+    payment_policy_days:parseInt(document.getElementById('avPol').value)||30,
+    amenities:am,images:imgs,image_url:imgs[0]||null,
+    status,
+    owner_email:document.getElementById('newOwnerEmail').value.trim()||'',
+    calendar_prices:calPrices,
+    calendar_blocked:Object.keys(calBlocked),
+  };
+  if(selectedOwnerId) payload.owner_id=selectedOwnerId;
+  try{
+    if(editVillaId){
+      await req('PUT',`/api/admin/villas/${editVillaId}`,payload);
+      avAlert('Vila ažurirana!','ok');
+    }else{
+      await req('POST','/api/admin/villas',payload);
+      avAlert(status==='approved'?'Vila objavljena!':'Vila spremljena kao draft','ok');
+    }
     await loadAll();
     setTimeout(closeAV,1500);
-  }catch(e){avAlert(e.message,'error');}
+  }catch(e){avAlert(e.message,'err');}
+  finally{btnPub.disabled=false;btnPub.textContent=status==='approved'?'Objavi odmah':'Spremi draft';}
 }
-function avAlert(m,t){const e=document.getElementById('avAlert');e.className=`alert alert-${t}`;e.textContent=m;e.style.display='block';}
 
+function avAlert(m,t){const e=document.getElementById('avAlert');e.className='alert alert-'+t;e.textContent=m;e.style.display='block';}
+function getImg(v){return(v.images&&v.images.length?v.images[0]:null)||v.image_url||'https://images.unsplash.com/photo-1613977257363-707ba9348227?w=120&q=60';}
+
+// ── CMS ───────────────────────────────────────────────────────
+function renderCMS(){
+  // Destinations
+  document.getElementById('cmsDestList').innerHTML=cmsData.destinations.map((d,i)=>`
+    <div class="cms-item">
+      <span class="cms-item-drag">⠿</span>
+      <span class="cms-item-label">${d.name}</span>
+      <span class="cms-item-val">${d.count} vila · key: ${d.key}</span>
+      <button class="btn btn-red btn-sm" onclick="cmsData.destinations.splice(${i},1);renderCMS()">−</button>
+    </div>`).join('');
+  // Filters
+  document.getElementById('cmsFilterList').innerHTML=cmsData.filters.map((f,i)=>`
+    <div class="cms-item">
+      <span class="cms-item-drag">⠿</span>
+      <span class="cms-item-label">${f.label}</span>
+      <span class="cms-item-val">key: ${f.key}</span>
+      <button class="btn btn-red btn-sm" onclick="cmsData.filters.splice(${i},1);renderCMS()">−</button>
+    </div>`).join('');
+}
+function addCMSItem(type){
+  if(type==='dest'){
+    const name=document.getElementById('cmsDestName').value.trim();
+    const key=document.getElementById('cmsDestKey').value.trim();
+    const count=parseInt(document.getElementById('cmsDestCount').value)||0;
+    if(!name||!key)return;
+    cmsData.destinations.push({name,key,count});
+    ['cmsDestName','cmsDestKey','cmsDestCount'].forEach(id=>document.getElementById(id).value='');
+  }else{
+    const label=document.getElementById('cmsFilterLabel').value.trim();
+    const key=document.getElementById('cmsFilterKey').value.trim();
+    if(!label||!key)return;
+    cmsData.filters.push({label,key});
+    ['cmsFilterLabel','cmsFilterKey'].forEach(id=>document.getElementById(id).value='');
+  }
+  renderCMS();
+}
+function saveCMS(){
+  // Spremi u localStorage (za sada, dok ne napravimo CMS endpoint)
+  localStorage.setItem('cps_cms',JSON.stringify(cmsData));
+  const el=document.getElementById('cmsAlert');
+  el.className='alert alert-ok';el.textContent='CMS podatci spremljeni!';el.style.display='block';
+  setTimeout(()=>el.style.display='none',3000);
+}
+
+// ── HELPERS ───────────────────────────────────────────────────
 function show(s,el){
   document.querySelectorAll('.section').forEach(x=>x.classList.remove('active'));
   document.getElementById('sec'+s.charAt(0).toUpperCase()+s.slice(1)).classList.add('active');
   if(el){document.querySelectorAll('.sb-item').forEach(i=>i.classList.remove('active'));el.classList.add('active');}
 }
 function sLabel(s){return{draft:'Draft',pending:'Na odobrenju',approved:'Odobreno',rejected:'Odbijeno'}[s]||s;}
-
 async function req(method,path,body){
   const o={method,headers:{'Content-Type':'application/json'}};
   if(token)o.headers['Authorization']=`Bearer ${token}`;
@@ -459,5 +1058,6 @@ async function req(method,path,body){
   if(!r.ok)throw new Error(d.error||'API greška');return d;
 }
 </script>
+<style>@keyframes spin{to{transform:rotate(360deg);}}</style>
 </body>
 </html>
