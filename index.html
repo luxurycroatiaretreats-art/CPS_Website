@@ -798,216 +798,16 @@ button{cursor:pointer;font-family:'Jost',sans-serif;}
     <a href="iskustva.html" class="see-all white">Sva iskustva</a>
   </div>
   <div class="exp-pills" role="tablist">
-    <button class="exp-pill active" onclick="filterExp(this,'sve')" role="tab">
-      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.3"/><path d="M4 6h4M6 4v4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>Sve
-    </button>
-    <button class="exp-pill" onclick="filterExp(this,'restorani')" role="tab">
-      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4h8v6a1 1 0 01-1 1H3a1 1 0 01-1-1V4zM4 4V3a2 2 0 014 0v1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>Restorani
-    </button>
-    <button class="exp-pill" onclick="filterExp(this,'brodovi')" role="tab">
-      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 8c.5-1 1-1.5 2-1.5S5 7 6 8s1.5 1.5 2.5 1.5S10.5 9 11 8M6 3V8M2 3h8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>Brodovi
-    </button>
-    <button class="exp-pill" onclick="filterExp(this,'vinarije')" role="tab">
-      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4 1h4v4a4 4 0 01-4 0V1zM6 5v6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>Vinarije
-    </button>
-    <button class="exp-pill" onclick="filterExp(this,'privatno')" role="tab">
-      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="4.5" r="2" stroke="currentColor" stroke-width="1.3"/><path d="M2 10c0-2.5 1.8-4 4-4s4 1.5 4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>Privatno
-    </button>
-    <button class="exp-pill" onclick="filterExp(this,'beach')" role="tab">
-      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 8c1-2 2-3 4-3s3 2 4 2 2-1 2-1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M6 3v5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>Beach clubs
-    </button>
-    <button class="exp-pill" onclick="filterExp(this,'avanture')" role="tab">
-      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1.5l1.5 3.5H11l-3 2.5 1.3 4L6 9l-3.3 2.5L4 7.5 1 5h3.5z" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>Avanture
-    </button>
+    <button class="exp-pill active" onclick="filterIndexExp(this,'sve')" role="tab">Sve</button>
+    <button class="exp-pill" onclick="filterIndexExp(this,'gastronomija')" role="tab">Gastronomija</button>
+    <button class="exp-pill" onclick="filterIndexExp(this,'brodovi')" role="tab">Brodovi</button>
+    <button class="exp-pill" onclick="filterIndexExp(this,'vinarije')" role="tab">Vinarije</button>
+    <button class="exp-pill" onclick="filterIndexExp(this,'privatno')" role="tab">Privatno</button>
+    <button class="exp-pill" onclick="filterIndexExp(this,'avanture')" role="tab">Avanture</button>
   </div>
-
-  <div id="exp-sve">
-    <div class="exp-grid">
-      <div class="exp-hero" onclick="window.location.href='iskustvo.html'">
-        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=85" alt="Zrno Soli restoran Split fine dining Michelin" loading="lazy" width="900" height="600">
-        <div class="exp-hero-overlay"></div>
-        <div class="exp-hero-content">
-          <span class="exp-badge">&#9733; Broj 1 &middot; Split</span>
-          <p class="exp-loc">Fine dining &middot; Split</p>
-          <h3 class="exp-name-lg">Zrno Soli Restaurant</h3>
-          <p class="exp-meta">&#9733;&#9733;&#9733;&#9733;&#9733; 4.9 &middot; 48 recenzija &middot; Michelin preporu&#269;en</p>
-        </div>
-      </div>
-      <div class="exp-col">
-        <div class="exp-sm" onclick="window.location.href='iskustvo.html'">
-          <img src="https://images.unsplash.com/photo-1474169158499-049e53a1f9c7?w=500&q=80" alt="Privatna jedrilica Hvar zalazak sunca" loading="lazy" width="500" height="333">
-          <div class="exp-sm-overlay"></div>
-          <div class="exp-sm-content"><p class="exp-loc">Brod &middot; Hvar</p><h3 class="exp-name-sm">Privatna jedrilica pri zalasku</h3><p class="exp-meta">3h &middot; Do 8 gostiju</p></div>
-        </div>
-        <div class="exp-sm" onclick="window.location.href='iskustvo.html'">
-          <img src="https://images.unsplash.com/photo-1510508836394-7f96af0f0931?w=500&q=80" alt="Beach club Dubrovnik luksuz" loading="lazy" width="500" height="333">
-          <div class="exp-sm-overlay"></div>
-          <div class="exp-sm-content"><p class="exp-loc">Beach club &middot; Dubrovnik</p><h3 class="exp-name-sm">Coral Beach Club &amp; Dining</h3><p class="exp-meta">9h &ndash; 24h</p></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="exp-restorani" style="display:none;">
-    <div class="exp-grid">
-      <div class="exp-hero" onclick="window.location.href='iskustvo.html'">
-        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=85" alt="Fine dining restoran Split Michelin" loading="lazy" width="900" height="600">
-        <div class="exp-hero-overlay"></div>
-        <div class="exp-hero-content">
-          <span class="exp-badge">&#9733; Michelin preporu&#269;en</span>
-          <p class="exp-loc">Fine dining &middot; Split</p>
-          <h3 class="exp-name-lg">Zrno Soli Restaurant</h3>
-          <p class="exp-meta">&#9733;&#9733;&#9733;&#9733;&#9733; 4.9 &middot; Rezervacija obavezna</p>
-        </div>
-      </div>
-      <div class="exp-col">
-        <div class="exp-sm" onclick="window.location.href='iskustvo.html'">
-          <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=500&q=80" alt="Privatni chef vecera vila" loading="lazy" width="500" height="333">
-          <div class="exp-sm-overlay"></div>
-          <div class="exp-sm-content"><p class="exp-loc">Privatno &middot; Split</p><h3 class="exp-name-sm">Privatni chef u vili</h3><p class="exp-meta">3h &middot; Na upit</p></div>
-        </div>
-        <div class="exp-sm" onclick="window.location.href='iskustvo.html'">
-          <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=500&q=80" alt="Restaurant 360 Dubrovnik" loading="lazy" width="500" height="333">
-          <div class="exp-sm-overlay"></div>
-          <div class="exp-sm-content"><p class="exp-loc">Fine dining &middot; Dubrovnik</p><h3 class="exp-name-sm">Restaurant 360&deg;</h3><p class="exp-meta">Gradske zidine &middot; 2-3h</p></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="exp-brodovi" style="display:none;">
-    <div class="exp-grid">
-      <div class="exp-hero" onclick="window.location.href='iskustvo.html'">
-        <img src="https://images.unsplash.com/photo-1474169158499-049e53a1f9c7?w=900&q=85" alt="Privatna jedrilica Hvar Pakleni otoci" loading="lazy" width="900" height="600">
-        <div class="exp-hero-overlay"></div>
-        <div class="exp-hero-content">
-          <span class="exp-badge">&#9733; Najpopularnije</span>
-          <p class="exp-loc">Jedrilica &middot; Hvar</p>
-          <h3 class="exp-name-lg">Privatna jedrilica pri zalasku</h3>
-          <p class="exp-meta">&#9733;&#9733;&#9733;&#9733;&#9733; &middot; 3h &middot; Do 8 gostiju</p>
-        </div>
-      </div>
-      <div class="exp-col">
-        <div class="exp-sm" onclick="window.location.href='iskustvo.html'">
-          <img src="https://images.unsplash.com/photo-1559827291-72ee739d0d9a?w=500&q=80" alt="Privatni brod Dubrovnik Elafiti" loading="lazy" width="500" height="333">
-          <div class="exp-sm-overlay"></div>
-          <div class="exp-sm-content"><p class="exp-loc">Brod &middot; Dubrovnik</p><h3 class="exp-name-sm">Elafiti otoci &mdash; privatni brod</h3><p class="exp-meta">Cijeli dan &middot; Do 12 gostiju</p></div>
-        </div>
-        <div class="exp-sm" onclick="window.location.href='iskustvo.html'">
-          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&q=80" alt="Speedboat Split Vis" loading="lazy" width="500" height="333">
-          <div class="exp-sm-overlay"></div>
-          <div class="exp-sm-content"><p class="exp-loc">Speedboat &middot; Split</p><h3 class="exp-name-sm">Speedboat &mdash; Vis &amp; Modro jezero</h3><p class="exp-meta">8h &middot; Do 10 gostiju</p></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="exp-vinarije" style="display:none;">
-    <div class="exp-grid">
-      <div class="exp-hero" onclick="window.location.href='iskustvo.html'">
-        <img src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=900&q=85" alt="Degustacija vina Peljesac Dingac" loading="lazy" width="900" height="600">
-        <div class="exp-hero-overlay"></div>
-        <div class="exp-hero-content">
-          <span class="exp-badge">&#9733; Ekskluzivno &middot; Pelje&#353;ac</span>
-          <p class="exp-loc">Vinarija &middot; Pelje&#353;ac</p>
-          <h3 class="exp-name-lg">Degustacija Dinga&#269;a u vinogradu</h3>
-          <p class="exp-meta">&#9733;&#9733;&#9733;&#9733;&#9733; &middot; 2.5h &middot; Privatno</p>
-        </div>
-      </div>
-      <div class="exp-col">
-        <div class="exp-sm" onclick="window.location.href='iskustvo.html'">
-          <img src="https://images.unsplash.com/photo-1474722883778-792e7990302f?w=500&q=80" alt="Vinarija Istra Malvazija" loading="lazy" width="500" height="333">
-          <div class="exp-sm-overlay"></div>
-          <div class="exp-sm-content"><p class="exp-loc">Vinarija &middot; Istra</p><h3 class="exp-name-sm">Malvazija &amp; tartufi degustacija</h3><p class="exp-meta">3h &middot; Do 8 osoba</p></div>
-        </div>
-        <div class="exp-sm" onclick="window.location.href='iskustvo.html'">
-          <img src="https://images.unsplash.com/photo-1560493676-04071c5f467b?w=500&q=80" alt="Vino Hvar degustacija" loading="lazy" width="500" height="333">
-          <div class="exp-sm-overlay"></div>
-          <div class="exp-sm-content"><p class="exp-loc">Vinarija &middot; Hvar</p><h3 class="exp-name-sm">Vino &amp; maslinovo ulje Hvara</h3><p class="exp-meta">2h &middot; Privatno</p></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="exp-privatno" style="display:none;">
-    <div class="exp-grid">
-      <div class="exp-hero" onclick="window.location.href='iskustvo.html'">
-        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=900&q=85" alt="Privatni chef Split ekskluzivno" loading="lazy" width="900" height="600">
-        <div class="exp-hero-overlay"></div>
-        <div class="exp-hero-content">
-          <span class="exp-badge">&#9733; Ekskluzivno</span>
-          <p class="exp-loc">Privatno &middot; Split</p>
-          <h3 class="exp-name-lg">Privatni chef ve&#269;era u vili</h3>
-          <p class="exp-meta">&#9733;&#9733;&#9733;&#9733;&#9733; &middot; 3h &middot; Na upit</p>
-        </div>
-      </div>
-      <div class="exp-col">
-        <div class="exp-sm" onclick="window.location.href='iskustvo.html'">
-          <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=500&q=80" alt="Privatni yoga Hvar" loading="lazy" width="500" height="333">
-          <div class="exp-sm-overlay"></div>
-          <div class="exp-sm-content"><p class="exp-loc">Wellness &middot; Hvar</p><h3 class="exp-name-sm">Privatni yoga retreat</h3><p class="exp-meta">Jutarnje ili zalazak</p></div>
-        </div>
-        <div class="exp-sm" onclick="window.location.href='iskustvo.html'">
-          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=500&q=80" alt="Privatna vecera plaza" loading="lazy" width="500" height="333">
-          <div class="exp-sm-overlay"></div>
-          <div class="exp-sm-content"><p class="exp-loc">Romanti&#269;no &middot; Split</p><h3 class="exp-name-sm">Privatna ve&#269;era na pla&#382;i</h3><p class="exp-meta">Na upit &middot; Potpuno privatno</p></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="exp-beach" style="display:none;">
-    <div class="exp-grid">
-      <div class="exp-hero" onclick="window.location.href='iskustvo.html'">
-        <img src="https://images.unsplash.com/photo-1510508836394-7f96af0f0931?w=900&q=85" alt="Coral Beach Club Dubrovnik" loading="lazy" width="900" height="600">
-        <div class="exp-hero-overlay"></div>
-        <div class="exp-hero-content">
-          <span class="exp-badge">&#9733; Broj 1 &middot; Dubrovnik</span>
-          <p class="exp-loc">Beach club &middot; Dubrovnik</p>
-          <h3 class="exp-name-lg">Coral Beach Club &amp; Dining</h3>
-          <p class="exp-meta">&#9733;&#9733;&#9733;&#9733;&#9733; &middot; 9h &ndash; 24h</p>
-        </div>
-      </div>
-      <div class="exp-col">
-        <div class="exp-sm" onclick="window.location.href='iskustvo.html'">
-          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&q=80" alt="Carpe Diem Beach Hvar" loading="lazy" width="500" height="333">
-          <div class="exp-sm-overlay"></div>
-          <div class="exp-sm-content"><p class="exp-loc">Beach club &middot; Hvar</p><h3 class="exp-name-sm">Carpe Diem Beach &middot; Pakleni</h3><p class="exp-meta">Brod do otoka &middot; 10h &ndash; 02h</p></div>
-        </div>
-        <div class="exp-sm" onclick="window.location.href='iskustvo.html'">
-          <img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=500&q=80" alt="Beach club Brac Zlatni rat" loading="lazy" width="500" height="333">
-          <div class="exp-sm-overlay"></div>
-          <div class="exp-sm-content"><p class="exp-loc">Beach club &middot; Bra&#269;</p><h3 class="exp-name-sm">Zlatni Rat Beach Lounge</h3><p class="exp-meta">9h &ndash; 20h</p></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="exp-avanture" style="display:none;">
-    <div class="exp-grid">
-      <div class="exp-hero" onclick="window.location.href='iskustvo.html'">
-        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=900&q=85" alt="Kayaking Brac avantura" loading="lazy" width="900" height="600">
-        <div class="exp-hero-overlay"></div>
-        <div class="exp-hero-content">
-          <span class="exp-badge">&#9733; Najpopularnije</span>
-          <p class="exp-loc">Avantura &middot; Bra&#269;</p>
-          <h3 class="exp-name-lg">Kayaking skrivenim uvalama</h3>
-          <p class="exp-meta">&#9733;&#9733;&#9733;&#9733;&#9733; &middot; 4h &middot; Svi nivoi</p>
-        </div>
-      </div>
-      <div class="exp-col">
-        <div class="exp-sm" onclick="window.location.href='iskustvo.html'">
-          <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=500&q=80" alt="Ronjenje Vis Plava spilja" loading="lazy" width="500" height="333">
-          <div class="exp-sm-overlay"></div>
-          <div class="exp-sm-content"><p class="exp-loc">Ronjenje &middot; Vis</p><h3 class="exp-name-sm">Ronjenje &mdash; Plava spilja</h3><p class="exp-meta">4h &middot; Certifikat potreban</p></div>
-        </div>
-        <div class="exp-sm" onclick="window.location.href='iskustvo.html'">
-          <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=500&q=80" alt="Rafting Cetina Omis" loading="lazy" width="500" height="333">
-          <div class="exp-sm-overlay"></div>
-          <div class="exp-sm-content"><p class="exp-loc">Rafting &middot; Omi&#353;</p><h3 class="exp-name-sm">Rafting kanjonom Cetine</h3><p class="exp-meta">3h &middot; Raft za 8 osoba</p></div>
-        </div>
-      </div>
-    </div>
+  <!-- Dinamički sadržaj iz baze -->
+  <div id="indexExpWrap">
+    <div style="text-align:center;padding:40px;color:rgba(255,255,255,0.4);font-size:13px;">Učitavanje iskustava...</div>
   </div>
 </section>
 
@@ -1295,9 +1095,75 @@ async function loadIndexData() {
     if (villas && villas.length) {
       renderFeatured(villas, cms?.featured_max || 3);
     }
+
+    // Featured iskustva
+    const expRes = await fetch(`${WORKER_URL}/api/experiences?featured=1`);
+    const exps = expRes.ok ? await expRes.json() : [];
+    if (exps.length) {
+      window._indexExps = exps;
+      renderIndexExps(exps, 'sve');
+    }
   } catch(e) {
     console.error('Index load error:', e);
   }
+}
+
+// ── INDEX EXPERIENCES ─────────────────────────────────────────
+let _indexExpFilter = 'sve';
+
+function filterIndexExp(btn, cat) {
+  document.querySelectorAll('.exp-pill').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  _indexExpFilter = cat;
+  const exps = window._indexExps || [];
+  const filtered = cat === 'sve' ? exps : exps.filter(e => e.category === cat);
+  renderIndexExps(filtered, cat);
+}
+
+function renderIndexExps(exps, cat) {
+  const wrap = document.getElementById('indexExpWrap');
+  if (!wrap) return;
+
+  const filtered = cat === 'sve' ? exps : exps.filter(e => e.category === cat);
+
+  if (!filtered.length) {
+    wrap.innerHTML = '<div style="text-align:center;padding:40px;color:rgba(255,255,255,0.4);font-size:13px;">Nema iskustava u ovoj kategoriji.</div>';
+    return;
+  }
+
+  const hero = filtered[0];
+  const rest = filtered.slice(1, 3);
+  const heroImg = hero.image_url || 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=85';
+  const heroUrl = `iskustvo.html?id=${hero.id}`;
+
+  wrap.innerHTML = `
+    <div class="exp-grid">
+      <div class="exp-hero" onclick="window.location.href='${heroUrl}'">
+        <img src="${heroImg}" alt="${hero.name}" loading="lazy" width="900" height="600">
+        <div class="exp-hero-overlay"></div>
+        <div class="exp-hero-content">
+          ${hero.rating ? `<span class="exp-badge">&#9733; ${hero.rating}</span>` : '<span class="exp-badge">CPS izbor</span>'}
+          <p class="exp-loc">${hero.category || ''} &middot; ${hero.city || ''}</p>
+          <h3 class="exp-name-lg">${hero.name}</h3>
+          <p class="exp-meta">${hero.duration || ''} ${hero.max_persons ? `&middot; Do ${hero.max_persons}` : ''}</p>
+        </div>
+      </div>
+      <div class="exp-col">
+        ${rest.map(e => {
+          const img = e.image_url || 'https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=500&q=80';
+          return `<div class="exp-sm" onclick="window.location.href='iskustvo.html?id=${e.id}'">
+            <img src="${img}" alt="${e.name}" loading="lazy" width="500" height="333">
+            <div class="exp-sm-overlay"></div>
+            <div class="exp-sm-content">
+              <p class="exp-loc">${e.category || ''} &middot; ${e.city || ''}</p>
+              <h3 class="exp-name-sm">${e.name}</h3>
+              <p class="exp-meta">${e.duration || ''} &middot; ${e.price_from ? `Od ${e.price_from}€` : 'Na upit'}</p>
+            </div>
+          </div>`;
+        }).join('')}
+        ${rest.length === 0 ? '<div style="background:rgba(255,255,255,0.05);border-radius:12px;display:flex;align-items:center;justify-content:center;"><a href="iskustva.html" style="color:rgba(255,255,255,0.6);font-size:13px;">Pogledaj sva iskustva →</a></div>' : ''}
+      </div>
+    </div>`;
 }
 
 function renderDestinations(dests) {
