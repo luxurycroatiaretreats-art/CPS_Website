@@ -1035,12 +1035,25 @@ function addCMSItem(type){
   }
   renderCMS();
 }
-function saveCMS(){
-  // Spremi u localStorage (za sada, dok ne napravimo CMS endpoint)
-  localStorage.setItem('cps_cms',JSON.stringify(cmsData));
+async function saveCMS(){
   const el=document.getElementById('cmsAlert');
-  el.className='alert alert-ok';el.textContent='CMS podatci spremljeni!';el.style.display='block';
-  setTimeout(()=>el.style.display='none',3000);
+  try {
+    // Skupi sve CMS vrijednosti
+    const payload = {
+      destinations: cmsData.destinations,
+      quick_filters: cmsData.filters,
+      hero_title: document.getElementById('cmsHeroTitle').value.trim() || 'Luksuzni odmor u Hrvatskoj',
+      hero_sub: document.getElementById('cmsHeroSub').value.trim() || '200+ verificiranih villa',
+      meta_description: document.getElementById('cmsMeta').value.trim(),
+      featured_title: document.getElementById('cmsFeatTitle').value.trim() || 'Odabrane vile ove sezone',
+      featured_max: parseInt(document.getElementById('cmsFeatMax').value)||6,
+    };
+    await req('POST','/api/admin/cms', payload);
+    el.className='alert alert-ok';el.textContent='✅ CMS spremenjen i vidljiv svugdje!';el.style.display='block';
+    setTimeout(()=>el.style.display='none',4000);
+  } catch(e) {
+    el.className='alert alert-err';el.textContent='Greška: '+e.message;el.style.display='block';
+  }
 }
 
 // ── HELPERS ───────────────────────────────────────────────────
