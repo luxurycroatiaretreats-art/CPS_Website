@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kurirana iskustva u Hrvatskoj – Croatia Premium Stay</title>
 <meta name="description" content="Restorani, brodovi, vinarije, beach clubs i avanture u Hrvatskoj. Iskustva za goste koji znaju razliku. Direktno od CPS tima.">
-<link rel="canonical" href="https://croatiapremiumstay.com/iskustva/">
+<link rel="canonical" href="https://croatiapremiustay.com/iskustva/">
 <meta property="og:title" content="Kurirana iskustva u Hrvatskoj – Croatia Premium Stay">
 <meta property="og:description" content="Restorani, brodovi, vinarije, beach clubs i avanture. Iskustva za goste koji znaju razliku.">
 <meta property="og:type" content="website">
-<link rel="alternate" hreflang="hr" href="https://croatiapremiumstay.com/hr/iskustva/">
-<link rel="alternate" hreflang="en" href="https://croatiapremiumstay.com/en/iskustva/">
-<link rel="alternate" hreflang="x-default" href="https://croatiapremiumstay.com/iskustva/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Kurirana iskustva u Hrvatskoj","url":"https://croatiapremiumstay.com/iskustva/"}</script>
+<link rel="alternate" hreflang="hr" href="https://croatiapremiustay.com/hr/iskustva/">
+<link rel="alternate" hreflang="en" href="https://croatiapremiustay.com/en/iskustva/">
+<link rel="alternate" hreflang="x-default" href="https://croatiapremiustay.com/iskustva/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Kurirana iskustva u Hrvatskoj","url":"https://croatiapremiustay.com/iskustva/"}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
@@ -482,167 +482,16 @@ button{cursor:pointer;font-family:'Jost',sans-serif;}
 <main class="cards-wrap">
 
   <!-- FEATURED EXPERIENCE -->
-  <article class="exp-hero-card" data-tip="restorani" data-dest="split" onclick="window.location.href='iskustvo.html'">
-    <div class="ehc-img">
-      <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=85"
-           alt="Zrno Soli restoran Split fine dining Michelin Hrvatska" loading="eager" width="900" height="600">
-      <div class="ehc-badge-top">
-        <span class="badge-gold">CPS izbor</span>
-        <span class="badge-rating">&#9733; 4.9 &middot; 48 rec.</span>
-      </div>
-      <button class="heart-btn" onclick="event.stopPropagation();toggleHeart(this)" aria-label="Spremi u wishlist">
-        <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M8 13.5S1.5 9.5 1.5 5.5a3.5 3.5 0 017 0 3.5 3.5 0 017 0c0 4-6.5 8-6.5 8h-1z" stroke="#115571" stroke-width="1.4"/></svg>
-      </button>
-    </div>
-    <div class="ehc-body">
-      <div>
-        <div class="ehc-cat">Restoran &middot; Split &middot; Dalmacija</div>
-        <h2 class="ehc-name">Zrno Soli Restaurant</h2>
-        <p class="ehc-desc">Fine dining uz samu obalu mora. Michelin preporučen, sezonski jelovnik, neprocjenjiv pogled. Jedno od najtraženijih iskustava u Dalmaciji.</p>
-        <div class="ehc-facts">
-          <div class="ehc-fact">
-            <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="5.5" stroke="#8AA8B0" stroke-width="1.2"/><path d="M6.5 4v2.5l2 1" stroke="#8AA8B0" stroke-width="1.2" stroke-linecap="round"/></svg>
-            Večernji servis
-          </div>
-          <div class="ehc-fact">
-            <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="5" r="2.5" stroke="#8AA8B0" stroke-width="1.2"/><path d="M2 12c0-3 2-4.5 4.5-4.5S11 9 11 12" stroke="#8AA8B0" stroke-width="1.2" stroke-linecap="round"/></svg>
-            Do 40 gostiju
-          </div>
-          <div class="ehc-fact">
-            <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M6.5 1C4 1 2 3 2 5.5c0 3.5 4.5 7 4.5 7s4.5-3.5 4.5-7C11 3 9 1 6.5 1z" stroke="#8AA8B0" stroke-width="1.2"/></svg>
-            Bačvice, Split
-          </div>
-        </div>
-      </div>
-      <div class="ehc-footer">
-        <div>
-          <div class="ehc-price">Na upit</div>
-          <div class="ehc-price-unit">Rezervacija obavezna</div>
-        </div>
-        <button class="btn-primary" onclick="event.stopPropagation();window.location.href='iskustvo.html'">Detalji &rarr;</button>
-      </div>
-    </div>
-  </article>
+  <!-- Hero exp — dinamički -->
+  <div id="expHero"></div>
 
-  <!-- STANDARD GRID -->
+  <!-- Standard grid — dinamički -->
   <div class="exp-grid" id="expGrid">
-
-    <article class="exp-card" data-tip="brodovi" data-dest="hvar" onclick="window.location.href='iskustvo.html'">
-      <div class="ec-img">
-        <img src="https://images.unsplash.com/photo-1474169158499-049e53a1f9c7?w=600&q=80" alt="Privatna jedrilica Hvar zalazak sunca Hrvatska" loading="lazy" width="600" height="400">
-        <button class="ec-heart" onclick="event.stopPropagation();toggleHeart(this)" aria-label="Spremi u wishlist">
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 13.5S1.5 9.5 1.5 5.5a3.5 3.5 0 017 0 3.5 3.5 0 017 0c0 4-6.5 8-6.5 8h-1z" stroke="#115571" stroke-width="1.4"/></svg>
-        </button>
-      </div>
-      <div class="ec-body">
-        <div class="ec-cat">Brod &middot; Hvar</div>
-        <div class="ec-name">Privatna jedrilica pri zalasku</div>
-        <div class="ec-loc"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M5.5 1C3.5 1 2 2.5 2 4.5c0 3 3.5 5.5 3.5 5.5S9 7.5 9 4.5C9 2.5 7.5 1 5.5 1z" stroke="#8AA8B0" stroke-width="1.1"/></svg>Hvar, Dalmacija</div>
-        <div class="ec-meta">3h &middot; Do 8 gostiju &middot; Zalazak sunca</div>
-        <div class="ec-footer">
-          <div><span class="ec-price">Na upit</span></div>
-          <button class="btn-outline-sm" onclick="event.stopPropagation();window.location.href='iskustvo.html'">Detalji</button>
-        </div>
-      </div>
-    </article>
-
-    <article class="exp-card" data-tip="beach" data-dest="dubrovnik" onclick="window.location.href='iskustvo.html'">
-      <div class="ec-img">
-        <img src="https://images.unsplash.com/photo-1510508836394-7f96af0f0931?w=600&q=80" alt="Beach club Dubrovnik luksuz Hrvatska" loading="lazy" width="600" height="400">
-        <button class="ec-heart" onclick="event.stopPropagation();toggleHeart(this)" aria-label="Spremi u wishlist">
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 13.5S1.5 9.5 1.5 5.5a3.5 3.5 0 017 0 3.5 3.5 0 017 0c0 4-6.5 8-6.5 8h-1z" stroke="#115571" stroke-width="1.4"/></svg>
-        </button>
-      </div>
-      <div class="ec-body">
-        <div class="ec-cat">Beach club &middot; Dubrovnik</div>
-        <div class="ec-name">Coral Beach Club &amp; Dining</div>
-        <div class="ec-loc"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M5.5 1C3.5 1 2 2.5 2 4.5c0 3 3.5 5.5 3.5 5.5S9 7.5 9 4.5C9 2.5 7.5 1 5.5 1z" stroke="#8AA8B0" stroke-width="1.1"/></svg>Dubrovnik, Dalmacija</div>
-        <div class="ec-meta">9h – 24h &middot; Restoran &amp; bazen &middot; VIP kabine</div>
-        <div class="ec-footer">
-          <div><span class="ec-price">Na upit</span></div>
-          <button class="btn-outline-sm" onclick="event.stopPropagation();window.location.href='iskustvo.html'">Detalji</button>
-        </div>
-      </div>
-    </article>
-
-    <article class="exp-card" data-tip="vinarije" data-dest="peljesac" onclick="window.location.href='iskustvo.html'">
-      <div class="ec-img">
-        <img src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=600&q=80" alt="Degustacija vina Peljesac Dingac Hrvatska" loading="lazy" width="600" height="400">
-        <button class="ec-heart" onclick="event.stopPropagation();toggleHeart(this)" aria-label="Spremi u wishlist">
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 13.5S1.5 9.5 1.5 5.5a3.5 3.5 0 017 0 3.5 3.5 0 017 0c0 4-6.5 8-6.5 8h-1z" stroke="#115571" stroke-width="1.4"/></svg>
-        </button>
-      </div>
-      <div class="ec-body">
-        <div class="ec-cat">Vinarija &middot; Pelješac</div>
-        <div class="ec-name">Degustacija Dingača</div>
-        <div class="ec-loc"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M5.5 1C3.5 1 2 2.5 2 4.5c0 3 3.5 5.5 3.5 5.5S9 7.5 9 4.5C9 2.5 7.5 1 5.5 1z" stroke="#8AA8B0" stroke-width="1.1"/></svg>Pelješac, Dalmacija</div>
-        <div class="ec-meta">2.5h &middot; Privatno &middot; Do 12 osoba</div>
-        <div class="ec-footer">
-          <div><span class="ec-price">Na upit</span></div>
-          <button class="btn-outline-sm" onclick="event.stopPropagation();window.location.href='iskustvo.html'">Detalji</button>
-        </div>
-      </div>
-    </article>
-
-    <article class="exp-card" data-tip="avanture" data-dest="brac" onclick="window.location.href='iskustvo.html'">
-      <div class="ec-img">
-        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&q=80" alt="Kayaking Brac skrivene uvale avantura Hrvatska" loading="lazy" width="600" height="400">
-        <button class="ec-heart" onclick="event.stopPropagation();toggleHeart(this)" aria-label="Spremi u wishlist">
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 13.5S1.5 9.5 1.5 5.5a3.5 3.5 0 017 0 3.5 3.5 0 017 0c0 4-6.5 8-6.5 8h-1z" stroke="#115571" stroke-width="1.4"/></svg>
-        </button>
-      </div>
-      <div class="ec-body">
-        <div class="ec-cat">Avantura &middot; Brač</div>
-        <div class="ec-name">Kayaking skrivenim uvalama</div>
-        <div class="ec-loc"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M5.5 1C3.5 1 2 2.5 2 4.5c0 3 3.5 5.5 3.5 5.5S9 7.5 9 4.5C9 2.5 7.5 1 5.5 1z" stroke="#8AA8B0" stroke-width="1.1"/></svg>Brač, Dalmacija</div>
-        <div class="ec-meta">4h &middot; Svi nivoi &middot; Oprema uključena</div>
-        <div class="ec-footer">
-          <div><span class="ec-price">Na upit</span></div>
-          <button class="btn-outline-sm" onclick="event.stopPropagation();window.location.href='iskustvo.html'">Detalji</button>
-        </div>
-      </div>
-    </article>
-
-    <article class="exp-card" data-tip="privatno" data-dest="split" onclick="window.location.href='iskustvo.html'">
-      <div class="ec-img">
-        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80" alt="Privatni chef večera vila Split Hrvatska" loading="lazy" width="600" height="400">
-        <button class="ec-heart" onclick="event.stopPropagation();toggleHeart(this)" aria-label="Spremi u wishlist">
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 13.5S1.5 9.5 1.5 5.5a3.5 3.5 0 017 0 3.5 3.5 0 017 0c0 4-6.5 8-6.5 8h-1z" stroke="#115571" stroke-width="1.4"/></svg>
-        </button>
-      </div>
-      <div class="ec-body">
-        <div class="ec-cat">Privatno &middot; Split</div>
-        <div class="ec-name">Privatni chef u vili</div>
-        <div class="ec-loc"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M5.5 1C3.5 1 2 2.5 2 4.5c0 3 3.5 5.5 3.5 5.5S9 7.5 9 4.5C9 2.5 7.5 1 5.5 1z" stroke="#8AA8B0" stroke-width="1.1"/></svg>Split &amp; okolica</div>
-        <div class="ec-meta">3h &middot; Sva jela uključena &middot; Na upit</div>
-        <div class="ec-footer">
-          <div><span class="ec-price">Na upit</span></div>
-          <button class="btn-outline-sm" onclick="event.stopPropagation();window.location.href='iskustvo.html'">Detalji</button>
-        </div>
-      </div>
-    </article>
-
-    <article class="exp-card" data-tip="brodovi" data-dest="vis" onclick="window.location.href='iskustvo.html'">
-      <div class="ec-img">
-        <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&q=80" alt="Tura brodom Vis Modra spilja Hrvatska" loading="lazy" width="600" height="400">
-        <button class="ec-heart" onclick="event.stopPropagation();toggleHeart(this)" aria-label="Spremi u wishlist">
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 13.5S1.5 9.5 1.5 5.5a3.5 3.5 0 017 0 3.5 3.5 0 017 0c0 4-6.5 8-6.5 8h-1z" stroke="#115571" stroke-width="1.4"/></svg>
-        </button>
-      </div>
-      <div class="ec-body">
-        <div class="ec-cat">Brod &middot; Vis</div>
-        <div class="ec-name">Modra spilja &amp; uvale Visa</div>
-        <div class="ec-loc"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M5.5 1C3.5 1 2 2.5 2 4.5c0 3 3.5 5.5 3.5 5.5S9 7.5 9 4.5C9 2.5 7.5 1 5.5 1z" stroke="#8AA8B0" stroke-width="1.1"/></svg>Vis, Dalmacija</div>
-        <div class="ec-meta">8h &middot; Full day &middot; Ručak uključen</div>
-        <div class="ec-footer">
-          <div><span class="ec-price">Na upit</span></div>
-          <button class="btn-outline-sm" onclick="event.stopPropagation();window.location.href='iskustvo.html'">Detalji</button>
-        </div>
-      </div>
-    </article>
-
+    <div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text-muted);font-size:13px;">Učitavanje iskustava...</div>
   </div>
 </main>
+
+
 
 <!-- PAGINATION -->
 <div class="pagination">
@@ -809,16 +658,118 @@ function setTabByKey(tip){
   if(tab){ setTimeout(()=>{ setTab(tab); tab.scrollIntoView({behavior:'smooth',block:'nearest'}); }, 50); }
 }
 
-// URL PARAM — ?dest=split (from homepage)
-(function(){
-  const p=new URLSearchParams(window.location.search);
-  const dest=p.get('dest');
-  if(dest){
-    currentDest=dest;
-    const labels={split:'Split & okolica',dubrovnik:'Dubrovnik',hvar:'Hvar',peljesac:'Pelješac',brac:'Brač',vis:'Vis'};
-    if(labels[dest]) document.getElementById('scLoc').textContent=labels[dest];
-    filterCards();
+// ── DINAMIČKA ISKUSTVA IZ BAZE ───────────────────────────────
+const WORKER_URL = 'https://cps-booking.solitary-rice-38ed.workers.dev';
+let allExperiences = [];
+
+async function loadExperiences() {
+  try {
+    const res = await fetch(`${WORKER_URL}/api/experiences`);
+    if (!res.ok) throw new Error('API error');
+    allExperiences = await res.json();
+    renderExperiences();
+  } catch(e) {
+    console.error('loadExperiences error:', e);
+    document.getElementById('expGrid').innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text-muted);">Greška pri učitavanju iskustava.</div>';
   }
+}
+
+function renderExperiences() {
+  const tipMatch = e => currentTip === 'sve' || e.category === currentTip;
+  const destMatch = e => !currentDest || e.location_key === currentDest;
+  const filtered = allExperiences.filter(e => tipMatch(e) && destMatch(e));
+
+  // Hero — prvi featured
+  const hero = filtered.find(e => e.featured) || filtered[0];
+  const rest = filtered.filter(e => !hero || e.id !== hero.id);
+
+  // Render hero
+  const heroEl = document.getElementById('expHero');
+  if (heroEl && hero) {
+    const heroImg = hero.image_url || 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=85';
+    heroEl.innerHTML = `
+      <article class="exp-hero-card" data-tip="${hero.category}" data-dest="${hero.location_key}" onclick="window.location.href='iskustvo.html?id=${hero.id}'">
+        <div class="ehc-img">
+          <img src="${heroImg}" alt="${hero.name}" loading="eager" width="900" height="600">
+          <div class="ehc-badge-top">
+            <span class="badge-gold">CPS izbor</span>
+            ${hero.rating ? `<span class="badge-rating">&#9733; ${hero.rating} &middot; ${hero.review_count||0} rec.</span>` : ''}
+          </div>
+          <button class="heart-btn" onclick="event.stopPropagation();toggleHeart(this)" aria-label="Spremi">
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M8 13.5S1.5 9.5 1.5 5.5a3.5 3.5 0 017 0 3.5 3.5 0 017 0c0 4-6.5 8-6.5 8h-1z" stroke="#115571" stroke-width="1.4"/></svg>
+          </button>
+        </div>
+        <div class="ehc-body">
+          <div>
+            <div class="ehc-cat">${hero.location || hero.city || ''}</div>
+            <h2 class="ehc-name">${hero.name}</h2>
+            <p class="ehc-desc">${hero.short_desc || hero.description || ''}</p>
+            <div class="ehc-facts">
+              ${hero.duration ? `<div class="ehc-fact"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="5.5" stroke="#8AA8B0" stroke-width="1.2"/><path d="M6.5 4v2.5l2 1" stroke="#8AA8B0" stroke-width="1.2" stroke-linecap="round"/></svg>${hero.duration}</div>` : ''}
+              ${hero.max_persons ? `<div class="ehc-fact"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="5" r="2.5" stroke="#8AA8B0" stroke-width="1.2"/><path d="M2 12c0-3 2-4.5 4.5-4.5S11 9 11 12" stroke="#8AA8B0" stroke-width="1.2" stroke-linecap="round"/></svg>Do ${hero.max_persons} osoba</div>` : ''}
+              ${hero.city ? `<div class="ehc-fact"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M6.5 1C4 1 2 3 2 5.5c0 3.5 4.5 7 4.5 7s4.5-3.5 4.5-7C11 3 9 1 6.5 1z" stroke="#8AA8B0" stroke-width="1.2"/></svg>${hero.city}</div>` : ''}
+            </div>
+          </div>
+          <div class="ehc-footer">
+            <div>
+              <div class="ehc-price">${hero.price_from ? `Od ${hero.price_from.toLocaleString()}€` : 'Na upit'}</div>
+              <div class="ehc-price-unit">${hero.price_unit || ''}</div>
+            </div>
+            <button class="btn-primary" onclick="event.stopPropagation();window.location.href='iskustvo.html?id=${hero.id}'">Detalji &rarr;</button>
+          </div>
+        </div>
+      </article>`;
+  } else if (heroEl) {
+    heroEl.innerHTML = '';
+  }
+
+  // Render grid
+  const grid = document.getElementById('expGrid');
+  if (!grid) return;
+  if (!rest.length) {
+    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text-muted);">Nema iskustava u ovoj kategoriji.</div>';
+  } else {
+    grid.innerHTML = rest.map(e => {
+      const img = e.image_url || 'https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=600&q=80';
+      return `<article class="exp-card" data-tip="${e.category}" data-dest="${e.location_key}" onclick="window.location.href='iskustvo.html?id=${e.id}'">
+        <div class="ec-img">
+          <img src="${img}" alt="${e.name}" loading="lazy" width="600" height="400">
+          <button class="ec-heart" onclick="event.stopPropagation();toggleHeart(this)" aria-label="Spremi">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 13.5S1.5 9.5 1.5 5.5a3.5 3.5 0 017 0 3.5 3.5 0 017 0c0 4-6.5 8-6.5 8h-1z" stroke="#115571" stroke-width="1.4"/></svg>
+          </button>
+        </div>
+        <div class="ec-body">
+          <div class="ec-cat">${e.category || ''} &middot; ${e.city || ''}</div>
+          <div class="ec-name">${e.name}</div>
+          <div class="ec-loc"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M5.5 1C3.5 1 2 2.5 2 4.5c0 3 3.5 5.5 3.5 5.5S9 7.5 9 4.5C9 2.5 7.5 1 5.5 1z" stroke="#8AA8B0" stroke-width="1.1"/></svg>${e.location || e.city || ''}</div>
+          <div class="ec-meta">${[e.duration, e.max_persons ? `Do ${e.max_persons} osoba` : ''].filter(Boolean).join(' &middot; ')}</div>
+          <div class="ec-footer">
+            <div><span class="ec-price">${e.price_from ? `Od ${e.price_from.toLocaleString()}€` : 'Na upit'}</span></div>
+            <button class="btn-outline-sm" onclick="event.stopPropagation();window.location.href='iskustvo.html?id=${e.id}'">Detalji</button>
+          </div>
+        </div>
+      </article>`;
+    }).join('');
+  }
+
+  // Update count
+  const resEl = document.getElementById('resCount');
+  if (resEl) resEl.innerHTML = `<strong>${filtered.length}</strong> iskustava`;
+}
+
+// Override filterCards da koristi dinamičke podatke
+function filterCards() {
+  if (allExperiences.length) renderExperiences();
+}
+
+// URL PARAM — ?dest=split
+(function(){
+  const p = new URLSearchParams(window.location.search);
+  const dest = p.get('dest');
+  const cat  = p.get('cat');
+  if (dest) { currentDest = dest; }
+  if (cat) { currentTip = cat; }
+  loadExperiences();
 })();
 
 // ESC
